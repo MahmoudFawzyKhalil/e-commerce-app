@@ -12,7 +12,6 @@ import java.io.IOException;
 public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        throw new NullPointerException();
 //        response.getWriter().println("hello");
     }
 }
