@@ -1,0 +1,16 @@
+{
+  "name": "web-inf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build-css-3": "tailwindcss -i css-src/tailwind-src.css -o ../css/tailwind-out.css --watch",
+    "build-css": "tailwindcss -i css-src/tailwind-src.css -o ../css/tailwind-out.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  },
+  "description": ""
+}
