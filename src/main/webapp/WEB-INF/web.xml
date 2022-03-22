@@ -25,7 +25,7 @@
         </cookie-config>
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
-    
+
 <!--    <error-page>-->
 <!--        <location>/WEB-INF/error.jsp</location>-->
 <!--    </error-page>-->
