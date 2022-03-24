@@ -29,10 +29,6 @@ public class Product {
     @NotNull
     Category category;
 
-    public Product() {
-
-    }
-
     public int getId() {
         return id;
     }

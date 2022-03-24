@@ -27,10 +27,6 @@ public class Address {
     @Size(min = 3, max = 250)
     private String city;
 
-    public Address() {
-
-    }
-
     public void assignOwner(User owner) {
         owner.setAddress(this);
         this.owner = owner;
