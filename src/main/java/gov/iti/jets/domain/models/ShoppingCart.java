@@ -12,14 +12,15 @@ public class ShoppingCart {
     @GeneratedValue
     private int id;
 
-    @OneToOne(mappedBy = "shoppingCart")
+    @OneToOne
+    @JoinColumn(name = "cart_owner")
     private User owner;
 
     @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private final Set<CartLineItem> cartLineItems = new HashSet<>();
 
     public void addCartLineItem(CartLineItem cartLineItem) {
-        cartLineItem.setShoppingCart(this);
+        cartLineItem._setShoppingCart(this);
         this.cartLineItems.add(cartLineItem);
     }
 
@@ -34,7 +35,7 @@ public class ShoppingCart {
     }
 
     public void assignToAUser(User owner){
-        owner.setShoppingCart(this);
+        owner._setShoppingCart(this);
         this.owner = owner;
     }
 
@@ -46,12 +47,12 @@ public class ShoppingCart {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void _setOwner(User owner) {
         this.owner = owner;
     }
 
-    public Set<CartLineItem> getCartLineItems() {
-        return cartLineItems;
+    public Set<CartLineItem> getCartLineItemsUnmodifiable() {
+        return Set.copyOf(cartLineItems);
     }
 
 

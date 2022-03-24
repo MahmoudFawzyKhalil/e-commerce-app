@@ -1,9 +1,6 @@
 package gov.iti.jets.domain.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -17,6 +14,7 @@ public class Address {
 
     @OneToOne(mappedBy = "address")
     @NotNull
+    @JoinColumn(name = "address_owner")
     private User owner;
 
     @NotNull
@@ -27,8 +25,17 @@ public class Address {
     @Size(min = 3, max = 250)
     private String city;
 
+    protected Address(){
+
+    }
+
+    public Address(String street, String city) {
+        this.street = street;
+        this.city = city;
+    }
+
     public void assignOwner(User owner) {
-        owner.setAddress(this);
+        owner._setAddress(this);
         this.owner = owner;
     }
 
@@ -56,7 +63,7 @@ public class Address {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void _setOwner(User owner) {
         this.owner = owner;
     }
 

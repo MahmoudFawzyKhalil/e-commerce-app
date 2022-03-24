@@ -9,12 +9,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "order_owner")
     private User owner;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
@@ -27,7 +29,7 @@ public class Order {
     private long total = 0;
 
     public void addOrderLineItem(OrderLineItem orderLineItem){
-        orderLineItem.setOrder(this);
+        orderLineItem._setOrder(this);
         this.orderLineItems.add(orderLineItem);
         updateTotal(orderLineItem.getTotalCost());
     }
@@ -48,8 +50,8 @@ public class Order {
         this.owner = owner;
     }
 
-    public Set<OrderLineItem> getOrderLineItems() {
-        return orderLineItems;
+    public Set<OrderLineItem> getOrderLineItemsUnmodifiable() {
+        return Set.copyOf(orderLineItems);
     }
 
     public LocalDateTime getTimestamp() {

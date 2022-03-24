@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -28,6 +29,7 @@ public class User {
 
     @NotNull
     @Size(min=8, max=50)
+    @Column(name = "user_password")
     private String password;
 
     @NotNull
@@ -38,25 +40,27 @@ public class User {
     private long creditLimit;
 
     @Size(max=100)
+    @NotNull
     private String job;
 
     @NotNull
+    @Column(name = "user_role")
     private Role role;
 
     @OneToOne(cascade = CascadeType.ALL)
     @NotNull
     private Address address;
 
-    @OneToOne
+    @OneToOne(mappedBy = "owner")
     private ShoppingCart shoppingCart;
 
     public void assignAddress(Address address){
-        address.setOwner(this);
+        address._setOwner(this);
         this.address = address;
     }
 
     public void assignAShoppingCart(ShoppingCart shoppingCart){
-        shoppingCart.setOwner(this);
+        shoppingCart._setOwner(this);
         this.shoppingCart = shoppingCart;
     }
 
@@ -72,7 +76,7 @@ public class User {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void _setAddress(Address address) {
         this.address = address;
     }
 
@@ -144,7 +148,7 @@ public class User {
         return Optional.ofNullable(this.shoppingCart);
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
+    public void _setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 

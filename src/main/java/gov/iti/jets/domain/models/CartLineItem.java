@@ -22,12 +22,10 @@ public class CartLineItem {
     @ManyToOne
     private ShoppingCart shoppingCart;
 
-
     public void assignToAShoppingCart(ShoppingCart shoppingCart) {
         shoppingCart.addCartLineItem(this);
         this.shoppingCart = shoppingCart;
     }
-
 
     public long getTotalCost() {
         return this.quantity * this.unitCost;
@@ -65,7 +63,7 @@ public class CartLineItem {
         return shoppingCart;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
+    public void _setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 

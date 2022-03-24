@@ -1,9 +1,6 @@
 package gov.iti.jets.domain.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 
 @Entity
@@ -23,6 +20,7 @@ public class OrderLineItem {
     private long unitCost;
 
     @ManyToOne
+    @JoinColumn(name = "owner_order")
     private Order order;
 
     public void assignToAnOrder(Order order) {
@@ -66,7 +64,7 @@ public class OrderLineItem {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void _setOrder(Order order) {
         this.order = order;
     }
 

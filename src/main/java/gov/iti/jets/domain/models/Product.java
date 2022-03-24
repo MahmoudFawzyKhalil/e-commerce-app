@@ -9,25 +9,23 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Product {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     int id;
 
     @NotNull @Size(min = 3, max = 200)
+    @Column(name = "product_name")
     String name;
 
-    @Size(max = 1000)
-    String description;
+    @Size(max = 1000) String description;
 
     String imageName;
 
-    @Min(0)
-    long price;
+    @Min(0) long price;
 
-    @Min(0)
-    int quantity;
+    @Min(0) int quantity;
 
-    @NotNull
-    Category category;
+    @NotNull Category category;
 
     public int getId() {
         return id;
@@ -83,14 +81,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageName='" + imageName + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category=" + category +
-                '}';
+        return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", imageName='" + imageName + '\'' + ", price=" + price + ", quantity=" + quantity + ", category=" + category + '}';
     }
 }
