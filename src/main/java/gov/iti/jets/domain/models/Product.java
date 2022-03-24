@@ -33,21 +33,8 @@ public class Product {
 
     }
 
-    public Product(String name, String description, String imageName, long price, int quantity, Category category) {
-        this.name = name;
-        this.description = description;
-        this.imageName = imageName;
-        this.price = price;
-        this.quantity = quantity;
-        this.category = category;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
