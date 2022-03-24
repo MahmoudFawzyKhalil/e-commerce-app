@@ -9,34 +9,34 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Product {
 
-    @Id @GeneratedValue
+    private static final String DEFAULT_IMAGE = "default";
+
+    @Id
+    @GeneratedValue
     int id;
 
     @NotNull @Size(min = 3, max = 200)
+    @Column(name = "product_name")
     String name;
 
-    @Size(max = 1000)
-    String description;
+    @Size(max = 1000) String description;
 
     String imageName;
 
-    @Min(0)
-    long price;
+    @Min(0) long price;
 
-    @Min(0)
-    int quantity;
+    @Min(0) int quantity;
 
-    @NotNull
-    Category category;
+    @NotNull Category category;
 
-    public Product() {
+    protected Product() {
 
     }
 
     public Product(String name, String description, String imageName, long price, int quantity, Category category) {
         this.name = name;
         this.description = description;
-        this.imageName = imageName;
+        this.setImageName(imageName);
         this.price = price;
         this.quantity = quantity;
         this.category = category;
@@ -44,10 +44,6 @@ public class Product {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -71,6 +67,10 @@ public class Product {
     }
 
     public void setImageName(String imageName) {
+        if (imageName == null || imageName.isEmpty() || imageName.isBlank()) {
+            this.imageName = DEFAULT_IMAGE;
+            return;
+        }
         this.imageName = imageName;
     }
 
@@ -100,14 +100,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", imageName='" + imageName + '\'' +
-                ", price=" + price +
-                ", quantity=" + quantity +
-                ", category=" + category +
-                '}';
+        return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", imageName='" + imageName + '\'' + ", price=" + price + ", quantity=" + quantity + ", category=" + category + '}';
     }
 }
