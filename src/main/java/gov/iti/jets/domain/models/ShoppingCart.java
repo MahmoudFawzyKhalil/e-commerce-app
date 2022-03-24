@@ -15,7 +15,7 @@ public class ShoppingCart {
     @OneToOne(mappedBy = "shoppingCart")
     private User owner;
 
-    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private final Set<CartLineItem> cartLineItems = new HashSet<>();
 
     public void addCartLineItem(CartLineItem cartLineItem) {
