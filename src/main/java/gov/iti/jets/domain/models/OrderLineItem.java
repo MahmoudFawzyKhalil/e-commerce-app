@@ -20,12 +20,17 @@ public class OrderLineItem {
     private long unitCost;
 
     @ManyToOne
-    @JoinColumn(name = "owner_order")
+    @JoinColumn(name = "parent_order")
     private Order order;
 
-    public void assignToAnOrder(Order order) {
-        order.addOrderLineItem(this);
-        this.order = order;
+    protected OrderLineItem(){
+
+    }
+
+    public OrderLineItem(CartLineItem cartLineItem) {
+        this.product = cartLineItem.getProduct();
+        this.quantity = cartLineItem.getQuantity();
+        this.unitCost = cartLineItem.getUnitCost();
     }
 
     public long getTotalCost() {
@@ -64,7 +69,7 @@ public class OrderLineItem {
         return order;
     }
 
-    public void _setOrder(Order order) {
+    void _setOrder(Order order) {
         this.order = order;
     }
 

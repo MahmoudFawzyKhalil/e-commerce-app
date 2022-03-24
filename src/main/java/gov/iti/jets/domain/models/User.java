@@ -17,18 +17,18 @@ public class User {
     private int id;
 
     @NotNull
-    @Size(min=1, max=100)
+    @Size(min = 1, max = 100)
     private String firstName;
 
     @NotNull
-    @Size(min=1, max=100)
+    @Size(min = 1, max = 100)
     private String lastName;
 
     @Email
     private String email;
 
     @NotNull
-    @Size(min=8, max=50)
+    @Size(min = 8, max = 50)
     @Column(name = "user_password")
     private String password;
 
@@ -39,7 +39,7 @@ public class User {
     @Min(0)
     private long creditLimit;
 
-    @Size(max=100)
+    @Size(max = 100)
     @NotNull
     private String job;
 
@@ -54,17 +54,24 @@ public class User {
     @OneToOne(mappedBy = "owner")
     private ShoppingCart shoppingCart;
 
-    public void assignAddress(Address address){
-        address._setOwner(this);
+    protected User() {
+
+    }
+
+    public User( String firstName, String lastName, String email, String password, LocalDate birthday, long creditLimit, String job, Role role, Address address ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
+        this.creditLimit = creditLimit;
+        this.job = job;
+        this.role = role;
         this.address = address;
     }
 
-    public void assignAShoppingCart(ShoppingCart shoppingCart){
-        shoppingCart._setOwner(this);
-        this.shoppingCart = shoppingCart;
-    }
 
-    public String getFullName(){
+    public String getFullName() {
         return firstName + " " + lastName;
     }
 
@@ -76,7 +83,7 @@ public class User {
         return address;
     }
 
-    public void _setAddress(Address address) {
+    public void setAddress( Address address ) {
         this.address = address;
     }
 
@@ -84,7 +91,7 @@ public class User {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName( String firstName ) {
         this.firstName = firstName;
     }
 
@@ -92,7 +99,7 @@ public class User {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName( String lastName ) {
         this.lastName = lastName;
     }
 
@@ -100,7 +107,7 @@ public class User {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail( String email ) {
         this.email = email;
     }
 
@@ -108,7 +115,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword( String password ) {
         this.password = password;
     }
 
@@ -116,7 +123,7 @@ public class User {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday( LocalDate birthday ) {
         this.birthday = birthday;
     }
 
@@ -124,7 +131,7 @@ public class User {
         return creditLimit;
     }
 
-    public void setCreditLimit(long creditLimit) {
+    public void setCreditLimit( long creditLimit ) {
         this.creditLimit = creditLimit;
     }
 
@@ -132,7 +139,7 @@ public class User {
         return job;
     }
 
-    public void setJob(String job) {
+    public void setJob( String job ) {
         this.job = job;
     }
 
@@ -140,18 +147,18 @@ public class User {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole( Role role ) {
         this.role = role;
     }
 
     public Optional<ShoppingCart> getShoppingCart() {
-        return Optional.ofNullable(this.shoppingCart);
+        return Optional.ofNullable( this.shoppingCart );
     }
 
-    public void _setShoppingCart(ShoppingCart shoppingCart) {
+    public void setShoppingCart( ShoppingCart shoppingCart ) {
+        shoppingCart._setOwner( this );
         this.shoppingCart = shoppingCart;
     }
-
 
     @Override
     public String toString() {

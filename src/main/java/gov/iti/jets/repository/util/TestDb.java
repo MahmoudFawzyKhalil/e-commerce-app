@@ -4,94 +4,76 @@ import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.*;
 import gov.iti.jets.repository.OrderRepository;
+import gov.iti.jets.repository.ProductRepository;
+import gov.iti.jets.repository.ShoppingCartRepository;
 import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestDb {
     public static void main(String[] args) {
         var emf = Persistence.createEntityManagerFactory("ecommerce");
         var em = emf.createEntityManager();
 
-        //some products to test
-        Product chocolate1 = new Product();
-        chocolate1.setName("Chocolate1");
-        chocolate1.setCategory(Category.CHOCOLATE);
-        chocolate1.setDescription("processed cocoa");
-        chocolate1.setQuantity(10);
-        chocolate1.setPrice(200);
 
-        Product chocolate2 = new Product();
-        chocolate2.setName("Chocolate2");
-        chocolate2.setCategory(Category.CHOCOLATE);
-        chocolate2.setDescription("processed cocoa");
-        chocolate2.setQuantity(5);
-        chocolate2.setPrice(500);
+        // CREATE PRODUCTS ************************
+        List<Product> products = new ArrayList<>();
+        Product product1 = new Product("product1","first product", "", 200,50, Category.CHOCOLATE);
+        products.add(product1);
 
-        //populate data base with products
+        Product product2 = new Product("product2","second product", "", 5000,10, Category.CHOCOLATE);
+        products.add(product2);
+
+
+        // PERSIST PRODUCTS ************************
+        ProductRepository pr = new ProductRepository(em);
         em.getTransaction().begin();
-        em.persist(chocolate1);
-        em.persist(chocolate2);
+        products.forEach(pr::create);
         em.getTransaction().commit();
 
+        // CREATE USERS ************************
+        List<User> users = new ArrayList<>();
+        User user1 = new User("John", "Doe", "john@mail.com","password", LocalDate.ofYearDay(2020,50), 6000, "salesman", Role.CUSTOMER, new Address("iti", "Cairo"));
+        users.add(user1);
 
-        //user registers
-        User user = new User();
-        Address address = new Address("Bla street", "Cairo");
-        user.assignAddress(address);
-        user.setBirthday(LocalDate.ofYearDay(2020, 10));
-        user.setFirstName("user1");
-        user.setLastName("lastNme");
-        user.setCreditLimit(5000);
-        user.setEmail("user1@mail.com");
-        user.setPassword("password");
-        user.setJob("Betenganer");
-        user.setRole(Role.CUSTOMER);
-
-
-        //persist user
-//        em.getTransaction().begin();
-//        em.persist(user);
-//        em.getTransaction().commit();
-
-        UserRepository ecommerce = new UserRepository(em);
+        // PERSIST USERS ************************
+        UserRepository ur = new UserRepository(em);
         em.getTransaction().begin();
-        ecommerce.create(user);
+        users.forEach(ur::create);
         em.getTransaction().commit();
 
-        //user owns a shopping cart
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.assignToAUser(user);
+        // CREATE SHOPPING CARTS ************************
+        List<ShoppingCart> shoppingCarts = new ArrayList<>();
+        ShoppingCart shoppingCart1 = new ShoppingCart();
+        user1.setShoppingCart(shoppingCart1);
 
+        shoppingCarts.add(shoppingCart1);
+
+        shoppingCart1.addCartLineItem( new CartLineItem(product1,5, product1.getPrice()) );
+        shoppingCart1.addCartLineItem( new CartLineItem(product2,3, product2.getPrice()) );
+
+        // TEST UPDATE QUANTITY ************************
+        shoppingCart1.updateCartLineItemProductQuantity(product1.getId(), 100);
+
+        // PERSIST SHOPPING CARTS ************************
+        ShoppingCartRepository scr = new ShoppingCartRepository(em);
         em.getTransaction().begin();
-        em.persist(shoppingCart);
+        shoppingCarts.forEach(scr::create);
         em.getTransaction().commit();
 
+        // CREATE ORDERS ************************
+        List<Order> orders = new ArrayList<>();
+        Order order1 = new Order(user1);
+        order1.populateLineItemsFromCart(shoppingCart1);
+        orders.add(order1);
 
-        //create a cart line item
-        CartLineItem cartLineItem = new CartLineItem();
-        cartLineItem.setProduct(chocolate1);
-        cartLineItem.setQuantity(3);
-        cartLineItem.setUnitCost(chocolate1.getPrice());
-
-        //add the cart line item to shopping cart
-        cartLineItem.assignToAShoppingCart(shoppingCart);
-
-        //create order
-        Order order = new Order();
-        order.setOwner(user);
-        shoppingCart.getCartLineItemsUnmodifiable().forEach(myCartLineItem -> {
-            OrderLineItem orderLineItem = new OrderLineItem();
-            orderLineItem.setProduct(myCartLineItem.getProduct());
-            orderLineItem.setQuantity(myCartLineItem.getQuantity());
-            orderLineItem.setUnitCost(myCartLineItem.getUnitCost());
-            orderLineItem.assignToAnOrder(order);
-            order.addOrderLineItem(orderLineItem);
-        });
-
+        // PERSIST ORDERS ************************
+        OrderRepository or = new OrderRepository(em);
         em.getTransaction().begin();
-        em.persist(order);
+        orders.forEach(or::create);
         em.getTransaction().commit();
 
         System.out.println(emf.createEntityManager().find(Address.class, 4));

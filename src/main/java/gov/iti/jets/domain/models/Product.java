@@ -9,6 +9,8 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Product {
 
+    private static final String DEFAULT_IMAGE = "default";
+
     @Id
     @GeneratedValue
     int id;
@@ -26,6 +28,19 @@ public class Product {
     @Min(0) int quantity;
 
     @NotNull Category category;
+
+    protected Product() {
+
+    }
+
+    public Product(String name, String description, String imageName, long price, int quantity, Category category) {
+        this.name = name;
+        this.description = description;
+        this.setImageName(imageName);
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+    }
 
     public int getId() {
         return id;
@@ -52,6 +67,10 @@ public class Product {
     }
 
     public void setImageName(String imageName) {
+        if (imageName == null || imageName.isEmpty() || imageName.isBlank()) {
+            this.imageName = DEFAULT_IMAGE;
+            return;
+        }
         this.imageName = imageName;
     }
 

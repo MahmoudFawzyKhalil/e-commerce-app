@@ -8,6 +8,9 @@ import java.util.Set;
 @Entity
 public class ShoppingCart {
 
+    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    private final Set<CartLineItem> cartLineItems = new HashSet<>();
+
     @Id
     @GeneratedValue
     private int id;
@@ -16,27 +19,36 @@ public class ShoppingCart {
     @JoinColumn(name = "cart_owner")
     private User owner;
 
-    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
-    private final Set<CartLineItem> cartLineItems = new HashSet<>();
-
-    public void addCartLineItem(CartLineItem cartLineItem) {
-        cartLineItem._setShoppingCart(this);
-        this.cartLineItems.add(cartLineItem);
+    public void addCartLineItem( CartLineItem cartLineItem ) {
+        cartLineItem._setShoppingCart( this );
+        this.cartLineItems.add( cartLineItem );
     }
 
-    public void removeCartLineItem(CartLineItem cartLineItem) {
-        this.cartLineItems.remove(cartLineItem);
+    public void updateCartLineItemProductQuantity( int productId, int newQuantity ) {
+        if ( newQuantity <= 0 ) {
+            this.removeCartLineItem( productId );
+        }
+
+        this.cartLineItems.stream()
+                .filter( cartLineItem -> cartLineItem.getProduct().getId() == productId )
+                .findAny()
+                .ifPresentOrElse( lineItem -> lineItem.setQuantity( newQuantity ), () -> {
+                    throw new IllegalArgumentException( "Product " + productId + " not in shopping cart" );
+                } );
+    }
+
+    public void removeCartLineItem( int productId ) {
+        this.cartLineItems.removeIf( cartLineItem -> cartLineItem.getId() == productId );
+    }
+
+    public long getTotal() {
+        return calculateTotal();
     }
 
     private long calculateTotal() {
         return this.cartLineItems.stream()
-                .mapToLong(CartLineItem::getTotalCost)
+                .mapToLong( CartLineItem::getTotalCost )
                 .sum();
-    }
-
-    public void assignToAUser(User owner){
-        owner._setShoppingCart(this);
-        this.owner = owner;
     }
 
     public int getId() {
@@ -47,17 +59,12 @@ public class ShoppingCart {
         return owner;
     }
 
-    public void _setOwner(User owner) {
+    void _setOwner( User owner ) {
         this.owner = owner;
     }
 
     public Set<CartLineItem> getCartLineItemsUnmodifiable() {
-        return Set.copyOf(cartLineItems);
-    }
-
-
-    public long getTotal() {
-        return calculateTotal();
+        return Set.copyOf( cartLineItems );
     }
 
     @Override

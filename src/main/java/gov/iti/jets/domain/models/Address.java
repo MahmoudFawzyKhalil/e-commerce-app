@@ -12,11 +12,6 @@ public class Address {
     @GeneratedValue
     private int id;
 
-    @OneToOne(mappedBy = "address")
-    @NotNull
-    @JoinColumn(name = "address_owner")
-    private User owner;
-
     @NotNull
     @Size(min = 3, max = 250)
     private String street;
@@ -25,25 +20,20 @@ public class Address {
     @Size(min = 3, max = 250)
     private String city;
 
-    protected Address(){
+    protected Address() {
 
     }
 
-    public Address(String street, String city) {
+    public Address( String street, String city ) {
         this.street = street;
         this.city = city;
-    }
-
-    public void assignOwner(User owner) {
-        owner._setAddress(this);
-        this.owner = owner;
     }
 
     public String getStreet() {
         return street;
     }
 
-    public void setStreet(String street) {
+    public void setStreet( String street ) {
         this.street = street;
     }
 
@@ -51,7 +41,7 @@ public class Address {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity( String city ) {
         this.city = city;
     }
 
@@ -59,20 +49,11 @@ public class Address {
         return id;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void _setOwner(User owner) {
-        this.owner = owner;
-    }
-
 
     @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +
-                ", owner=" + owner.getFullName() +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 '}';

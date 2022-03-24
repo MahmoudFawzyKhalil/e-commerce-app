@@ -11,13 +11,6 @@ import java.util.Set;
 @Entity
 @Table(name = "orders")
 public class Order {
-    @Id
-    @GeneratedValue
-    private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "order_owner")
-    private User owner;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private final Set<OrderLineItem> orderLineItems = new HashSet<>();
@@ -25,16 +18,38 @@ public class Order {
     @NotNull
     private final LocalDateTime timestamp = LocalDateTime.now();
 
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "order_user")
+    private User owner;
+
     @Min(0)
     private long total = 0;
 
-    public void addOrderLineItem(OrderLineItem orderLineItem){
-        orderLineItem._setOrder(this);
-        this.orderLineItems.add(orderLineItem);
-        updateTotal(orderLineItem.getTotalCost());
+    protected Order() {
+
     }
 
-    private void updateTotal(long orderLineItemTotalCost){
+    public Order( User owner ) {
+        this.owner = owner;
+    }
+
+    public void populateLineItemsFromCart( ShoppingCart shoppingCart ) {
+        shoppingCart.getCartLineItemsUnmodifiable().forEach( cartLineItem -> {
+            this.addOrderLineItem( new OrderLineItem( cartLineItem ) );
+        } );
+    }
+
+    public void addOrderLineItem( OrderLineItem orderLineItem ) {
+        orderLineItem._setOrder( this );
+        this.orderLineItems.add( orderLineItem );
+        updateTotal( orderLineItem.getTotalCost() );
+    }
+
+    private void updateTotal( long orderLineItemTotalCost ) {
         total += orderLineItemTotalCost;
     }
 
@@ -46,12 +61,8 @@ public class Order {
         return owner;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
     public Set<OrderLineItem> getOrderLineItemsUnmodifiable() {
-        return Set.copyOf(orderLineItems);
+        return Set.copyOf( orderLineItems );
     }
 
     public LocalDateTime getTimestamp() {
