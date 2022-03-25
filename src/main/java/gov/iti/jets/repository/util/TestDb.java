@@ -36,7 +36,7 @@ public class TestDb {
 
         // CREATE USERS ************************
         List<User> users = new ArrayList<>();
-        User user1 = new User( "John", "Doe", "john@mail.com", "password", LocalDate.ofYearDay( 2020, 50 ), 6000, "salesman", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
+        User user1 = new User( "John", "Doe", "john@mail.com", "password", "01117950455", LocalDate.ofYearDay( 2020, 50 ), 6000, "salesman", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
         users.add( user1 );
 
         // PERSIST USERS ************************
@@ -67,7 +67,7 @@ public class TestDb {
         // CREATE ORDERS ************************
         List<Order> orders = new ArrayList<>();
         Order order1 = new Order( user1 );
-        order1.populateLineItemsFromCart( shoppingCart1 );
+//        order1.populateLineItemsFromCart( shoppingCart1 );
         orders.add( order1 );
 
         // PERSIST ORDERS ************************
