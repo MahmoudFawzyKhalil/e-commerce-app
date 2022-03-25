@@ -9,10 +9,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "orders")
+@Table( name = "orders" )
 public class Order {
 
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany( mappedBy = "order", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL )
     private final Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @NotNull
@@ -23,10 +23,10 @@ public class Order {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "order_user")
+    @JoinColumn( name = "order_user" )
     private User owner;
 
-    @Min(0)
+    @Min( 0 )
     private long total = 0;
 
     protected Order() {
@@ -35,6 +35,9 @@ public class Order {
 
     public Order( User owner ) {
         this.owner = owner;
+        ShoppingCart shoppingCart = owner.getShoppingCart()
+                .orElseThrow( () -> new IllegalArgumentException( "User shopping cart is null." ) );
+        this.populateLineItemsFromCart( shoppingCart );
     }
 
     public void populateLineItemsFromCart( ShoppingCart shoppingCart ) {
