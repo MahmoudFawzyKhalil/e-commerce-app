@@ -27,6 +27,9 @@ public class TestDb {
         Product product2 = new Product( "product2", "second product", "", 5000, 10, Category.CHOCOLATE );
         products.add( product2 );
 
+        Product product3 = new Product( "product3", "third product", "", 3000, 100, Category.CHOCOLATE );
+        products.add( product3 );
+
 
         // PERSIST PRODUCTS ************************
         ProductRepository pr = new ProductRepository( em );
@@ -76,8 +79,8 @@ public class TestDb {
         orders.forEach( or::create );
         em.getTransaction().commit();
 
-        System.out.println( emf.createEntityManager().find( Address.class, 4 ) );
-        System.out.println( new UserRepository( em ).findOne( 3 ).get() );
+        System.out.println( emf.createEntityManager().find( Address.class, 5 ) );
+        System.out.println( new UserRepository( em ).findOne( 4 ).get() );
         System.out.println( new OrderRepository( em ).findAll() );
     }
 }

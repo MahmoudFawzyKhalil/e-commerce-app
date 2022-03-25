@@ -1,7 +1,6 @@
 package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.models.Product;
-import gov.iti.jets.domain.models.User;
 import jakarta.persistence.EntityManager;
 
 public class ProductRepository extends AbstractRepository<Product> {
