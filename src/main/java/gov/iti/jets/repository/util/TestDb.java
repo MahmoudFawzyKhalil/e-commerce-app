@@ -55,8 +55,8 @@ public class TestDb {
 
         shoppingCarts.add( shoppingCart1 );
 
-        shoppingCart1.addCartLineItem( new CartLineItem( product1, 5, product1.getPrice() ) );
-        shoppingCart1.addCartLineItem( new CartLineItem( product2, 3, product2.getPrice() ) );
+        shoppingCart1.addCartLineItem( new CartLineItem( product1, 5 ) );
+        shoppingCart1.addCartLineItem( new CartLineItem( product2, 3 ) );
 
         // TEST UPDATE QUANTITY ************************
         shoppingCart1.updateCartLineItemProductQuantity( product1.getId(), 100 );
