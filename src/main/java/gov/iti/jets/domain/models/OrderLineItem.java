@@ -13,24 +13,24 @@ public class OrderLineItem {
     @ManyToOne
     private Product product;
 
-    @Min(0)
+    @Min( 0 )
     private int quantity;
 
-    @Min(0)
+    @Min( 0 )
     private long unitCost;
 
     @ManyToOne
-    @JoinColumn(name = "parent_order")
+    @JoinColumn( name = "parent_order" )
     private Order order;
 
-    protected OrderLineItem(){
+    protected OrderLineItem() {
 
     }
 
-    public OrderLineItem(CartLineItem cartLineItem) {
+    public OrderLineItem( CartLineItem cartLineItem ) {
         this.product = cartLineItem.getProduct();
         this.quantity = cartLineItem.getQuantity();
-        this.unitCost = cartLineItem.getUnitCost();
+        this.unitCost = cartLineItem.getProduct().getPrice();
     }
 
     public long getTotalCost() {
@@ -45,7 +45,7 @@ public class OrderLineItem {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct( Product product ) {
         this.product = product;
     }
 
@@ -53,7 +53,7 @@ public class OrderLineItem {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity( int quantity ) {
         this.quantity = quantity;
     }
 
@@ -61,7 +61,7 @@ public class OrderLineItem {
         return unitCost;
     }
 
-    public void setUnitCost(long unitCost) {
+    public void setUnitCost( long unitCost ) {
         this.unitCost = unitCost;
     }
 
@@ -69,7 +69,7 @@ public class OrderLineItem {
         return order;
     }
 
-    void _setOrder(Order order) {
+    void _setOrder( Order order ) {
         this.order = order;
     }
 

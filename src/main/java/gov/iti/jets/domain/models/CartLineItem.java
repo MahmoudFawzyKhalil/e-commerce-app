@@ -13,11 +13,8 @@ public class CartLineItem {
     @ManyToOne
     private Product product;
 
-    @Min(0)
+    @Min( 0 )
     private int quantity;
-
-    @Min(0)
-    private long unitCost;
 
     @ManyToOne
     private ShoppingCart shoppingCart;
@@ -26,10 +23,9 @@ public class CartLineItem {
 
     }
 
-    public CartLineItem( Product product, int quantity, long unitCost ) {
+    public CartLineItem( Product product, int quantity ) {
         this.product = product;
         this.quantity = quantity;
-        this.unitCost = unitCost;
     }
 
     public int getId() {
@@ -52,14 +48,6 @@ public class CartLineItem {
         this.quantity = quantity;
     }
 
-    public long getUnitCost() {
-        return unitCost;
-    }
-
-    public void setUnitCost( long unitCost ) {
-        this.unitCost = unitCost;
-    }
-
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
@@ -74,12 +62,11 @@ public class CartLineItem {
                 "id=" + id +
                 ", product=" + product.getName() +
                 ", quantity=" + quantity +
-                ", unitCost=" + unitCost +
                 ", totalCost=" + getTotalCost() +
                 '}';
     }
 
     public long getTotalCost() {
-        return this.quantity * this.unitCost;
+        return this.quantity * this.getProduct().getPrice();
     }
 }
