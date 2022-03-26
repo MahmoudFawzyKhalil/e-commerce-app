@@ -74,7 +74,7 @@
                         <div>
                             <button id="toggleProfileButton"
                                     class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
-                                    id="user-menu" aria-label="User menu" aria-haspopup="true">
+                                    aria-label="User menu" aria-haspopup="true">
                                 <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                                 <span
                                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">John
@@ -124,105 +124,27 @@
     </nav>
 </section>
 
-<section id="searchBar" class="mt-5 md:self-center md:w-9/12">
-    <div class="flex ml-5">
-        <div class="relative flex-grow">
 
-            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <!-- Heroicon name: solid/search -->
-                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                     fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                          clip-rule="evenodd"/>
-                </svg>
-            </div>
-
-
-            <input id="search" name="search"
-                   class="block w-full py-2 pl-10 pr-3 text-sm placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                   placeholder="Search" type="search">
+<div class="min-h-full px-4 py-16 bg-white sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
+    <div class="mx-auto max-w-max">
+      <main class="sm:flex">
+        <p class="text-4xl font-extrabold text-indigo-700 sm:text-5xl">Sorry...</p>
+        <div class="sm:ml-6">
+          <div class="sm:border-l sm:border-gray-200 sm:pl-6">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">Failed to make the order</h1>
+            <p class="mt-1 text-base text-gray-500">Please go back to the cart and try again.</p>
+          </div>
+          <div class="flex mt-10 space-x-3 sm:border-l sm:border-transparent sm:pl-6">
+            <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Go back to your cart </a>
+            <!-- <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"> Contact support </a> -->
+          </div>
         </div>
-
-        <!-- CATEGORY DROP DOWN -->
-        <div class="relative inline-block w-32 mx-5">
-            <select
-                    class="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-300 rounded appearance-none focus:outline-none hover:border-gray-500 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                <option selected>Category</option>
-                <option>Chocolate</option>
-                <option>Drinks</option>
-            </select>
-            <!-- <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-            </div> -->
-        </div>
+      </main>
     </div>
-</section>
-
-
-<!-- Product preview -->
-<section id="productPreview" class="m-10 rounded-lg shadow-md">
-
-    <div class="bg-white">
-        <div
-                class="max-w-2xl px-4 py-16 mx-auto sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
-            <!-- Product details -->
-            <div class="lg:max-w-lg lg:self-end">
-
-                <div class="mt-4">
-                    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">Snickers
-                    </h1>
-                </div>
-
-                <section aria-labelledby="information-heading" class="mt-4">
-                    <h2 id="information-heading" class="sr-only">Product information</h2>
-
-                    <div class="mt-4 space-y-6">
-                        <p class="text-base text-gray-500">Don&#039;t compromise on snack-carrying capacity with
-                            this lightweight and spacious bag. The drawstring top keeps all your favorite chips,
-                            crisps, fries, biscuits, crackers, and cookies secure.</p>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Product image -->
-            <div class="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center ">
-                <div class="overflow-hidden rounded-lg aspect-w-1 aspect-h-1">
-                    <img src="https://m.media-amazon.com/images/I/61mSdXdf00S._AC_SL1500_.jpg"
-                         alt="Model wearing light green backpack with black canvas straps and front zipper pouch."
-                         class="object-scale-down object-center w-full h-full">
-                </div>
-            </div>
-
-            <!-- Product form -->
-            <div class="mt-10 lg:max-w-lg lg:col-start-1 lg:row-start-2 lg:self-start">
-                <section aria-labelledby="options-heading">
-                    <h2 id="options-heading" class="sr-only">Product options</h2>
-
-                    <form>
-
-                        <div class="mt-10">
-                            <button type="submit"
-                                    class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
-                                Add
-                                to bag
-                            </button>
-                        </div>
-
-                    </form>
-                </section>
-            </div>
-        </div>
-    </div>
-
-
-</section>
+  </div>
 
 
 <!-- FOOTER -->
-
 <section class="mt-auto" id="footer">
     <footer class="bg-white">
         <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
