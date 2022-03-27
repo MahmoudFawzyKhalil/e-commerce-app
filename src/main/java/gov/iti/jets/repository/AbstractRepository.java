@@ -12,7 +12,7 @@ public abstract class AbstractRepository<T> {
         this.clazz = clazz;
     }
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     protected AbstractRepository( EntityManager entityManager ) {
         this.entityManager = entityManager;

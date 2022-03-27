@@ -7,7 +7,7 @@
     <persistence-unit name="ecommerce" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-<!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+            <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecommerce"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="manager"/>
@@ -15,7 +15,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="format_sql" value="true"/>
             <property name="dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>
 </persistence>

@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../webapp/css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>ChocoTown</title>
 </head>
 
@@ -33,12 +34,14 @@
                     </button>
                 </div>
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                    <div class="flex-shrink-0">
-                        <img class="block w-auto h-8 lg:hidden" src="../../../img/common/logo.png"
+                    <a href="<c:url value="/"/>">
+                        <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>"
                              alt="Workflow logo">
-                        <img class="hidden w-auto h-8 lg:block" src="../../../img/common/logo.png"
+                    </a>
+                    <a href="<c:url value="/"/>">
+                        <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>"
                              alt="Workflow logo">
-                    </div>
+                    </a>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
                             <a href="#"
@@ -74,7 +77,7 @@
                         <div>
                             <button id="toggleProfileButton"
                                     class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
-                                    id="user-menu" aria-label="User menu" aria-haspopup="true">
+                                    aria-label="User menu" aria-haspopup="true">
                                 <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                                 <span
                                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">John
@@ -131,7 +134,7 @@
 <div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8">
         <div>
-            <img class="w-32 mx-auto" src="../../../img/common/logo.png" alt="Workflow">
+            <img class="w-32 mx-auto" src="<c:url value="/img/common/logo.png"/>" alt="Workflow">
             <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Sign in to your account</h2>
         </div>
 
@@ -206,7 +209,7 @@
         </div>
     </footer>
 </section>
-<script src="../../../js/components/navbar.js"></script>
+<script src="<c:url value="/js/components/navbar.js"/>"></script>
 </body>
 
 </html>
