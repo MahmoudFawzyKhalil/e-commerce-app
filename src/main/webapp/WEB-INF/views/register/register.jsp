@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../webapp/css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>ChocoTown</title>
 </head>
 
@@ -34,10 +35,14 @@
                 </div>
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0">
-                        <img class="block w-auto h-8 lg:hidden" src="../../../img/common/logo.png"
-                             alt="Workflow logo">
-                        <img class="hidden w-auto h-8 lg:block" src="../../../img/common/logo.png"
-                             alt="Workflow logo">
+                        <a href="<c:url value="/"/>">
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
+                        <a href="<c:url value="/"/>">
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
@@ -142,9 +147,9 @@
                     <form action="#" method="POST">
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="first-name" class="block text-sm font-medium text-gray-700">First
+                                <label for="firstName" class="block text-sm font-medium text-gray-700">First
                                     name</label>
-                                <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                                <input type="text" name="firstName" id="firstName"
                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
 
@@ -269,7 +274,7 @@
         </div>
     </footer>
 </section>
-<script src="../../../js/components/navbar.js"></script>
+<script src="<c:url value="/js/components/navbar.js"/>"></script>
 </body>
 
 </html>
