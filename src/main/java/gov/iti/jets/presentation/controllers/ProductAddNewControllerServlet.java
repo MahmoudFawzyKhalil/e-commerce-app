@@ -24,10 +24,7 @@ ProductAddNewViewHelper productAddNewViewHelper=new ProductAddNewViewHelper();
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
-        request.setAttribute( "success",productAddNewViewHelper.isSuccessfullyAddedProduct() );
-        request.setAttribute( "failure",productAddNewViewHelper.isFailedToAddProduct() );
-
-        System.out.println("doGet success ="+productAddNewViewHelper.isSuccessfullyAddedProduct() +"fail = "+productAddNewViewHelper.isFailedToAddProduct());
+        request.setAttribute( "helper",productAddNewViewHelper );
         requestDispatcher.forward( request, response );
     }
 
@@ -36,21 +33,27 @@ ProductAddNewViewHelper productAddNewViewHelper=new ProductAddNewViewHelper();
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
+        req.setAttribute( "helper",productAddNewViewHelper );
+
         String name= req.getParameter("name");
-        System.out.println(name);
-
         String description = req.getParameter( "description" );
-        System.out.println(description);
-
         int quantity = Integer.parseInt( req.getParameter( "quantity" ) );
-        System.out.println(quantity);
+        int price = Integer.parseInt( req.getParameter( "price" ) )*100 ;
+        String cat =  req.getParameter( "category" );
+        Category category;
+        if(cat.equals( "CHOCOLATE" )) category = Category.CHOCOLATE;
+        else category = Category.DRINKS;
 
-        long price = Integer.parseInt( req.getParameter( "price" ) );
-        System.out.println(price);
-
-        String category = req.getParameter( "Category" );
-        System.out.println(category);
-
+        if(name != null && description != null && quantity != 0 && price != 0 && !cat.equals( "category" )){
+            Product product= new Product( name,description, "",quantity ,price ,category );
+            try{
+                DomainFacade.addProduct(product);
+                productAddNewViewHelper.setSuccessfullyAddedProduct( true );
+            }catch(Exception e){
+                productAddNewViewHelper.setFailedToAddProduct( true );
+            }finally {
+                requestDispatcher.forward( req, resp );
+            }
         Part photo = req.getPart("productPhoto");
         String photoName = getFileName(photo);
         System.out.println(photoName);
@@ -74,6 +77,7 @@ ProductAddNewViewHelper productAddNewViewHelper=new ProductAddNewViewHelper();
         }finally {
             System.out.println("doPost success ="+productAddNewViewHelper.isSuccessfullyAddedProduct() +"fail = "+productAddNewViewHelper.isFailedToAddProduct());
             requestDispatcher.forward( req, resp );
+
         }
 
     }

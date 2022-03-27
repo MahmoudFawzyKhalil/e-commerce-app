@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--@elvariable id="helper" type="gov.iti.jets.presentation.viewhelpers.ProductAddNewViewHelper"--%>
 <html lang="en">
 
 <head>
@@ -145,7 +146,7 @@
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="name" class="text-sm font-medium text-gray-700">
                                         Name</label>
-                                    <input type="text" name="name" id="name" autocomplete="given-name"
+                                    <input type="text" name="name" id="name" autocomplete="given-name" required
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
@@ -163,12 +164,14 @@
 
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+<%--                                    <input type="number" min="0" name="quantity" id="quantity" required--%>
                                     <input type="text" name="quantity" id="quantity"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+<%--                                    <input  name="price" id="price" type="number" min="0" required--%>
                                     <input type="text" name="price" id="price"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
@@ -179,8 +182,8 @@
                                     <select id="category" name="category"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option selected>Category</option>
-                                        <option>Chocolate</option>
-                                        <option>Drinks</option>
+                                        <option>CHOCOLATE</option>
+                                        <option>DRINKS</option>
                                     </select>
                                 </div>
 
@@ -201,9 +204,8 @@
 
     </section>
 
-    "${success}"
     <section id="feedback" class="mt-3">
-        <c:if test = "${success}">
+        <c:if test = "${helper.successfullyAddedProduct}">
 
 
             <div class="rounded-md bg-green-50 p-4">
@@ -211,7 +213,7 @@
                     <div class="flex-shrink-0">
                         <!-- Heroicon name: solid/check-circle -->
                         <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
                     <div class="ml-3">
@@ -223,7 +225,7 @@
                                 <span class="sr-only">Dismiss</span>
                                 <!-- Heroicon name: solid/x -->
                                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
                         </div>
@@ -231,13 +233,13 @@
                 </div>
             </div>
         </c:if>
-        <c:if test = "${failure}">
+        <c:if test = "${helper.failedToAddProduct}">
             <div class="rounded-md bg-red-50 p-4 mt-3">
                 <div class="flex">
                     <div class="flex-shrink-0">
                         <!-- Heroicon name: solid/x-circle -->
                         <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
                     <div class="ml-3">
@@ -249,7 +251,7 @@
                                 <span class="sr-only">Dismiss</span>
                                 <!-- Heroicon name: solid/x -->
                                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
                         </div>
