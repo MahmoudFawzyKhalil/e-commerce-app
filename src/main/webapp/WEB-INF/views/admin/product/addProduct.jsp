@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -35,14 +36,14 @@
                     </div>
                     <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0">
-                            <img class="block w-auto h-8 lg:hidden" src="../../../../img/common/logo.png"
-                                alt="Workflow logo">
-                            <img class="hidden w-auto h-8 lg:block" src="../../../../img/common/logo.png"
-                                alt="Workflow logo">
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />"
+                            alt="Workflow logo">
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />"
+                            alt="Workflow logo">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="../admin.jsp"
+                                <a href="admin"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -76,15 +77,14 @@
                     </div>
                 </div>
             </div>
-
             <!--
-              Mobile menu, toggle classes based on menu state.
-          
-              Menu open: "block", Menu closed: "hidden"
-            -->
+                Mobile menu, toggle classes based on menu state.
+
+                Menu open: "block", Menu closed: "hidden"
+              -->
             <div id="mobileMenu" class="hidden sm:hidden">
                 <div class="px-2 pt-2 pb-3">
-                    <a href="../admin.jsp"
+                    <a href="admin"
                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
             </div>
@@ -127,14 +127,14 @@
                                                 class="object-cover object-center w-full h-full lg:w-full lg:h-full">
                                         </div>
                                         <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
-                                            
 
-                                                <div class="flex justify-between mt-4">
-                                                    <div>
-                                                        <button type="button"
-                                                            class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
-                                                            Photo</button>
-                                                    </div>
+
+                                            <div class="flex justify-between mt-4">
+                                                <div>
+                                                    <button type="button"
+                                                        class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
+                                                        Photo</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -34,14 +35,14 @@
                     </div>
                     <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0">
-                            <img class="block w-auto h-8 lg:hidden" src="../../../../img/common/logo.png"
-                                alt="Workflow logo">
-                            <img class="hidden w-auto h-8 lg:block" src="../../../../img/common/logo.png"
-                                alt="Workflow logo">
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />"
+                            alt="Workflow logo">
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />"
+                            alt="Workflow logo">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="../admin.jsp"
+                                <a href="admin"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -75,15 +76,14 @@
                     </div>
                 </div>
             </div>
-
             <!--
-                  Mobile menu, toggle classes based on menu state.
-              
-                  Menu open: "block", Menu closed: "hidden"
-                -->
+                Mobile menu, toggle classes based on menu state.
+
+                Menu open: "block", Menu closed: "hidden"
+              -->
             <div id="mobileMenu" class="hidden sm:hidden">
                 <div class="px-2 pt-2 pb-3">
-                    <a href="../admin.jsp"
+                    <a href="admin"
                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                         fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd"
                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                              clip-rule="evenodd" ></path>
+                            clip-rule="evenodd"></path>
                     </svg>
                 </div>
 
@@ -111,8 +111,6 @@
             </div>
         </div>
     </section>
-
-
 
 
     <section id="customerTable" class="mt-5">
@@ -131,28 +129,36 @@
                                     <tr>
                                         <th scope="col"
                                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                            ID</th>
+                                            ID
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Full Name</th>
+                                            Full Name
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Email</th>
+                                            Email
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Phone Number</th>
+                                            Phone Number
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Address</th>
+                                            Address
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Birthday</th>
+                                            Birthday
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Job</th>
+                                            Job
+                                        </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Credit Limit</th>
+                                            Credit Limit
+                                        </th>
                                         <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
                                             <span class="sr-only">Edit</span>
                                         </th>
@@ -171,7 +177,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -187,7 +194,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -203,7 +211,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -219,7 +228,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -235,7 +245,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -251,7 +262,8 @@
                                         <td class="px-2 py-2 text-sm text-gray-500 ">100,000</td>
                                         <td
                                             class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders<span
+                                            <a href="customer.jsp"
+                                                class="text-indigo-600 hover:text-indigo-900">Orders<span
                                                     class="sr-only">, AAPS0L</span></a>
                                         </td>
                                     </tr>
@@ -265,7 +277,6 @@
         </div>
 
     </section>
-
 
 
     <section class="mt-auto" id="footer">
