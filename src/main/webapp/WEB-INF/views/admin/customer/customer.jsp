@@ -23,13 +23,13 @@
                             <!-- Menu open: "hidden", Menu closed: "block" -->
                             <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16" />
+                                      d="M4 6h16M4 12h16M4 18h16" ></path>
                             </svg>
                             <!-- Icon when menu is open. -->
                             <!-- Menu open: "block", Menu closed: "hidden" -->
                             <svg class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
+                                      d="M6 18L18 6M6 6l12 12" ></path>
                             </svg>
                         </button>
                     </div>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="../admin.html"
+                                <a href="../admin.jsp"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -84,13 +84,13 @@
             -->
             <div id="mobileMenu" class="hidden sm:hidden">
                 <div class="px-2 pt-2 pb-3">
-                    <a href="../admin.html"
+                    <a href="../admin.jsp"
                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
             </div>
         </nav>
     </section>
-    
+
     <section id="profileSection">
         <div
             class="grid max-w-3xl grid-cols-1 gap-6 mx-auto mt-8 sm:px-6 lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2">
@@ -100,7 +100,7 @@
                     <div class="bg-white shadow sm:rounded-lg">
                         <div class="px-4 py-5 sm:px-6">
                             <h2 id="applicant-information-title" class="text-lg font-medium leading-6 text-gray-900">
-                                Order Info</h2>
+                                User Name</h2>
                         </div>
                         <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
                             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -109,18 +109,30 @@
                                     <dd class="mt-1 text-sm text-gray-900">1</dd>
                                 </div>
                                 <div class="sm:col-span-1">
-                                    <dt class="text-sm font-medium text-gray-500">Owner Name</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">Samy</dd>
+                                    <dt class="text-sm font-medium text-gray-500">Email</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">samasemo@example.com</dd>
                                 </div>
                                 <div class="sm:col-span-1">
-                                    <dt class="text-sm font-medium text-gray-500">Total cost</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">1000</dd>
+                                    <dt class="text-sm font-medium text-gray-500">Address</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">Cairo Egypt</dd>
                                 </div>
-                                
                                 <div class="sm:col-span-1">
-                                    <dt class="text-sm font-medium text-gray-500">Time Stamp</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">31/3/2022</dd>
+                                    <dt class="text-sm font-medium text-gray-500">Phone</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">01146931276</dd>
                                 </div>
+                                <div class="sm:col-span-1">
+                                    <dt class="text-sm font-medium text-gray-500">Job</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">Rgasa</dd>
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <dt class="text-sm font-medium text-gray-500">Birthday</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">31/3/1997</dd>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <dt class="text-sm font-medium text-gray-500">Credit Limit</dt>
+                                    <dd class="mt-1 text-sm text-gray-900">10,000</dd>
+                                </div>
+
                             </dl>
                         </div>
                     </div>
@@ -131,7 +143,7 @@
                     <div class="bg-white shadow sm:rounded-lg sm:overflow-hidden">
                         <div class="divide-y divide-gray-200">
                             <div class="px-4 py-5 sm:px-6">
-                                <h2 id="notes-title" class="text-lg font-medium text-gray-900">Order Item</h2>
+                                <h2 id="notes-title" class="text-lg font-medium text-gray-900">Orders</h2>
                             </div>
                             <section id="orderTable" class="mt-5">
                                 <div class="px-4 sm:px-6 lg:px-8">
@@ -151,13 +163,14 @@
                                                                     ID</th>
                                                                 <th scope="col"
                                                                     class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Product Name</th>
+                                                                    Time Stamp</th>
                                                                 <th scope="col"
                                                                     class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Unit Cost</th>
+                                                                    Total Cost</th>
                                                                 <th scope="col"
-                                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Quantity</th>
+                                                                    class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
+                                                                    <span class="sr-only">Order</span>
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="bg-white divide-y divide-gray-200">
@@ -166,33 +179,45 @@
                                                                     class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
                                                                     1
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">Milka
+                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">50</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">5</td>
-                                                                
+                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
+                                                                <td
+                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                                                                    <a href="orderItems.jsp"
+                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
+                                                                            class="sr-only">, AAPS0L</span></a>
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td
                                                                     class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
                                                                     1
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">Milka
+                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">50</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">5</td>
-                                                                
+                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
+                                                                <td
+                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                                                                    <a href="orderItems.jsp"
+                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
+                                                                            class="sr-only">, AAPS0L</span></a>
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td
                                                                     class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
                                                                     1
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">Milka
+                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">50</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">5</td>
-                                                                
+                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
+                                                                <td
+                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                                                                    <a href="orderItems.jsp"
+                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
+                                                                            class="sr-only">, AAPS0L</span></a>
+                                                                </td>
                                                             </tr>
                                                             <!-- More transactions... -->
                                                         </tbody>
@@ -211,10 +236,7 @@
                     </div>
                 </section>
             </div>
-
-
         </div>
-
     </section>
 
     <section class="mt-auto" id="footer">
@@ -226,7 +248,7 @@
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path fill-rule="evenodd"
                                 d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                clip-rule="evenodd" />
+                                  clip-rule="evenodd" ></path>
                         </svg>
                     </a>
                 </div>
