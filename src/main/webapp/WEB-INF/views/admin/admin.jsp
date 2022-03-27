@@ -140,7 +140,7 @@
             <div class="mt-4 flex justify-center">
               <div>
                 <h3 class="text-xl  text-gray-700 hover:text-black">
-                  <a href="product/addProduct.jsp">
+                  <a href="/app/admin/products/add">
                     <span aria-hidden="true" class="absolute inset-0"></span>
                     Add Product
                   </a>

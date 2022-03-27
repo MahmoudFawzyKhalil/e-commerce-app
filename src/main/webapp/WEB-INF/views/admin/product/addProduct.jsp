@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>Admin Dashboard</title>
 </head>
 
@@ -36,14 +36,14 @@
                     </div>
                     <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0">
-                            <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
-                            <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="admin"
+                                <a href="/app/admin"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
               -->
             <div id="mobileMenu" class="hidden sm:hidden">
                 <div class="px-2 pt-2 pb-3">
-                    <a href="admin"
+                    <a href="/app/admin"
                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <form action="#" method="POST">
+                        <form action="/app/admin/products/add" method="POST">
                             <div class="grid grid-cols-6 gap-6">
 
                                 <div class="col-span-6 bg-white sm:col-span-4">
@@ -123,7 +123,7 @@
                                     <div class="max-w-xs px-4 mx-auto sm:py-3 sm:px-3 lg:max-w-7xl ">
                                         <div
                                             class="max-w-xs overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                            <img src="../../../../img/admin/defaultProduct.jpeg" alt="customer"
+                                            <img src="<c:url value="/img/admin/defaultProduct.jpeg"/>" alt="customer"
                                                 class="object-cover object-center w-full h-full lg:w-full lg:h-full">
                                         </div>
                                         <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
@@ -140,35 +140,19 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="col-span-6 sm:col-span-4">
-                                    <label class="block text-sm font-medium text-gray-700"> Photo </label>
-                                    <div class="flex items-center mt-1 space-x-5">
-                                        <span class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
-                                            <svg class="w-full h-full text-gray-300" fill="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                            </svg>
-                                        </span>
-                                        <button type="button"
-                                            class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
-                                            Photo</button>
-                                    </div>
-                                </div> -->
-
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="first-name" class="text-sm font-medium text-gray-700">
+                                    <label for="name" class="text-sm font-medium text-gray-700">
                                         Name</label>
-                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                                    <input type="text" name="name" id="name" autocomplete="given-name"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="about"
+                                    <label for="description"
                                         class="block text-sm font-medium text-gray-700">Description</label>
                                     <div class="mt-1">
-                                        <textarea id="about" name="about" rows="3"
+                                        <textarea id="description" name="description" rows="3"
                                             class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                                     </div>
                                 </div>
@@ -176,21 +160,21 @@
 
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="city" class="block text-sm font-medium text-gray-700">Quantity</label>
-                                    <input type="number" name="city" id="city" autocomplete="address-level2"
+                                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                                    <input type="number" name="quantity" id="quantity"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="region" class="block text-sm font-medium text-gray-700">Price</label>
-                                    <input type="text" name="region" id="region" autocomplete="address-level1"
+                                    <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                                    <input type="text" name="price" id="price"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <label for="country"
+                                    <label for="category"
                                         class="block text-sm font-medium text-gray-700">Category</label>
-                                    <select id="country" name="country" autocomplete="country-name"
+                                    <select id="category" name="category"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option selected>Category</option>
                                         <option>Chocolate</option>
@@ -199,21 +183,80 @@
                                 </div>
 
                             </div>
+                            <div class="flex justify-end p-1">
+                                <button type="button"
+                                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
+                                <button type="submit"
+                                        class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                            </div>
                         </form>
                     </div>
                 </div>
+
             </div>
 
-
-            <div class="flex justify-end p-1">
-                <button type="button"
-                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-                <button type="submit"
-                    class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
-            </div>
         </div>
 
     </section>
+
+    "${success}"
+    <section id="feedback" class="mt-3">
+        <c:if test = "${success}">
+
+
+            <div class="rounded-md bg-green-50 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <!-- Heroicon name: solid/check-circle -->
+                        <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-green-800">Successfully Added</p>
+                    </div>
+                    <div class="ml-auto pl-3">
+                        <div class="-mx-1.5 -my-1.5">
+                            <button type="button" class="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
+                                <span class="sr-only">Dismiss</span>
+                                <!-- Heroicon name: solid/x -->
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+        <c:if test = "${failure}">
+            <div class="rounded-md bg-red-50 p-4 mt-3">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <!-- Heroicon name: solid/x-circle -->
+                        <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-red-800">Adding Failed</h3>
+                    </div>
+                    <div class="ml-auto pl-3">
+                        <div class="-mx-1.5 -my-1.5">
+                            <button type="button" class="inline-flex bg-red-50 rounded-md p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600">
+                                <span class="sr-only">Dismiss</span>
+                                <!-- Heroicon name: solid/x -->
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+    </section>
+
 
 
     <section class="mt-auto" id="footer">
@@ -236,7 +279,8 @@
         </footer>
     </section>
 
-    <script src="../../../../js/admin/admin.js"></script>
+    <script src="<c:url value="/js/components/navbar.js"/>"></script>
+
 </body>
 
 </html>
