@@ -19,75 +19,58 @@ import java.util.UUID;
 @MultipartConfig
 @WebServlet( "/admin/products/add" )
 public class ProductAddNewControllerServlet extends HttpServlet {
-ProductAddNewViewHelper productAddNewViewHelper=new ProductAddNewViewHelper();
+    ProductAddNewViewHelper productAddNewViewHelper = new ProductAddNewViewHelper();
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
-        request.setAttribute( "helper",productAddNewViewHelper );
+        request.setAttribute( "helper", productAddNewViewHelper );
         requestDispatcher.forward( request, response );
     }
-
 
 
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
-        req.setAttribute( "helper",productAddNewViewHelper );
+        req.setAttribute( "helper", productAddNewViewHelper );
 
-        String name= req.getParameter("name");
+        String name = req.getParameter( "name" );
         String description = req.getParameter( "description" );
         int quantity = Integer.parseInt( req.getParameter( "quantity" ) );
-        int price = Integer.parseInt( req.getParameter( "price" ) )*100 ;
-        String cat =  req.getParameter( "category" );
-        Category category;
-        if(cat.equals( "CHOCOLATE" )) category = Category.CHOCOLATE;
-        else category = Category.DRINKS;
+        int price = Integer.parseInt( req.getParameter( "price" ) ) * 100;
 
-        if(name != null && description != null && quantity != 0 && price != 0 && !cat.equals( "category" )){
-            Product product= new Product( name,description, "",quantity ,price ,category );
-            try{
-                DomainFacade.addProduct(product);
+        String cat = req.getParameter( "category" );
+        Category category;
+        if ( cat.equals( "CHOCOLATE" ) ) category = Category.CHOCOLATE;
+        else category = Category.DRINKS;
+        Part photo = req.getPart( "productPhoto" );
+
+        String photoName = getFileName( photo );
+        if ( photoName != null && !photoName.isEmpty() ) {
+            String[] split = photoName.split( "\\." );
+            photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
+            photo.write( "C:/ecommerce/" + photoName );
+        }
+
+        if ( name != null && description != null && quantity != 0 && price != 0 && !cat.equals( "category" ) ) {
+            Product product = new Product( name, description, photoName, price, quantity, Category.CHOCOLATE );
+            try {
+                DomainFacade.addProduct( product );
                 productAddNewViewHelper.setSuccessfullyAddedProduct( true );
-            }catch(Exception e){
+            } catch ( Exception e ) {
                 productAddNewViewHelper.setFailedToAddProduct( true );
-            }finally {
+            } finally {
                 requestDispatcher.forward( req, resp );
             }
-        Part photo = req.getPart("productPhoto");
-        String photoName = getFileName(photo);
-        System.out.println(photoName);
-        if (photoName != null && !photoName.isEmpty()) {
-            String[] split = photoName.split( "\\." );
-            for ( String spl: split) {
-                System.out.println(spl);
-            }
-            photoName =  UUID.randomUUID().toString().replace( "-", "" )+"."+split[1];
-            photo.write("C:/ecommerce/"+ photoName);
         }
-        Product product= new Product( name,description, photoName,price,quantity ,Category.CHOCOLATE );
-        try{
-            DomainFacade.addProduct( product);
-            productAddNewViewHelper.setSuccessfullyAddedProduct( true );
-            req.setAttribute( "success",productAddNewViewHelper.isSuccessfullyAddedProduct() );
-
-        }catch(Exception e){
-            productAddNewViewHelper.setFailedToAddProduct( true );
-            req.setAttribute( "failure",productAddNewViewHelper.isFailedToAddProduct() );
-        }finally {
-            System.out.println("doPost success ="+productAddNewViewHelper.isSuccessfullyAddedProduct() +"fail = "+productAddNewViewHelper.isFailedToAddProduct());
-            requestDispatcher.forward( req, resp );
-
-        }
-
     }
-    public String getFileName(Part filePart) {
-        for (String content : filePart.getHeader("content-disposition").split(";")) {
-            if (content.trim().startsWith("filename")) {
-                return content.substring(content.indexOf("=") + 1).trim().replace("\"", "");
+    public String getFileName(Part photo){
+        for ( String content : photo.getHeader( "content-disposition" ).split( ";" ) ) {
+            if ( content.trim().startsWith( "filename" ) ) {
+                return content.substring( content.indexOf( "=" ) + 1 ).trim().replace( "\"", "" );
 
             }
         }
         return null;
     }
-}
+    }
