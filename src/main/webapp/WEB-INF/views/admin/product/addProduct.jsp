@@ -115,7 +115,7 @@
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
                     </div>
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <form action="/app/admin/products/add" method="POST">
+                        <form action="/app/admin/products/add" enctype="multipart/form-data" method="POST" >
                             <div class="grid grid-cols-6 gap-6">
 
                                 <div class="col-span-6 bg-white sm:col-span-4">
@@ -131,9 +131,11 @@
 
                                             <div class="flex justify-between mt-4">
                                                 <div>
-                                                    <button type="button"
-                                                        class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add
-                                                        Photo</button>
+<%--                                                    <button type="button"--%>
+<%--                                                        class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add--%>
+<%--                                                        Photo</button>--%>
+
+                                                    <input type="file" name="productPhoto" id="productPhoto">
                                                 </div>
                                             </div>
                                         </div>
@@ -161,7 +163,7 @@
 
                                 <div class="col-span-6 sm:col-span-4">
                                     <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                                    <input type="number" name="quantity" id="quantity"
+                                    <input type="text" name="quantity" id="quantity"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
 
