@@ -14,32 +14,32 @@ public class UserLoginService {
     private static final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public static Optional<User> loginUser( String email, String password ) {
-        EntityManager em = JpaUtil.createEntityManager();
-        UserRepository userRepository = new UserRepository( em );
+        var em = JpaUtil.createEntityManager();
+        var userRepository = new UserRepository( em );
 
         boolean isValidLogin = false;
 
-        var userOpt = userRepository.findUserByEmail( email );
+        var optionalUser = userRepository.findUserByEmail( email );
 
-        if ( userOpt.isPresent() ) {
-            String userActualPassword = userOpt.get().getPassword();
+        if ( optionalUser.isPresent() ) {
+            String userActualPassword = optionalUser.get().getPassword();
             isValidLogin = passwordEncoder.matches( password, userActualPassword );
         }
 
         em.close();
-        return isValidLogin ? userOpt : Optional.empty();
+
+        return isValidLogin ? optionalUser : Optional.empty();
     }
 
     public static Optional<User> loginUserRememberMe( String email, String password ) {
-        EntityManager em = JpaUtil.createEntityManager();
-        UserRepository userRepository = new UserRepository( em );
+        var em = JpaUtil.createEntityManager();
+        var userRepository = new UserRepository( em );
 
-
-        var userOpt = userRepository.findUserByEmail( email );
+        var optionalUser = userRepository.findUserByEmail( email );
 
         em.close();
 
-        return userOpt;
+        return optionalUser;
     }
 
 
