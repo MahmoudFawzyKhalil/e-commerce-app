@@ -1,7 +1,7 @@
 package gov.iti.jets.domain;
 
 import gov.iti.jets.domain.models.Product;
-import gov.iti.jets.domain.services.ProductAddNewServices;
+import gov.iti.jets.domain.services.ProductAddNewService;
 
 public class DomainFacade {
     private static final DomainFacade INSTANCE = new DomainFacade();
@@ -11,6 +11,7 @@ public class DomainFacade {
     }
 
     public static void addProduct( Product product ){
-        ProductAddNewServices.addProduct(product);
+        ProductAddNewService productAddNewService =new ProductAddNewService();
+        productAddNewService.addProduct(product);
     }
 }

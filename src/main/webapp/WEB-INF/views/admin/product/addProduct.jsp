@@ -116,7 +116,7 @@ plugins: [
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="<c:url value="admin/products/add"/>" enctype="multipart/form-data" method="POST">
+                    <form action="<c:url value="/admin/products/add"/>" enctype="multipart/form-data" method="POST">
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 bg-white sm:col-span-4">
@@ -133,8 +133,7 @@ plugins: [
                                         <div class="flex justify-between mt-4">
                                             <div>
                                                 <label id="uploadImageButton" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                    <input class="hidden" type="file" name="productPhoto" accept="image/jpeg, image/jpg , image/png"
-                                                           id="productPhoto">
+                                                    <input class="hidden" type="file" name="productPhoto" accept="image/jpg" id="productPhoto">
                                                     Add Photo
                                                 </label>
                                             </div>
@@ -163,14 +162,14 @@ plugins: [
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
-                                <input type="number" min="0" name="quantity" id="quantity" required
+                                <input value="1" type="number" min="1" name="quantity" id="quantity" required
                                 <%--                                    <input type="text" name="quantity" id="quantity"--%>
                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
-                                <input name="price" id="price" type="number" min="0" required
+                                <input value="1" name="price" id="price" type="number" min="1" required
                                 <%--                                    <input type="text" name="price" id="price"--%>
                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
@@ -209,7 +208,8 @@ plugins: [
 
 <section id="feedback" class="mt-3">
     <c:if test="${helper.successfullyAddedProduct}">
-        <div class="rounded-md bg-green-50 p-4">
+        <input hidden id="" value="">
+        <div id="successDiv" class="rounded-md bg-green-50 p-4">
             <div class="flex">
                 <div class="flex-shrink-0">
                     <!-- Heroicon name: solid/check-circle -->
@@ -225,7 +225,7 @@ plugins: [
                 </div>
                 <div class="ml-auto pl-3">
                     <div class="-mx-1.5 -my-1.5">
-                        <button type="button"
+                        <button type="button" id="successDismiss" onclick="dismissSuccessDiv()"
                                 class="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
                             <span class="sr-only">Dismiss</span>
                             <!-- Heroicon name: solid/x -->
@@ -242,8 +242,9 @@ plugins: [
         </div>
     </c:if>
     <c:if test="${helper.failedToAddProduct}">
-        <div class="rounded-md bg-red-50 p-4 mt-3">
-            <div class="flex">
+        <div id="failDiv" class="rounded-md bg-red-50 p-4 mt-3">
+
+            <div class="flex" >
                 <div class="flex-shrink-0">
                     <!-- Heroicon name: solid/x-circle -->
                     <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -258,7 +259,7 @@ plugins: [
                 </div>
                 <div class="ml-auto pl-3">
                     <div class="-mx-1.5 -my-1.5">
-                        <button type="button"
+                        <button type="button" id="failDismiss" onclick="dismissFailsDiv()"
                                 class="inline-flex bg-red-50 rounded-md p-1.5 text-red-500 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-red-50 focus:ring-red-600">
                             <span class="sr-only">Dismiss</span>
                             <!-- Heroicon name: solid/x -->

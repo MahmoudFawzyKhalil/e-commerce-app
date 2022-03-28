@@ -32,8 +32,8 @@ public class ProductAddNewControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
-//        This makes no sense
-//        req.setCharacterEncoding( "UTF-8" );
+        productAddNewViewHelper.setFailedToAddProduct( false );
+        productAddNewViewHelper.setSuccessfullyAddedProduct( false );
         RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
         req.setAttribute( "helper", productAddNewViewHelper );
 
@@ -42,41 +42,35 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         int quantity = Integer.parseInt( req.getParameter( "quantity" ) );
         int price = Integer.parseInt( req.getParameter( "price" ) ) * 100;
 
-        String cat = req.getParameter( "category" );
-
-//        Use Category.valueOf()
-        Category category;
-        if ( cat.equals( "CHOCOLATE" ) ) category = Category.CHOCOLATE;
-        else category = Category.DRINKS;
+        Category category = Category.valueOf( req.getParameter( "category" ) );
 
         Part photo = req.getPart( "productPhoto" );
-
         String photoName = getFileName( photo );
         if ( photoName != null && !photoName.isEmpty() ) {
             String[] split = photoName.split( "\\." );
             photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
-            photo.write( "C:/ecommerce/" + photoName );
         }
 
-
-            Product product = new Product( name, description, photoName, price, quantity, category );
-            try {
-                DomainFacade.addProduct( product );
-                productAddNewViewHelper.setSuccessfullyAddedProduct( true );
-            } catch ( Exception e ) {
-                productAddNewViewHelper.setFailedToAddProduct( true );
-            } finally {
-                requestDispatcher.forward( req, resp );
+        Product product = new Product( name, description, photoName, price, quantity, category );
+        try {
+            DomainFacade.addProduct( product );
+            if ( photoName != null && !photoName.isEmpty() ) {
+                photo.write( "C:/ecommerce/" + photoName );
             }
-
+            productAddNewViewHelper.setSuccessfullyAddedProduct( true );
+        } catch ( RuntimeException e ) {
+            productAddNewViewHelper.setFailedToAddProduct( true );
+        } finally {
+            requestDispatcher.forward( req, resp );
+        }
     }
-    public String getFileName(Part photo){
+
+    public String getFileName( Part photo ) {
         for ( String content : photo.getHeader( "content-disposition" ).split( ";" ) ) {
             if ( content.trim().startsWith( "filename" ) ) {
                 return content.substring( content.indexOf( "=" ) + 1 ).trim().replace( "\"", "" );
-
             }
         }
         return null;
     }
-    }
+}
