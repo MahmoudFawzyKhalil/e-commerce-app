@@ -26,6 +26,7 @@ public class User {
 
     @NotNull
     @Email
+    @Column( unique = true )
     private String email;
 
     @NotNull
@@ -33,7 +34,7 @@ public class User {
     private String phoneNumber;
 
     @NotNull
-    @Size( min = 8, max = 50 )
+    @Size( min = 8 )
     @Column( name = "user_password" )
     private String password;
 

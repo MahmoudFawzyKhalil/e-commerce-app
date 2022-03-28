@@ -1,10 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../webapp/css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>ChocoTown</title>
 </head>
 
@@ -34,20 +36,24 @@
                 </div>
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0">
-                        <img class="block w-auto h-8 lg:hidden" src="../../../img/common/logo.png"
-                             alt="Workflow logo">
-                        <img class="hidden w-auto h-8 lg:block" src="../../../img/common/logo.png"
-                             alt="Workflow logo">
+                        <a href="<c:url value="/"/>">
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
+                        <a href="<c:url value="/"/>">
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
-                            <a href="#"
+                            <a href="<c:url value="register"/>"
                                class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Register</a>
                         </div>
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
-                            <a href="../login/login.html"
+                            <a href="../login/login.jsp"
                                class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Sign
                                 in</a>
                         </div>
@@ -103,7 +109,7 @@
         -->
         <div id="mobileMenu" class="hidden sm:hidden">
             <div class="px-2 pt-2 pb-3">
-                <a href="#"
+                <a href="<c:url value="register"/>"
                    class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
                     Register
                 </a>
@@ -385,7 +391,6 @@
                     </div>
                 </div>
 
-
                 <div class="p-2 rounded-lg shadow-md cursor-pointer hover:shadow-xl">
                     <div class="relative">
                         <div class="relative w-full overflow-hidden rounded-lg h-72">
@@ -605,7 +610,7 @@
         </div>
     </footer>
 </section>
-<script src="../../../js/components/navbar.js"></script>
+<script src="<c:url value="/js/components/navbar.js"/>"></script>
 </body>
 
 </html>

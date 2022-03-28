@@ -80,7 +80,7 @@ public class TestDb {
         em.getTransaction().commit();
 
         System.out.println( emf.createEntityManager().find( Address.class, 5 ) );
-        System.out.println( new UserRepository( em ).findOne( 4 ).get() );
+//        System.out.println( new UserRepository( em ).findOne( 4 ).get() );
         System.out.println( new OrderRepository( em ).findAll() );
     }
 }
