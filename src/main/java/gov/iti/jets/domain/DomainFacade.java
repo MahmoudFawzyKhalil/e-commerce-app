@@ -16,4 +16,7 @@ public class DomainFacade {
     }
 
 
+    public static Optional<User> loginUserRememberMe( String email, String password ) {
+        return UserLoginService.loginUserRememberMe( email, password );
+    }
 }

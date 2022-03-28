@@ -29,4 +29,18 @@ public class UserLoginService {
         em.close();
         return isValidLogin ? userOpt : Optional.empty();
     }
+
+    public static Optional<User> loginUserRememberMe( String email, String password ) {
+        EntityManager em = JpaUtil.createEntityManager();
+        UserRepository userRepository = new UserRepository( em );
+
+
+        var userOpt = userRepository.findUserByEmail( email );
+
+        em.close();
+
+        return userOpt;
+    }
+
+
 }
