@@ -1,23 +1,22 @@
 package gov.iti.jets.domain.services;
 
 import gov.iti.jets.domain.models.Product;
+import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.ProductRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import jakarta.persistence.EntityTransaction;
 
 public class ProductAddNewService {
 
-    public ProductAddNewService() {
-    }
+    public static void addProduct( Product product ) {
+        var em = JpaUtil.createEntityManager();
+        var tx = em.getTransaction();
+        var productRepository = new ProductRepository( em );
 
-    public void addProduct( Product product ) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory( "ecommerce" );
-        EntityManager entityManager = emf.createEntityManager();
-        ProductRepository productRepository = new ProductRepository( entityManager );
-        entityManager.getTransaction().begin();
+        tx.begin();
         productRepository.create( product );
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        tx.commit();
+        em.close();
     }
 }

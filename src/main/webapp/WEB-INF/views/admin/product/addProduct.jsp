@@ -44,6 +44,7 @@
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
+                            <%-- TODO use c:url --%>
                             <a href="/app/admin"
                                class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                         </div>
@@ -85,6 +86,7 @@
           -->
         <div id="mobileMenu" class="hidden sm:hidden">
             <div class="px-2 pt-2 pb-3">
+                <%-- TODO use c:url!!! --%>
                 <a href="/app/admin"
                    class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
             </div>
@@ -124,7 +126,8 @@ plugins: [
                                 <div class="max-w-xs px-4 mx-auto sm:py-3 sm:px-3 lg:max-w-7xl ">
                                     <div
                                             class="max-w-xs overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                                        <img id="imageOfProduct" src="<c:url value="/img/admin/defaultProduct.jpeg"/>" alt="customer"
+                                        <img id="imageOfProduct" src="<c:url value="/img/admin/defaultProduct.jpeg"/>"
+                                             alt="customer"
                                              class="object-cover object-center w-full h-full lg:w-full lg:h-full">
                                     </div>
                                     <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8">
@@ -132,8 +135,11 @@ plugins: [
 
                                         <div class="flex justify-between mt-4">
                                             <div>
-                                                <label id="uploadImageButton" class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                    <input class="hidden" type="file" name="productPhoto" accept="image/jpg" id="productPhoto">
+                                                <label id="uploadImageButton"
+                                                       class="px-3 py-2 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <input class="hidden" type="file" name="productPhoto"
+                                                           accept="image/jpg, image/png, image/jpeg"
+                                                           id="productPhoto">
                                                     Add Photo
                                                 </label>
                                             </div>
@@ -244,7 +250,7 @@ plugins: [
     <c:if test="${helper.failedToAddProduct}">
         <div id="failDiv" class="rounded-md bg-red-50 p-4 mt-3">
 
-            <div class="flex" >
+            <div class="flex">
                 <div class="flex-shrink-0">
                     <!-- Heroicon name: solid/x-circle -->
                     <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"

@@ -16,35 +16,44 @@ import jakarta.servlet.http.Part;
 import java.io.IOException;
 import java.util.UUID;
 
-@MultipartConfig
+@MultipartConfig( maxFileSize = 1024 * 1024 * 2 )
 @WebServlet( "/admin/products/add" )
 public class ProductAddNewControllerServlet extends HttpServlet {
-    ProductAddNewViewHelper productAddNewViewHelper = new ProductAddNewViewHelper();
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        var productAddNewViewHelper = new ProductAddNewViewHelper();
         productAddNewViewHelper.setFailedToAddProduct( false );
         productAddNewViewHelper.setSuccessfullyAddedProduct( false );
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
+
+        var requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
         request.setAttribute( "helper", productAddNewViewHelper );
         requestDispatcher.forward( request, response );
     }
 
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+        var productAddNewViewHelper = new ProductAddNewViewHelper();
         productAddNewViewHelper.setFailedToAddProduct( false );
         productAddNewViewHelper.setSuccessfullyAddedProduct( false );
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
+
+        var requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
         req.setAttribute( "helper", productAddNewViewHelper );
+
+        Part photo = null;
+        try {
+            photo = req.getPart( "productPhoto" );
+        } catch ( IllegalStateException ex ) {
+            // Thrown when file size is too large
+            ex.printStackTrace();
+        }
 
         String name = req.getParameter( "name" );
         String description = req.getParameter( "description" );
         int quantity = Integer.parseInt( req.getParameter( "quantity" ) );
         int price = Integer.parseInt( req.getParameter( "price" ) ) * 100;
-
         Category category = Category.valueOf( req.getParameter( "category" ) );
 
-        Part photo = req.getPart( "productPhoto" );
         String photoName = getFileName( photo );
         if ( photoName != null && !photoName.isEmpty() ) {
             String[] split = photoName.split( "\\." );
@@ -52,6 +61,7 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         }
 
         Product product = new Product( name, description, photoName, price, quantity, category );
+        this.log( "Attempt to add product: " + product );
         try {
             DomainFacade.addProduct( product );
             if ( photoName != null && !photoName.isEmpty() ) {
@@ -66,6 +76,10 @@ public class ProductAddNewControllerServlet extends HttpServlet {
     }
 
     public String getFileName( Part photo ) {
+        if ( photo == null ) {
+            return null;
+        }
+
         for ( String content : photo.getHeader( "content-disposition" ).split( ";" ) ) {
             if ( content.trim().startsWith( "filename" ) ) {
                 return content.substring( content.indexOf( "=" ) + 1 ).trim().replace( "\"", "" );
