@@ -7,15 +7,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class ProductAddNewServices {
-    Product product;
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory( "ecommerce" );
-    EntityManager entityManager =emf.createEntityManager();
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory( "ecommerce" );
+    private static final EntityManager entityManager = emf.createEntityManager();
 
-    public ProductAddNewServices( Product product ) {
-        this.product = product;
-    }
-
-    public void addProduct(){
+    public static void addProduct(Product product){
         ProductRepository productRepository = new ProductRepository( entityManager );
         entityManager.getTransaction().begin();
         productRepository.create( product );

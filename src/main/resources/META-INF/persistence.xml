@@ -8,7 +8,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
 <!--            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>-->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecommerce"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ecommerce"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.user" value="manager"/>
             <property name="jakarta.persistence.jdbc.password" value="manager"/>

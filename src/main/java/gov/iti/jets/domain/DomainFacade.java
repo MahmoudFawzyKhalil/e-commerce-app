@@ -11,7 +11,6 @@ public class DomainFacade {
     }
 
     public static void addProduct( Product product ){
-        ProductAddNewServices productAddNewServices = new ProductAddNewServices( product );
-        productAddNewServices.addProduct();
+        ProductAddNewServices.addProduct(product);
     }
 }

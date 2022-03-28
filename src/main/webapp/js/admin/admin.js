@@ -22,3 +22,13 @@ const mobileMenu = document.getElementById("mobileMenu");
 mobileMenuToggleButton.addEventListener('click', (e) => {
     mobileMenu.classList.toggle('hidden');
 });
+
+
+// Handle image of product
+document.getElementById("imageOfProduct").src="D:/ITI/e-commerce-app/src/main/webapp/img/admin/product.png";
+const productImageButton = document.getElementById("uploadImageButton");
+// productImage.src="D:/ITI/e-commerce-app/src/main/webapp/img/admin/product.png"
+
+
+
+

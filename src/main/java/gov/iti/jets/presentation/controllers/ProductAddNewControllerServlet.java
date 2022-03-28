@@ -23,14 +23,17 @@ public class ProductAddNewControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        productAddNewViewHelper.setFailedToAddProduct( false );
+        productAddNewViewHelper.setSuccessfullyAddedProduct( false );
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
         request.setAttribute( "helper", productAddNewViewHelper );
         requestDispatcher.forward( request, response );
     }
 
-
     @Override
     protected void doPost( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+//        This makes no sense
+//        req.setCharacterEncoding( "UTF-8" );
         RequestDispatcher requestDispatcher = req.getRequestDispatcher( "/WEB-INF/views/admin/product/addProduct.jsp" );
         req.setAttribute( "helper", productAddNewViewHelper );
 
@@ -40,9 +43,12 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         int price = Integer.parseInt( req.getParameter( "price" ) ) * 100;
 
         String cat = req.getParameter( "category" );
+
+//        Use Category.valueOf()
         Category category;
         if ( cat.equals( "CHOCOLATE" ) ) category = Category.CHOCOLATE;
         else category = Category.DRINKS;
+
         Part photo = req.getPart( "productPhoto" );
 
         String photoName = getFileName( photo );
@@ -52,8 +58,8 @@ public class ProductAddNewControllerServlet extends HttpServlet {
             photo.write( "C:/ecommerce/" + photoName );
         }
 
-        if ( name != null && description != null && quantity != 0 && price != 0 && !cat.equals( "category" ) ) {
-            Product product = new Product( name, description, photoName, price, quantity, Category.CHOCOLATE );
+
+            Product product = new Product( name, description, photoName, price, quantity, category );
             try {
                 DomainFacade.addProduct( product );
                 productAddNewViewHelper.setSuccessfullyAddedProduct( true );
@@ -62,7 +68,7 @@ public class ProductAddNewControllerServlet extends HttpServlet {
             } finally {
                 requestDispatcher.forward( req, resp );
             }
-        }
+
     }
     public String getFileName(Part photo){
         for ( String content : photo.getHeader( "content-disposition" ).split( ";" ) ) {
