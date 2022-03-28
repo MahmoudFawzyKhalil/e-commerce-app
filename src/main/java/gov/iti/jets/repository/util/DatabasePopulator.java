@@ -21,35 +21,35 @@ public class DatabasePopulator {
 
         // CREATE PRODUCTS ************************
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", "Ferrero.jpg", 6, 50, Category.CHOCOLATE );
+        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", "Ferrero.jpg", 6*100, 50, Category.CHOCOLATE );
         products.add( product1 );
 
-        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", "Hershey.jpg", 5, 100, Category.CHOCOLATE );
+        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", "Hershey.jpg", 5*100, 100, Category.CHOCOLATE );
         products.add( product2 );
 
-        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", "kinderBueno.jpg", 14, 100, Category.CHOCOLATE );
+        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", "kinderBueno.jpg", 14*100, 100, Category.CHOCOLATE );
         products.add( product3 );
 
-        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz", "reesesPeanutButterCups.jpg", 12, 100, Category.CHOCOLATE );
+        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz", "reesesPeanutButterCups.jpg", 12*100, 100, Category.CHOCOLATE );
         products.add( product4 );
 
 
-        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz", "lindtLindor.jpg", 13, 100, Category.CHOCOLATE );
+        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz", "lindtLindor.jpg", 13*100, 100, Category.CHOCOLATE );
         products.add( product5 );
 
-        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz", "cadburyDairyMilkChocolate.jpg", 12, 100, Category.CHOCOLATE );
+        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz", "cadburyDairyMilkChocolate.jpg", 12*100, 100, Category.CHOCOLATE );
         products.add( product6 );
 
-        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", "M&Ms.jpg", 7, 100, Category.CHOCOLATE );
+        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", "M&Ms.jpg", 7*100, 100, Category.CHOCOLATE );
         products.add( product7 );
 
-        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz", "crunchBuncha.jpg", 4, 100, Category.CHOCOLATE );
+        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz", "crunchBuncha.jpg", 4*100, 100, Category.CHOCOLATE );
         products.add( product8 );
 
-        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", "dovePromises.jpg", 22, 100, Category.CHOCOLATE );
+        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", "dovePromises.jpg", 22*100, 100, Category.CHOCOLATE );
         products.add( product9 );
 
-        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", "Brookside.jpg", 32, 100, Category.CHOCOLATE );
+        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", "Brookside.jpg", 32*100, 100, Category.CHOCOLATE );
         products.add( product10 );
 
 
