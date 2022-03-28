@@ -2,6 +2,7 @@ package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.models.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
 import javax.swing.text.html.Option;
@@ -15,11 +16,15 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     public Optional<User> findUserByEmail( String email ) {
-        TypedQuery<User> query = entityManager.createQuery( "SELECT u FROM User u WHERE u.email = :email"
-                , User.class );
-        query.setParameter( "email", email );
-        User user = query.getSingleResult();
-        return Optional.ofNullable( user );
+        User user = null;
+        try {
+            TypedQuery<User> query = entityManager.createQuery( "SELECT u FROM User u WHERE u.email = :email"
+                    , User.class );
+            query.setParameter( "email", email );
+            user = query.getSingleResult();
+        } finally {
+            return Optional.ofNullable( user );
+        }
     }
 
 }

@@ -15,8 +15,6 @@ import java.time.LocalDate;
 
 @WebServlet( "/register" )
 public class UserRegistrationControllerServlet extends HttpServlet {
-    DomainFacade domainFacade = DomainFacade.getInstance();
-
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         request.getRequestDispatcher( "/WEB-INF/views/register/register.jsp" ).forward( request, response );
@@ -42,7 +40,7 @@ public class UserRegistrationControllerServlet extends HttpServlet {
             User user = new User( firstName, lastName, email, password,
                     phoneNumber, birthday, creditLimit, job, Role.CUSTOMER, address );
 
-            domainFacade.registerNewUser( user );
+            DomainFacade.registerNewUser( user );
 
             response.sendRedirect( "login" );
 

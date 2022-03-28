@@ -22,6 +22,8 @@ public class UserRegistrationService {
         tx.begin();
         userRepository.create( user );
         tx.commit();
+
+        em.close();
     }
 
 /*    public static void main( String[] args ) {
