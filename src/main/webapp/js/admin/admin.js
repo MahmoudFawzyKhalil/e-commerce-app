@@ -49,7 +49,6 @@ image_input.addEventListener("change", function (){
 
  function dismissSuccessDiv(){
     document.getElementById("successDiv").classList.add("hidden");
-    333333
   }
 
  function dismissFailsDiv(){
@@ -57,3 +56,21 @@ image_input.addEventListener("change", function (){
  }
 
 
+
+ const quantity = document.getElementById("quantity")
+
+
+ quantity.addEventListener('blur', (e) => {
+     if (quantity.value <= 0) {
+         quantity.value = 1;
+     }
+ });
+
+ const price = document.getElementById("price")
+
+
+ price.addEventListener('blur', (e) => {
+     if (price.value <= 0) {
+         price.value = 1;
+     }
+ });
