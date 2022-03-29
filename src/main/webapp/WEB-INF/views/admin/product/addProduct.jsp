@@ -116,7 +116,7 @@ plugins: [
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="<c:url value="/admin/products/add"/>" enctype="multipart/form-data" method="POST">
+                    <form id="productAddForm" action="<c:url value="/admin/products/add"/>" enctype="multipart/form-data" method="POST">
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 bg-white sm:col-span-4">
@@ -152,7 +152,7 @@ plugins: [
                                 <input type="text" name="name" id="name" autocomplete="given-name" required
                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <span class="hidden text-xs text-red-500"
-                                      id="nameValidation">This field is required to be at least 3 character or max 200 character.</span>
+                                      id="nameValidation">This field is invalid</span>
                             </div>
 
 
@@ -163,6 +163,8 @@ plugins: [
                                         <textarea id="description" name="description" rows="3"
                                                   class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                                 </div>
+                                <span class="hidden text-xs text-red-500"
+                                      id="descriptionValidation">This field is invalid</span>
                             </div>
 
 
@@ -193,16 +195,16 @@ plugins: [
                         </div>
                         <%--                            onclick="location.href='/app/admin/products/add';"--%>
                         <div class="flex justify-end p-1">
-                            <button type="button" onclick="location.href='<c:url value="/admin/products/add" />';"
+                            <button id="cancelButton" type="button" onclick="location.href='<c:url value="/admin/products/add" />';"
                                     class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Cancel
                             </button>
-                            <button type="submit"
+                            <button id="submitButton" type="submit"
                                     class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Add
                             </button>
 
-                            <svg id="spinner" class="hidden w-24 inline-flex justify-center px-4 py-2 ml-3 "
+                            <svg id="spinner" class="hidden w-20 inline-flex justify-center px-4 py-2 ml-3 "
                                  xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;" viewBox="0 0 100 100"
                                  preserveAspectRatio="xMidYMid">
