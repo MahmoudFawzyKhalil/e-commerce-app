@@ -8,50 +8,52 @@ import gov.iti.jets.repository.ProductRepository;
 import gov.iti.jets.repository.ShoppingCartRepository;
 import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.Persistence;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabasePopulator {
-    public static void main(String[] args) {
+    static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public static void main( String[] args ) {
         var emf = Persistence.createEntityManagerFactory( "ecommerce" );
         var em = emf.createEntityManager();
 
 
         // CREATE PRODUCTS ************************
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", "Ferrero.jpg", 6*100, 50, Category.CHOCOLATE );
+        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", "Ferrero.jpg", 6 * 100, 50, Category.CHOCOLATE );
         products.add( product1 );
 
-        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", "Hershey.jpg", 5*100, 100, Category.CHOCOLATE );
+        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", "Hershey.jpg", 5 * 100, 100, Category.CHOCOLATE );
         products.add( product2 );
 
-        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", "kinderBueno.jpg", 14*100, 100, Category.CHOCOLATE );
+        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", "kinderBueno.jpg", 14 * 100, 100, Category.CHOCOLATE );
         products.add( product3 );
 
-        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz", "reesesPeanutButterCups.jpg", 12*100, 100, Category.CHOCOLATE );
+        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz", "reesesPeanutButterCups.jpg", 12 * 100, 100, Category.CHOCOLATE );
         products.add( product4 );
 
 
-        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz", "lindtLindor.jpg", 13*100, 100, Category.CHOCOLATE );
+        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz", "lindtLindor.jpg", 13 * 100, 100, Category.CHOCOLATE );
         products.add( product5 );
 
-        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz", "cadburyDairyMilkChocolate.jpg", 12*100, 100, Category.CHOCOLATE );
+        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz", "cadburyDairyMilkChocolate.jpg", 12 * 100, 100, Category.CHOCOLATE );
         products.add( product6 );
 
-        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", "M&Ms.jpg", 7*100, 100, Category.CHOCOLATE );
+        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", "M&Ms.jpg", 7 * 100, 100, Category.CHOCOLATE );
         products.add( product7 );
 
-        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz", "crunchBuncha.jpg", 4*100, 100, Category.CHOCOLATE );
+        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz", "crunchBuncha.jpg", 4 * 100, 100, Category.CHOCOLATE );
         products.add( product8 );
 
-        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", "dovePromises.jpg", 22*100, 100, Category.CHOCOLATE );
+        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", "dovePromises.jpg", 22 * 100, 100, Category.CHOCOLATE );
         products.add( product9 );
 
-        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", "Brookside.jpg", 32*100, 100, Category.CHOCOLATE );
+        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", "Brookside.jpg", 32 * 100, 100, Category.CHOCOLATE );
         products.add( product10 );
-
 
 
         // PERSIST PRODUCTS ************************
@@ -61,20 +63,22 @@ public class DatabasePopulator {
         em.getTransaction().commit();
 
         // CREATE USERS ************************
+        String hashedPassword = encoder.encode( "123456789" );
+
         List<User> users = new ArrayList<>();
-        User user1 = new User( "John", "Doe", "john@gmail.com", "123456789", "01117950455", LocalDate.ofYearDay( 1996, 50 ), 6000, "salesman", Role.CUSTOMER, new Address( "abofarg", "Cairo" ) );
+        User user1 = new User( "John", "Doe", "john@gmail.com", hashedPassword, "01117950455", LocalDate.ofYearDay( 1996, 50 ), 6000, "salesman", Role.ADMIN, new Address( "abofarg", "Cairo" ) );
         users.add( user1 );
 
-        User user2 = new User( "Marwa", "Youssef", "Marwa@gmail.com", "123456789", "01117950451", LocalDate.ofYearDay( 1997, 70 ), 10000, "Java Developer", Role.CUSTOMER, new Address( "elharm", "Giza" ) );
+        User user2 = new User( "Marwa", "Youssef", "Marwa@gmail.com", hashedPassword, "01117950451", LocalDate.ofYearDay( 1997, 70 ), 10000, "Java Developer", Role.CUSTOMER, new Address( "elharm", "Giza" ) );
         users.add( user2 );
 
-        User user3 = new User( "Abdelrahman", "Samy", "Semsem@gmail.com", "123456789", "01117950452", LocalDate.ofYearDay( 1997, 90 ), 20000, "Web Developer", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
+        User user3 = new User( "Abdelrahman", "Samy", "Semsem@gmail.com", hashedPassword, "01117950452", LocalDate.ofYearDay( 1997, 90 ), 20000, "Web Developer", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
         users.add( user3 );
 
-        User user4 = new User( "Mahmoud", "Fawzy", "fawzy@gmail.com", "123456789", "01117950453", LocalDate.ofYearDay( 1997, 14 ), 40000, "Java Developer", Role.CUSTOMER, new Address( "nozha", "Cairo" ) );
+        User user4 = new User( "Mahmoud", "Fawzy", "fawzy@gmail.com", hashedPassword, "01117950453", LocalDate.ofYearDay( 1997, 14 ), 40000, "Java Developer", Role.CUSTOMER, new Address( "nozha", "Cairo" ) );
         users.add( user4 );
 
-        User user5 = new User( "Mariam", "Mohammed", "Mariam@gmail.com", "123456789", "01117950454", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        User user5 = new User( "Mariam", "Mohammed", "Mariam@gmail.com", hashedPassword, "01117950454", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
         users.add( user5 );
 
         // PERSIST USERS ************************

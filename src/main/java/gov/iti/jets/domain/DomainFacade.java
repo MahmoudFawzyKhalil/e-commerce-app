@@ -10,8 +10,6 @@ import gov.iti.jets.domain.services.ProductAddNewService;
 import java.util.Optional;
 
 public class DomainFacade {
-    public static void registerNewUser( User user ) {
-
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
     }

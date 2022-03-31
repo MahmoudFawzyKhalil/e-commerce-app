@@ -2,32 +2,43 @@ package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.enums.Role;
+import gov.iti.jets.domain.models.CartLineItem;
+import gov.iti.jets.domain.models.ShoppingCart;
 import gov.iti.jets.domain.models.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Stream;
 
 @WebServlet( "/login" )
 public class UserLoginControllerServlet extends HttpServlet {
 
+
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        boolean isAlreadyLoggedIn = request.getSession().getAttribute( "user" ) != null;
+        String forwardLocation = "home";
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute( "user" );
+        boolean isAlreadyLoggedIn = user != null;
+
         if ( isAlreadyLoggedIn ) {
-            response.sendRedirect( "home" );
+            forwardLocation = determineUserForwardLocation( user );
+            updateSessionShoppingCart( request, user );
+            response.sendRedirect( forwardLocation );
             return;
         }
 
         boolean userLoggedInWithCookie = loginWithCookie( request );
         if ( userLoggedInWithCookie ) {
-            response.sendRedirect( "home" );
+            user = (User) session.getAttribute( "user" );
+            forwardLocation = determineUserForwardLocation( user );
+            updateSessionShoppingCart( request, user );
+            response.sendRedirect( forwardLocation );
             return;
         }
 
@@ -36,23 +47,27 @@ public class UserLoginControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        // TODO fix login as admin
-        Role userRole = Role.CUSTOMER;
+        String forwardLocation = "home";
 
         String email = request.getParameter( "emailAddress" );
         String password = request.getParameter( "password" );
         String rememberMe = request.getParameter( "rememberMe" );
 
-        Optional<User> optionalUser = DomainFacade.loginUserRememberMe( email, password );
+        Optional<User> optionalUser = DomainFacade.loginUser( email, password );
+
         if ( optionalUser.isPresent() ) {
-            request.getSession().setAttribute( "user", optionalUser.get() );
             User user = optionalUser.get();
+            request.getSession().setAttribute( "user", user );
             if ( rememberMe != null ) {
                 String emailPasswordCookieString = user.getEmail() + "+" + user.getPassword();
                 Cookie rememberMeCookie = new Cookie( "rememberMeCookie", emailPasswordCookieString );
                 response.addCookie( rememberMeCookie );
             }
-            response.sendRedirect( "home" );
+
+            forwardLocation = determineUserForwardLocation( user );
+            updateSessionShoppingCart( request, user );
+            response.sendRedirect( forwardLocation );
+
         } else {
             response.sendRedirect( "login?failed=true" );
         }
@@ -79,6 +94,41 @@ public class UserLoginControllerServlet extends HttpServlet {
             }
         }
         return result;
+    }
+
+
+    private String determineUserForwardLocation( User user ) {
+        Role userRole = user.getRole();
+        switch ( userRole ) {
+            case ADMIN:
+                return "admin";
+            case CUSTOMER:
+                return "home";
+            default:
+                return null;
+        }
+    }
+
+
+    //TODO test method
+    ///////Merging shoppingCarts
+    private void updateSessionShoppingCart( HttpServletRequest request, User user ) {
+
+        Optional<ShoppingCart> optionalStoredShoppingCart = user.getShoppingCart();
+        HttpSession session = request.getSession();
+
+        if ( optionalStoredShoppingCart.isPresent() ) {
+
+            Set<CartLineItem> userCartLineItems = optionalStoredShoppingCart.get().getCartLineItemsUnmodifiable();
+            ShoppingCart currentSessionShoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
+
+            if ( currentSessionShoppingCart != null ) {
+                userCartLineItems.forEach( currentSessionShoppingCart::addCartLineItem );
+                user.setShoppingCart( currentSessionShoppingCart );
+            } else {
+                session.setAttribute( "shoppingCart", optionalStoredShoppingCart.get() );
+            }
+        }
     }
 
 
