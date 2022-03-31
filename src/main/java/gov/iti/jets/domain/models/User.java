@@ -158,6 +158,18 @@ public class User {
         this.role = role;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber( String phoneNumber ) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddressFormatted(){
+        return this.address.getStreet() + ", " + this.address.getCity();
+    }
+
     public Optional<ShoppingCart> getShoppingCart() {
         return Optional.ofNullable( this.shoppingCart );
     }
