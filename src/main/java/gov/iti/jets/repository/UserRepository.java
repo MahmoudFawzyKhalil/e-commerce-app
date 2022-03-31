@@ -2,12 +2,16 @@ package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.models.User;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 public class UserRepository extends AbstractRepository<User> {
+    private static int pageSize =0;
 
     public UserRepository( EntityManager entityManager ) {
         super( entityManager );
@@ -20,6 +24,42 @@ public class UserRepository extends AbstractRepository<User> {
         query.setParameter( "email", email );
         User user = query.getSingleResult();
         return Optional.ofNullable( user );
+    }
+
+    public List<User> getPage( int pageNumber ) {
+        Query query = entityManager.createQuery( "FROM User" );
+
+        return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
+                .setMaxResults( pageSize )
+                .getResultList();
+    }
+
+
+    public long getNumberOfPages() {
+        Query queryTotal = entityManager.createQuery( "SELECT COUNT(u.id) FROM User u" );
+        long countResult = (long) queryTotal.getSingleResult();
+
+        long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );
+
+        return ( countResult / pageSize ) + finalPage;
+    }
+
+//    public static void main( String[] args ) {
+//        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
+//        var em = emf.createEntityManager();
+//        UserRepository userRepository= new UserRepository( em );
+//        userRepository.setPageSize( 3 );
+//        long countResult = (long) queryTotal.getSingleResult();
+//        System.out.println(countResult+"countResult");
+//        long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );
+//
+//        System.out.println(userRepository.pageSize);
+//
+//    }
+    public void setPageSize( int pageSize ) {
+        System.out.println("Repo"
+                +pageSize);
+        this.pageSize = pageSize;
     }
 
 }

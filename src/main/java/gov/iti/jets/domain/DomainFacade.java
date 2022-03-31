@@ -1,7 +1,7 @@
 package gov.iti.jets.domain;
 
 import gov.iti.jets.domain.models.User;
-import gov.iti.jets.domain.services.GetAllCustomersService;
+import gov.iti.jets.domain.services.GetListOfCustomersService;
 import gov.iti.jets.domain.services.UserRegistrationService;
 
 import gov.iti.jets.domain.models.Product;
@@ -19,5 +19,10 @@ public class DomainFacade {
         UserRegistrationService.registerNewUser( user );
     }
 
-    public static List<User> getAllUser(){ return GetAllCustomersService.getAllCustomersService();}
+    public static List<User> getPage(int pageNumber){ return GetListOfCustomersService.getPage(pageNumber);}
+
+    public static void setPage(int pageSize){
+        GetListOfCustomersService.setPage(pageSize);}
+
+    public static long getPageNumber(){return GetListOfCustomersService.getPageNumber();}
 }
