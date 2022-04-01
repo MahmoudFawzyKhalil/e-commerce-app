@@ -17,14 +17,15 @@ public class UserRepository extends AbstractRepository<User> {
 
     public Optional<User> findUserByEmail( String email ) {
         User user = null;
+        email = email.toLowerCase();
         try {
-            TypedQuery<User> query = entityManager.createQuery( "SELECT u FROM User u WHERE u.email = :email"
-                    , User.class );
+            TypedQuery<User> query = entityManager.createQuery( "SELECT u FROM User u WHERE u.email = :email", User.class );
             query.setParameter( "email", email );
             user = query.getSingleResult();
-        } finally {
-            return Optional.ofNullable( user );
+        } catch ( NoResultException nre ) {
+            nre.printStackTrace();
         }
+        return Optional.ofNullable( user );
     }
 
 }

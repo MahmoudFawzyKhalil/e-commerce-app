@@ -12,11 +12,16 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @WebServlet( "/register" )
 public class UserRegistrationControllerServlet extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        if ( Objects.nonNull( request.getSession().getAttribute( "user" ) ) ) {
+            request.getRequestDispatcher( "/WEB-INF/views/home/home.jsp" ).forward( request, response );
+            return;
+        }
         request.getRequestDispatcher( "/WEB-INF/views/register/register.jsp" ).forward( request, response );
     }
 
@@ -35,8 +40,9 @@ public class UserRegistrationControllerServlet extends HttpServlet {
 
         try {
             LocalDate birthday = LocalDate.parse( birthdayParam );
-            long creditLimit = Long.parseLong( creditLimitParam );
+            long creditLimit = Long.parseLong( creditLimitParam ) * 100;
             Address address = new Address( street, city );
+            email = email.toLowerCase();
             User user = new User( firstName, lastName, email, password,
                     phoneNumber, birthday, creditLimit, job, Role.CUSTOMER, address );
 

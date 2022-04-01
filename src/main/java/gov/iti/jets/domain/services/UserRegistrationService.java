@@ -19,6 +19,7 @@ public class UserRegistrationService {
 
         String hashedPassword = passwordEncoder.encode( user.getPassword() );
         user.setPassword( hashedPassword );
+        user.setEmail( user.getEmail().toLowerCase() );
 
         tx.begin();
         userRepository.create( user );
