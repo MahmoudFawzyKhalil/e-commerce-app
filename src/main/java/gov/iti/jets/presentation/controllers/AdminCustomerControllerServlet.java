@@ -1,7 +1,6 @@
 package gov.iti.jets.presentation.controllers;
 
 import gov.iti.jets.domain.DomainFacade;
-import gov.iti.jets.domain.models.User;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,17 +9,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet( "/admin/customers" )
-public class AdminListOfCustomerControllerServlet extends HttpServlet {
+@WebServlet( "/admin/customers/customer" )
+public class AdminCustomerControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/customer/listOfCustomer.jsp" );
-        DomainFacade.setPageSizeOfCustomers( 5 );
-        request.setAttribute( "pageNumber",DomainFacade.getPageNumberOfCustomers() );
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/customer/customer.jsp" );
+        int id =Integer.parseInt( request.getParameter( "id" ) ) ;
+        request.setAttribute( "orderList",DomainFacade.getOrders( id ) );
+        request.setAttribute( "user",DomainFacade.getCustomerByID( id ).get() );
         requestDispatcher.forward( request, response );
     }
 

@@ -93,24 +93,31 @@ public class TestDb {
 //            System.out.println(user.getFullName());
 //        }
 //    }
-    public static void main( String[] args ) {
-        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
-        var em = emf.createEntityManager();
-        TestDb  getPage= new TestDb();
-        Query query =em.createQuery( "From User" );
-        int pageSize=2;
-        int pageNumber = (int) getPage.getPageNumbers( em,pageSize );
+//    public static void main( String[] args ) {
+//        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
+//        var em = emf.createEntityManager();
+//        TestDb  getPage= new TestDb();
+//        Query query =em.createQuery( "From User" );
+//        int pageSize=2;
+//        int pageNumber = (int) getPage.getPageNumbers( em,pageSize );
+//
+//        query.setFirstResult( (2)  );
+//        query.setMaxResults( pageSize );
+//        List<User> userList=query.getResultList();
+//        for ( User user:userList) {
+//            System.out.println("********"+user.getFullName());
+//        }
+//    }
+//    public long getPageNumbers( EntityManager em ,int pegeSize ){
+//        Query queryTotal = em.createQuery( "select count(u.id) From User u" );
+//        long countResult= (long) queryTotal.getSingleResult();
+//        return (countResult/pegeSize)+1 ;
+//    }
 
-        query.setFirstResult( (2)  );
-        query.setMaxResults( pageSize );
-        List<User> userList=query.getResultList();
-        for ( User user:userList) {
-            System.out.println("********"+user.getFullName());
-        }
-    }
-    public long getPageNumbers( EntityManager em ,int pegeSize ){
-        Query queryTotal = em.createQuery( "select count(u.id) From User u" );
-        long countResult= (long) queryTotal.getSingleResult();
-        return (countResult/pegeSize)+1 ;
-    }
+//    public static void main( String[] args ) {
+//        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
+//        var em = emf.createEntityManager();
+//        new ProductRepository( em ).findOne( 4 ).get();
+//
+//    }
 }

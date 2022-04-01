@@ -26,12 +26,12 @@ public class ProductAdminAjaxServlet extends HttpServlet {
         List<Product> productList = DomainFacade.getPageOfProduct( pageNumber );
         List<String> productListJson = new ArrayList<>();
         for ( Product product : productList ) {
-            productListJson.add( productJson( product ) );
+            productListJson.add( productToJson( product ) );
         }
         out.print( productListJson );
     }
 
-    private String productJson( Product product ) {
+    private String productToJson( Product product ) {
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
         jsonObjectBuilder.add( "id",product.getId() )
                 .add( "name", product.getName() )

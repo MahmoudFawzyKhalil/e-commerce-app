@@ -44,18 +44,6 @@ public class UserRepository extends AbstractRepository<User> {
         return ( countResult / pageSize ) + finalPage;
     }
 
-//    public static void main( String[] args ) {
-//        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
-//        var em = emf.createEntityManager();
-//        UserRepository userRepository= new UserRepository( em );
-//        userRepository.setPageSize( 3 );
-//        long countResult = (long) queryTotal.getSingleResult();
-//        System.out.println(countResult+"countResult");
-//        long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );
-//
-//        System.out.println(userRepository.pageSize);
-//
-//    }
     public void setPageSize( int pageSize ) {
         this.pageSize = pageSize;
     }
