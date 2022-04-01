@@ -6,6 +6,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
 import java.util.Optional;
 
 @Entity
@@ -156,6 +159,18 @@ public class User {
 
     public void setRole( Role role ) {
         this.role = role;
+    }
+
+    public String getBirthdayFormatted() {
+        return this.birthday.format( DateTimeFormatter.ofPattern( "MM/dd/yyyy" ) );
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber( String phoneNumber ) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Optional<ShoppingCart> getShoppingCart() {
