@@ -1,6 +1,8 @@
 package gov.iti.jets.domain;
 
+import gov.iti.jets.domain.models.ShoppingCart;
 import gov.iti.jets.domain.models.User;
+import gov.iti.jets.domain.services.ShoppingCartService;
 import gov.iti.jets.domain.services.UserLoginService;
 import gov.iti.jets.domain.services.UserRegistrationService;
 
@@ -26,4 +28,9 @@ public class DomainFacade {
     public static Optional<User> loginUserRememberMe( String email, String password ) {
         return UserLoginService.loginUserRememberMe( email, password );
     }
+
+    public static void persistShoppingCart( ShoppingCart shoppingCart ) {
+        ShoppingCartService.persistShoppingCart( shoppingCart );
+    }
+
 }

@@ -5,6 +5,7 @@ import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.CartLineItem;
 import gov.iti.jets.domain.models.ShoppingCart;
 import gov.iti.jets.domain.models.User;
+import gov.iti.jets.presentation.util.CookieUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -28,7 +29,6 @@ public class UserLoginControllerServlet extends HttpServlet {
 
         if ( isAlreadyLoggedIn ) {
             forwardLocation = determineUserForwardLocation( user );
-            updateSessionShoppingCart( request, user );
             response.sendRedirect( forwardLocation );
             return;
         }
@@ -74,14 +74,10 @@ public class UserLoginControllerServlet extends HttpServlet {
     }
 
     private boolean loginWithCookie( HttpServletRequest request ) {
-        Optional<Cookie> optionalCookie = Optional.empty();
+        Optional<Cookie> optionalCookie = CookieUtil.getCookie( request.getCookies(), "rememberMeCookie" );
+
         boolean result = false;
 
-        if ( request.getCookies() != null ) {
-            optionalCookie = Stream.of( request.getCookies() )
-                    .filter( ( c ) -> c.getName().equals( "rememberMeCookie" ) )
-                    .findFirst();
-        }
         if ( optionalCookie.isPresent() ) {
             String cookieValue = optionalCookie.get().getValue();
             String userEmailFromCookie = cookieValue.substring( 0, cookieValue.indexOf( "+" ) );
