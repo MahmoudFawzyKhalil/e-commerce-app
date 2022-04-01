@@ -106,7 +106,7 @@
             <div class="mt-4 flex justify-center">
               <div>
                 <h3 class="text-xl text-gray-700 hover:text-black">
-                  <a href="<c:url value="/admin/products"/>">
+                  <a href="admin/customers" >
                     <span aria-hidden="true" class="absolute inset-0"></span>
                     Customers
                   </a>
