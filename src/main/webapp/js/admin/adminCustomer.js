@@ -53,7 +53,7 @@ function handleStateChange() {
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimit}</td>
                         <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders</a>
+                            <a href="/app/admin/customers/customer" class="text-indigo-600 hover:text-indigo-900">Orders</a>
                         </td>
                     </tr>
             `

@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>Admin Dashboard</title>
 </head>
 
@@ -36,14 +37,14 @@
                     </div>
                     <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0">
-                            <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
-                            <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="admin"
+                                <a href="<c:url value="/admin" />"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -262,7 +263,8 @@
         </footer>
     </section>
 
-    <script src="../../../../js/admin/admin.js"></script>
+    <script src="<c:url value="/js/components/navbar.js"/>"></script>
+    <script src="<c:url value="/js/admin/admin.js"/>"></script>
 </body>
 
 </html>
