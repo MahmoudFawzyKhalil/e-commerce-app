@@ -44,4 +44,8 @@ public class DomainFacade {
     public static void updateUser( User user ) {
         UserUpdateProfileService.updateUser( user );
     }
+
+    public static Optional<Product> findProductById( int productId ) {
+        return ProductService.findProductById( productId );
+    }
 }
