@@ -11,6 +11,11 @@ import gov.iti.jets.domain.services.ProductAddNewService;
 import java.util.List;
 
 public class DomainFacade {
+    public  static void deleteProduct (int productId){ ProductAdminService.deleteProduct( productId );}
+
+    public static Product updateProduct (Product product) { return  ProductAdminService.updateProduct( product );}
+
+    public static Product getProductById (int id) {return ProductAdminService.getProductById( id );}
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );

@@ -60,7 +60,11 @@ function handleStateChange() {
                     <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$${product.price/100}</td>
                     <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">${product.category}</td>
                     <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a  class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
+                      <a href="/app/admin/products/edit?productId=${product.id}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
+                          AAPS0L</span></a>
+                    </td>
+                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                      <a href="/app/admin/products/delete?productId=${product.id}" class="text-indigo-600 hover:text-indigo-900">Delete<span class="sr-only">,
                           AAPS0L</span></a>
                     </td>
                   </tr>

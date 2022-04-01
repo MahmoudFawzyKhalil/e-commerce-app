@@ -9,8 +9,44 @@ import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ProductAdminService {
+
+    public static Product updateProduct(Product product){
+        EntityManager em = JpaUtil.createEntityManager();
+        ProductRepository productRepository = new ProductRepository( em );
+        em.getTransaction().begin();
+        Product updatedProduct = productRepository.update( product );
+        em.getTransaction().commit();
+        em.close();
+        return updatedProduct;
+    }
+
+    public static void deleteProduct(int productId){
+        EntityManager em = JpaUtil.createEntityManager();
+        ProductRepository productRepository = new ProductRepository( em );
+        Optional<Product> one = productRepository.findOne( productId );
+        em.getTransaction().begin();
+        if( one.isPresent() ){
+            productRepository.delete( one.get() );
+        }
+        em.getTransaction().commit();
+
+        em.close();
+    }
+
+    public static void main( String[] args ) {
+        ProductAdminService.deleteProduct( 1 );
+    }
+
+    public static Product getProductById(int id){
+        EntityManager em = JpaUtil.createEntityManager();
+        ProductRepository productRepository = new ProductRepository( em );
+        Product product = productRepository.findOne( id ).get();
+        return product;
+    }
+
     public static List<Product> getProduct(int pageNumber){
         EntityManager em = JpaUtil.createEntityManager();
         ProductRepository productRepository = new ProductRepository( em );
