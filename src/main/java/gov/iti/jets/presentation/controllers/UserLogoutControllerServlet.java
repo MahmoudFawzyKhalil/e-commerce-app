@@ -11,6 +11,7 @@ import java.util.Optional;
 @WebServlet( "/logout" )
 public class UserLogoutControllerServlet extends HttpServlet {
 
+    //TODO remove
     @Override
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
