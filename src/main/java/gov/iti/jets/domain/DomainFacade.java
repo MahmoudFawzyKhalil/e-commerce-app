@@ -44,4 +44,9 @@ public class DomainFacade {
     public static List<Product> getProductsByNameAndCategory( String productNameQuery, Category productCategory ) {
         return ProductService.getProductsByNameAndCategory( productNameQuery, productCategory );
     }
+
+    public static Optional<Product> getProductById( int productId ) {
+        return ProductService.getProductById( productId );
+    }
+
 }

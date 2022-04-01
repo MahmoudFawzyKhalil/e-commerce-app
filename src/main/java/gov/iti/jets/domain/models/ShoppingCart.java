@@ -3,23 +3,32 @@ package gov.iti.jets.domain.models;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
 public class ShoppingCart {
 
-    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany( mappedBy = "shoppingCart", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL )
     private final Set<CartLineItem> cartLineItems = new HashSet<>();
 
     @Id
     @GeneratedValue
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "cart_owner")
+    @OneToOne( cascade = CascadeType.MERGE )
+    @JoinColumn( name = "cart_owner" )
     private User owner;
 
+    private boolean isProductAlreadyInCart( int productId ) {
+        return this.cartLineItems.stream()
+                .anyMatch( cartLineItem -> cartLineItem.getProduct().getId() == productId );
+    }
+
     public void addCartLineItem( CartLineItem cartLineItem ) {
+        if ( isProductAlreadyInCart( cartLineItem.getProduct().getId() ) ) {
+            return;
+        }
         cartLineItem._setShoppingCart( this );
         this.cartLineItems.add( cartLineItem );
     }
@@ -37,6 +46,7 @@ public class ShoppingCart {
                 } );
     }
 
+
     public void removeCartLineItem( int productId ) {
         this.cartLineItems.removeIf( cartLineItem -> cartLineItem.getId() == productId );
     }
@@ -49,6 +59,11 @@ public class ShoppingCart {
         return this.cartLineItems.stream()
                 .mapToLong( CartLineItem::getTotalCost )
                 .sum();
+    }
+
+    public String getTotalFormatted() {
+        long total = calculateTotal();
+        return "" + total / 100 + "." + total % 100;
     }
 
     public int getId() {

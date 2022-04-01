@@ -112,18 +112,25 @@ public class UserLoginControllerServlet extends HttpServlet {
 
         Optional<ShoppingCart> optionalStoredShoppingCart = user.getShoppingCart();
         HttpSession session = request.getSession();
+        ShoppingCart currentSessionShoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
 
         if ( optionalStoredShoppingCart.isPresent() ) {
 
-            Set<CartLineItem> userCartLineItems = optionalStoredShoppingCart.get().getCartLineItemsUnmodifiable();
-            ShoppingCart currentSessionShoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
+            ShoppingCart storedShoppingCart = optionalStoredShoppingCart.get();
 
             if ( currentSessionShoppingCart != null ) {
-                userCartLineItems.forEach( currentSessionShoppingCart::addCartLineItem );
-                user.setShoppingCart( currentSessionShoppingCart );
+                Set<CartLineItem> sessionCartLineItems = currentSessionShoppingCart.getCartLineItemsUnmodifiable();
+
+                sessionCartLineItems.forEach( storedShoppingCart::addCartLineItem );
+
+                session.setAttribute( "shoppingCart", storedShoppingCart );
             } else {
-                session.setAttribute( "shoppingCart", optionalStoredShoppingCart.get() );
+                session.setAttribute( "shoppingCart", storedShoppingCart );
             }
+        } else if ( currentSessionShoppingCart != null ) {
+            user.setShoppingCart( currentSessionShoppingCart );
+        } else {
+            user.setShoppingCart( new ShoppingCart() );
         }
     }
 

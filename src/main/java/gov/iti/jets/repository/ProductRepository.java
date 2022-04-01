@@ -47,7 +47,7 @@ public class ProductRepository extends AbstractRepository<Product> {
         String nameQuery = "%" + productNameQuery + "%";
 
         List<Product> products;
-        
+
         if ( productNameQuery.trim().isEmpty() && productCategory == null ) {
             // If no search criteria are provided, do not search
             products = new ArrayList<>();
@@ -67,5 +67,14 @@ public class ProductRepository extends AbstractRepository<Product> {
         }
 
         return products;
+    }
+
+    public Product findProductById( long productId ) {
+        TypedQuery<Product> queryById = entityManager.createQuery( "SELECT p FROM Product p WHERE p.id = :productId ", Product.class );
+
+        Product product = queryById.setParameter( "productId", productId ).getSingleResult();
+
+
+        return product;
     }
 }
