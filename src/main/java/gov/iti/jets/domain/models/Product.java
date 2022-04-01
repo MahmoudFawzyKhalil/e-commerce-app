@@ -1,6 +1,7 @@
 package gov.iti.jets.domain.models;
 
 import gov.iti.jets.domain.enums.Category;
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -15,17 +16,17 @@ public class Product {
     @GeneratedValue
     int id;
 
-    @NotNull @Size(min = 3, max = 200)
-    @Column(name = "product_name")
+    @NotNull @Size( min = 3, max = 200 )
+    @Column( name = "product_name" )
     String name;
 
-    @Size(max = 1000) String description;
+    @Size( max = 1000 ) String description;
 
     String imageName;
 
-    @Min(0) long price;
+    @Min( 0 ) long price;
 
-    @Min(0) int quantity;
+    @Min( 0 ) int quantity;
 
     @NotNull Category category;
 
@@ -33,10 +34,10 @@ public class Product {
 
     }
 
-    public Product(String name, String description, String imageName, long price, int quantity, Category category) {
+    public Product( String name, String description, String imageName, long price, int quantity, Category category ) {
         this.name = name;
         this.description = description;
-        this.setImageName(imageName);
+        this.setImageName( imageName );
         this.price = price;
         this.quantity = quantity;
         this.category = category;
@@ -50,7 +51,7 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName( String name ) {
         this.name = name;
     }
 
@@ -58,7 +59,7 @@ public class Product {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription( String description ) {
         this.description = description;
     }
 
@@ -66,19 +67,20 @@ public class Product {
         return imageName;
     }
 
-    public void setImageName(String imageName) {
-        if (imageName == null || imageName.isEmpty() || imageName.isBlank()) {
+    public void setImageName( String imageName ) {
+        if ( imageName == null || imageName.isEmpty() || imageName.isBlank() ) {
             this.imageName = DEFAULT_IMAGE;
             return;
         }
         this.imageName = imageName;
     }
 
+    @JsonbTransient
     public long getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice( long price ) {
         this.price = price;
     }
 
@@ -86,7 +88,7 @@ public class Product {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity( int quantity ) {
         this.quantity = quantity;
     }
 
@@ -94,8 +96,12 @@ public class Product {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory( Category category ) {
         this.category = category;
+    }
+
+    public String getPriceFormatted() {
+        return "" + this.price / 100 + "." + this.price % 100;
     }
 
     @Override
