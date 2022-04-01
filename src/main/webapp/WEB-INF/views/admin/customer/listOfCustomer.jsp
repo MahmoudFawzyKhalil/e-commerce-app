@@ -167,7 +167,7 @@
                                 </th>
                             </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white divide-y divide-gray-200" id="tbody">
 
 <%--                            <c:if test="${userList !=null}">--%>
 <%--                                <c:if test="${userList.size() !=0}">--%>
@@ -205,6 +205,8 @@
 <section id="pagination">
     <input type="hidden" value="${pageNumber}" id="pageNumber">
     <input type="hidden" value="${currentPageNumber}" id="currentPageNumber">
+    <input type="hidden" value="${userList}" id="userListInput">
+
 
     <nav class="border-t mx-10 border-gray-200 px-4 flex items-center justify-between sm:px-0">
         <div id="previousButton"  class="-mt-px w-0 flex-1 flex">

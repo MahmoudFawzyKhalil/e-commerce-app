@@ -21,8 +21,7 @@ public class DomainFacade {
 
     public static List<User> getPage(int pageNumber){ return GetListOfCustomersService.getPage(pageNumber);}
 
-    public static void setPage(int pageSize){
-        GetListOfCustomersService.setPage(pageSize);}
+    public static void setPage(int pageSize){ GetListOfCustomersService.setPage(pageSize);}
 
     public static long getPageNumber(){return GetListOfCustomersService.getPageNumber();}
 }

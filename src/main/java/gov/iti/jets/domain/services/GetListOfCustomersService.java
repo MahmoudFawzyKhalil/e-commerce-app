@@ -29,7 +29,6 @@ public class GetListOfCustomersService {
         EntityManager em = JpaUtil.createEntityManager();
         UserRepository userRepository = new UserRepository( em );
         userRepository.setPageSize( pageSize );
-
         em.close();
     }
 }

@@ -6,23 +6,25 @@ let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
 
 previousButton.classList.add('hidden')
-console.log("page number "+pageNumber.value + " current pageNumber" + currentPageNumber.value)
-if (pageNumber.value === currentPageNumber.value){
+console.log("page number " + pageNumber.value + " current pageNumber" + currentPageNumber.value)
+if (pageNumber.value === currentPageNumber.value) {
     nextButton.classList.add('hidden')
 }
 
-nextButton.addEventListener("click" ,(e)=>{
-    navigate(parseInt(currentPageNumber.value) +1)
+nextButton.addEventListener("click", (e) => {
+    currentPageNumber.value = parseInt(currentPageNumber.value) + 1
+    navigate(currentPageNumber.value);
 })
 
-previousButton.addEventListener("click" ,(e)=>{
-    navigate(parseInt(currentPageNumber.value) -1)
+previousButton.addEventListener("click", (e) => {
+    currentPageNumber.value = parseInt(currentPageNumber.value) - 1;
+    navigate(currentPageNumber.value);
 })
 
 function navigate(PageNumber) {
     console.log("BOOM")
     createXMLHttpRequest();
-    url ="/app/admin/customers?pg="+ PageNumber + "&timeStamp=" + new Date().getTime();
+    url = "/app/ListAjex?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
     console.log(url)
     req.open("GET", url, true);
     console.log("after open");
@@ -31,19 +33,35 @@ function navigate(PageNumber) {
     req.send();
 }
 
-function handleStateChange() {
-    if (req.readyState == 4 && req.status == 200){
-        // table= document.getElementById('table');
-        // if(userList.size() !=0){/
-            list = req.responseText;
-            // for(i=0; i<list.length ; i++){
-            //     tr= `<tr><td>`+list[i]+`</td></tr>`
-            // }
-          //  console.log(req);
-            // table.innerHTML = list;
-        }
+let table = document.getElementById("tbody");
+let row = "";
 
-    console.log("callback");
+function handleStateChange() {
+    if (req.readyState == 4 && req.status == 200) {
+        let list = JSON.parse(req.responseText);
+        console.log(list[0].name);
+        list.forEach(user => {
+          row +=  ` <tr>
+                        <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1
+                        </td>
+                        <td class="px-2 py-2 text-sm font-medium text-gray-900">${user.name}</td>
+                        <td class="px-2 py-2 text-sm text-gray-900 ">${user.email}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.phoneNumber}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.address}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.birthday}</td>
+
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimit}</td>
+                        <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                            <a href="customer.jsp" class="text-indigo-600 hover:text-indigo-900">Orders</a>
+                        </td>
+                    </tr>
+            `
+        });
+    table.innerHTML = row;
+    row ="";
+    }
+
 }
 
 function createXMLHttpRequest() {

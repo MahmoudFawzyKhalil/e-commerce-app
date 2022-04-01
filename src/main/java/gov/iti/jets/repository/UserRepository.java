@@ -57,8 +57,6 @@ public class UserRepository extends AbstractRepository<User> {
 //
 //    }
     public void setPageSize( int pageSize ) {
-        System.out.println("Repo"
-                +pageSize);
         this.pageSize = pageSize;
     }
 
