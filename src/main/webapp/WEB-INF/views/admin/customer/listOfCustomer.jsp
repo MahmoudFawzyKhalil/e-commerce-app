@@ -169,29 +169,6 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200" id="tbody">
 
-<%--                            <c:if test="${userList !=null}">--%>
-<%--                                <c:if test="${userList.size() !=0}">--%>
-                                    <c:forEach items="${userList}" var="user">
-                                        <tr>
-                                            <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1
-                                            </td>
-                                            <td class="px-2 py-2 text-sm font-medium text-gray-900">${user.fullName}</td>
-                                            <td class="px-2 py-2 text-sm text-gray-900 ">${user.email}</td>
-                                            <td class="px-2 py-2 text-sm text-gray-500 ">${user.phoneNumber}</td>
-                                            <td class="px-2 py-2 text-sm text-gray-500 ">${user.addressFormatted}</td>
-                                            <td class="px-2 py-2 text-sm text-gray-500 ">${user.birthday}</td>
-
-                                            <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
-                                            <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimit}</td>
-                                            <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                <a href="customer.jsp"
-                                                   class="text-indigo-600 hover:text-indigo-900">Orders</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-<%--                                </c:if>--%>
-<%--                            </c:if>--%>
-                            <!-- More transactions... -->
                             </tbody>
                         </table>
                     </div>
@@ -204,26 +181,24 @@
 
 <section id="pagination">
     <input type="hidden" value="${pageNumber}" id="pageNumber">
-    <input type="hidden" value="${currentPageNumber}" id="currentPageNumber">
-    <input type="hidden" value="${userList}" id="userListInput">
-
+    <input type="hidden" value="1" id="currentPageNumber">
 
     <nav class="border-t mx-10 border-gray-200 px-4 flex items-center justify-between sm:px-0">
-        <div id="previousButton"  class="-mt-px w-0 flex-1 flex">
-            <a type="button" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+        <div   class="-mt-px w-0 flex-1 flex">
+            <a id="previousButton" type="button" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
                 <!-- Heroicon name: solid/arrow-narrow-left -->
                 <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
                 </svg>
                 Previous
             </a>
         </div>
-        <div id="nextButton"   class="-mt-px w-0 flex-1 flex justify-end">
-            <a type="button" class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+        <div   class="-mt-px w-0 flex-1 flex justify-end">
+            <a id="nextButton"  type="button" class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
                 Next
                 <!-- Heroicon name: solid/arrow-narrow-right -->
                 <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                 </svg>
             </a>
         </div>
@@ -251,7 +226,6 @@
 </section>
 
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
-<script src="<c:url value="/js/admin/admin.js"/>"></script>
 <script src="<c:url value="/js/admin/adminCustomer.js"/>"></script>
 
 </body>

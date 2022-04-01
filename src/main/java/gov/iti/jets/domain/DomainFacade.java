@@ -1,6 +1,7 @@
 package gov.iti.jets.domain;
 
 import gov.iti.jets.domain.models.User;
+import gov.iti.jets.domain.services.ProductAdminService;
 import gov.iti.jets.domain.services.GetListOfCustomersService;
 import gov.iti.jets.domain.services.UserRegistrationService;
 
@@ -15,6 +16,10 @@ public class DomainFacade {
         ProductAddNewService.addProduct( product );
     }
 
+    public static List<Product> getPageOfProduct (int pageNumber){
+        return ProductAdminService.getProduct(pageNumber);
+    }
+
     public static void registerNewUser( User user ) {
         UserRegistrationService.registerNewUser( user );
     }
@@ -23,5 +28,10 @@ public class DomainFacade {
 
     public static void setPage(int pageSize){ GetListOfCustomersService.setPage(pageSize);}
 
+    public static void setPageSizeOfProduct(int pageSize){ ProductAdminService.setPageSize(pageSize);}
+
     public static long getPageNumber(){return GetListOfCustomersService.getPageNumber();}
+
+    public static long getPageNumberOfProduct(){return ProductAdminService.getPageNumber();}
+
 }

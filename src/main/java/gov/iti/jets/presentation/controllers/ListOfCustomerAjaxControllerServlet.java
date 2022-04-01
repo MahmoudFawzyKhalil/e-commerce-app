@@ -1,13 +1,12 @@
 package gov.iti.jets.presentation.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import gov.iti.jets.domain.DomainFacade;
+import gov.iti.jets.domain.models.Address;
 import gov.iti.jets.domain.models.User;
+
 import jakarta.json.Json;
 import jakarta.json.JsonObjectBuilder;
-import jakarta.json.JsonValue;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,20 +15,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet( "/ListAjex" )
 public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
 
     @Override
-    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws IOException {
         PrintWriter out = response.getWriter();
         int pageNumber = Integer.parseInt( request.getParameter( "pg" ) );
 
-        List<User> userList = new ArrayList<>();
+        List<User> userList;
         userList = DomainFacade.getPage( pageNumber );
         System.out.println( "**********************after DomainFacade" );
         List<String> jsonList = new ArrayList<>();
@@ -47,10 +44,16 @@ public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
                 .add( "name", user.getFullName() )
                 .add( "email" ,user.getEmail())
                 .add( "phoneNumber", user.getPhoneNumber() )
-                .add( "address",user.getAddress().toString() )
+                .add( "address", jsonAddress( user.getAddress() ) )
                 .add( "birthday", user.getBirthday().toString())
                 .add( "job",user.getJob() )
                 .add( "creditLimit",user.getCreditLimit() );
+        return jsonObjectBuilder.build().toString();
+    }
+    private String jsonAddress( Address address ) {
+        JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
+        jsonObjectBuilder.add( "city",address.getCity() )
+                .add( "street", address.getStreet() );
         return jsonObjectBuilder.build().toString();
     }
 

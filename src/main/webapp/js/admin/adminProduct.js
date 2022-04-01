@@ -41,7 +41,7 @@ function validation(num) {
 
 function navigate(PageNumber) {
     createXMLHttpRequest();
-    url = "/app/ListAjex?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
+    url = "/app/productAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
     console.log(url)
     req.open("GET", url, true);
     req.onreadystatechange = handleStateChange;
@@ -51,23 +51,21 @@ function navigate(PageNumber) {
 function handleStateChange() {
     if (req.readyState === 4 && req.status === 200) {
         let list = JSON.parse(req.responseText);
-        list.forEach(user => {
-            let address = JSON.parse(user.address)
+        list.forEach(product => {
             row += ` <tr>
-                        <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${user.id}
-                        </td>
-                        <td class="px-2 py-2 text-sm font-medium text-gray-900">${user.name}</td>
-                        <td class="px-2 py-2 text-sm text-gray-900 ">${user.email}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.phoneNumber}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${address.street}, ${address.city}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.birthday}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimit}</td>
-                        <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                            <a href="/app/admin/customers/customer" class="text-indigo-600 hover:text-indigo-900">Orders</a>
-                        </td>
-                    </tr>
+                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${product.id}</td>
+                    <td class="px-2 py-2 text-sm font-medium text-gray-900">${product.name}</td>
+                    <td class="px-2 py-2 text-sm text-gray-900 ">${product.description}</td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">${product.quantity}</td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$${product.price/100}</td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">${product.category}</td>
+                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                      <a  class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
+                          AAPS0L</span></a>
+                    </td>
+                  </tr>
             `
+            // href="<c:url value="/admin/products/add" />"
         });
         table.innerHTML = row;
         validation(currentPageNumber.value)
