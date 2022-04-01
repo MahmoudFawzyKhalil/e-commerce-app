@@ -16,8 +16,8 @@ public class DomainFacade {
         ProductAddNewService.addProduct( product );
     }
 
-    public static List<Product> getProducts (){
-        return ProductAdminService.getProduct();
+    public static List<Product> getPageOfProduct (int pageNumber){
+        return ProductAdminService.getProduct(pageNumber);
     }
 
     public static void registerNewUser( User user ) {
@@ -28,5 +28,10 @@ public class DomainFacade {
 
     public static void setPage(int pageSize){ GetListOfCustomersService.setPage(pageSize);}
 
+    public static void setPageSizeOfProduct(int pageSize){ ProductAdminService.setPageSize(pageSize);}
+
     public static long getPageNumber(){return GetListOfCustomersService.getPageNumber();}
+
+    public static long getPageNumberOfProduct(){return ProductAdminService.getPageNumber();}
+
 }

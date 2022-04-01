@@ -4,6 +4,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.models.Address;
 import gov.iti.jets.domain.models.User;
+
 import jakarta.json.Json;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.servlet.ServletException;
@@ -21,11 +22,11 @@ import java.util.List;
 public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
 
     @Override
-    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws IOException {
         PrintWriter out = response.getWriter();
         int pageNumber = Integer.parseInt( request.getParameter( "pg" ) );
 
-        List<User> userList = new ArrayList<>();
+        List<User> userList;
         userList = DomainFacade.getPage( pageNumber );
         System.out.println( "**********************after DomainFacade" );
         List<String> jsonList = new ArrayList<>();
