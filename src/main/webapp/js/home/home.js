@@ -37,6 +37,10 @@ function appendProductPage(json) {
     let productsMarkup = "";
 
     json.forEach(product => {
+        if (product.quantity === 0) {
+            return;
+        }
+
         productsMarkup +=
             `
         <div class="p-2 rounded-lg shadow-md cursor-pointer hover:shadow-xl">
@@ -128,6 +132,10 @@ function replaceProductsMarkupWithSearch(json) {
     let productsMarkup = "";
 
     json.forEach(product => {
+        if (product.quantity === 0) {
+            return;
+        }
+        
         productsMarkup +=
             `
         <div class="p-2 rounded-lg shadow-md cursor-pointer hover:shadow-xl">
