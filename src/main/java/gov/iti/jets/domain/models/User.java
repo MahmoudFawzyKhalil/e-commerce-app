@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
 import java.util.Optional;
 
 @Entity
-@Table(name = "users")
+@Table( name = "users" )
 public class User {
 
     @Id
@@ -17,52 +20,59 @@ public class User {
     private int id;
 
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size( min = 1, max = 100 )
     private String firstName;
 
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size( min = 1, max = 100 )
     private String lastName;
 
+    @NotNull
     @Email
+    @Column( unique = true )
     private String email;
 
     @NotNull
-    @Size(min = 8, max = 50)
-    @Column(name = "user_password")
+    @Pattern( regexp = "^(01)[1250][0-9]{8}$" )
+    private String phoneNumber;
+
+    @NotNull
+    @Size( min = 8 )
+    @Column( name = "user_password" )
     private String password;
 
     @NotNull
     @Past
     private LocalDate birthday;
 
-    @Min(0)
+    @Min( 0 )
     private long creditLimit;
 
-    @Size(max = 100)
+    @Size( max = 100 )
     @NotNull
     private String job;
 
     @NotNull
-    @Column(name = "user_role")
+    @Column( name = "user_role" )
     private Role role;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne( cascade = CascadeType.ALL )
     @NotNull
     private Address address;
 
-    @OneToOne(mappedBy = "owner")
+    @OneToOne( mappedBy = "owner" )
     private ShoppingCart shoppingCart;
 
     protected User() {
 
     }
 
-    public User( String firstName, String lastName, String email, String password, LocalDate birthday, long creditLimit, String job, Role role, Address address ) {
+    public User( String firstName, String lastName, String email, String password, String phoneNumber, LocalDate birthday, long creditLimit, String job, Role role, Address address ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.creditLimit = creditLimit;
         this.job = job;
@@ -151,6 +161,18 @@ public class User {
         this.role = role;
     }
 
+    public String getBirthdayFormatted() {
+        return this.birthday.format( DateTimeFormatter.ofPattern( "MM/dd/yyyy" ) );
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber( String phoneNumber ) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Optional<ShoppingCart> getShoppingCart() {
         return Optional.ofNullable( this.shoppingCart );
     }
@@ -167,6 +189,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", birthday=" + birthday +
                 ", creditLimit=" + creditLimit +

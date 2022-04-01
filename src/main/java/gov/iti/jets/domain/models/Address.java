@@ -13,11 +13,11 @@ public class Address {
     private int id;
 
     @NotNull
-    @Size(min = 3, max = 250)
+    @Size( min = 1, max = 250 )
     private String street;
 
     @NotNull
-    @Size(min = 3, max = 250)
+    @Size( min = 1, max = 250 )
     private String city;
 
     protected Address() {
