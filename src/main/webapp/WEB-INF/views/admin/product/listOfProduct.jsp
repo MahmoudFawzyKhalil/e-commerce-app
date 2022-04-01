@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../../../css/tailwind-out.css">
+  <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
   <title>Admin Dashboard</title>
 </head>
 
@@ -34,12 +34,12 @@
           </div>
           <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
             <div class="flex-shrink-0">
-              <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />" alt="Workflow logo">
-              <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />" alt="Workflow logo">
+              <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
+              <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
             </div>
             <div class="hidden sm:block sm:ml-6">
               <div class="flex">
-                <a href="admin"
+                <a href="<c:url value="/admin"/>"
                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
               </div>
             </div>
@@ -79,7 +79,7 @@
               -->
       <div id="mobileMenu" class="hidden sm:hidden">
         <div class="px-2 pt-2 pb-3">
-          <a href="admin"
+          <a href="<c:url value="/admin" />"
             class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
         </div>
       </div>
@@ -144,71 +144,22 @@
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
+
+                <c:forEach var="product" items="${listOfProduct}" >
+                <tr>
+                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6"><c:out value="${product.id}"/></td>
+                    <td class="px-2 py-2 text-sm font-medium text-gray-900"><c:out value="${product.name}"/></td>
+                    <td class="px-2 py-2 text-sm text-gray-900 "><c:out value="${product.description}"/></td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap"><c:out value="${product.quantity}"/></td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$<c:out value="${product.price/100}"/></td>
+                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap"><c:out value="${product.category}"/></td>
                     <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
+                      <a href="<c:url value="/admin/products/add" />" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
                           AAPS0L</span></a>
                     </td>
                   </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
+                </c:forEach>
+
                   <!-- More transactions... -->
                 </tbody>
               </table>
@@ -220,6 +171,28 @@
 
   </section>
 
+  <section id="pagination">
+      <nav class="border-t mx-10 border-gray-200 px-4 flex items-center justify-between sm:px-0">
+          <div class="-mt-px w-0 flex-1 flex">
+              <a href="#" class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                  <!-- Heroicon name: solid/arrow-narrow-left -->
+                  <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                  Previous
+              </a>
+          </div>
+          <div class="-mt-px w-0 flex-1 flex justify-end">
+              <a href="#" class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                  Next
+                  <!-- Heroicon name: solid/arrow-narrow-right -->
+                  <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+              </a>
+          </div>
+      </nav>
+  </section>
 
 
   <section class="mt-auto" id="footer">
@@ -242,7 +215,8 @@
     </footer>
   </section>
 
-  <script src="../../../../js/admin/admin.js"></script>
+  <script src="<c:url value="/js/components/navbar.js"/>"></script>
+<%--  <script src="<c:url value="/js/admin/admin.js"/>"></script>--%>
 </body>
 
 </html>
