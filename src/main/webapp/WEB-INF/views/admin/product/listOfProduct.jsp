@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../../../css/tailwind-out.css">
+  <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
   <title>Admin Dashboard</title>
 </head>
 
@@ -34,12 +34,12 @@
           </div>
           <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
             <div class="flex-shrink-0">
-              <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />" alt="Workflow logo">
-              <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />" alt="Workflow logo">
+              <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
+              <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
             </div>
             <div class="hidden sm:block sm:ml-6">
               <div class="flex">
-                <a href="admin"
+                <a href="<c:url value="/admin"/>"
                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
               </div>
             </div>
@@ -79,37 +79,12 @@
               -->
       <div id="mobileMenu" class="hidden sm:hidden">
         <div class="px-2 pt-2 pb-3">
-          <a href="admin"
+          <a href="<c:url value="/admin" />"
             class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
         </div>
       </div>
     </nav>
   </section>
-
-  <section id="searchBar" class="mt-5 md:self-center md:w-9/12">
-    <div class="flex mx-5">
-      <div class="relative flex-grow">
-
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <!-- Heroicon name: solid/search -->
-          <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-            aria-hidden="true">
-            <path fill-rule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </div>
-
-
-        <input id="search" name="search"
-          class="block w-full py-2 pl-10 pr-3 text-sm placeholder-gray-500 bg-white border border-gray-300 rounded-md focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          placeholder="Search" type="search">
-      </div>
-    </div>
-  </section>
-
-
-
 
   <section id="productTable" class="mt-5">
     <div class="px-4 sm:px-6 lg:px-8">
@@ -141,74 +116,12 @@
                     <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
                       <span class="sr-only">Edit</span>
                     </th>
+                    <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
+                      <span class="sr-only">Delete</span>
+                    </th>
                   </tr>
                 </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">1</td>
-                    <td class="px-2 py-2 text-sm font-medium text-gray-900">Hot chocolete</td>
-                    <td class="px-2 py-2 text-sm text-gray-900 ">CACsdasdsadsad sadssda sada asdsadas d dsadjsadkjsah
-                      sadsajdnksan dsad asdjasbhdbsahjdvshjad sdasdashdbhsas sdasdb</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">1000</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">$3,509.00</td>
-                    <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">Choco</td>
-                    <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="addProduct.jsp" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
-                          AAPS0L</span></a>
-                    </td>
-                  </tr>
+                <tbody class="bg-white divide-y divide-gray-200" id="tbody">
                   <!-- More transactions... -->
                 </tbody>
               </table>
@@ -220,6 +133,31 @@
 
   </section>
 
+  <section id="pagination">
+    <input type="hidden" value="${pageNumber}" id="pageNumber">
+    <input type="hidden" value="1" id="currentPageNumber">
+
+      <nav class="border-t mx-10 border-gray-200 px-4 flex items-center justify-between sm:px-0">
+          <div class="-mt-px w-0 flex-1 flex">
+              <a id="previousButton" class="border-t-2 cursor-pointer border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                  <!-- Heroicon name: solid/arrow-narrow-left -->
+                  <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                  Previous
+              </a>
+          </div>
+          <div class="-mt-px w-0 flex-1 flex justify-end">
+              <a id="nextButton" class="border-t-2 border-transparent cursor-pointer pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                  Next
+                  <!-- Heroicon name: solid/arrow-narrow-right -->
+                  <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+              </a>
+          </div>
+      </nav>
+  </section>
 
 
   <section class="mt-auto" id="footer">
@@ -242,7 +180,10 @@
     </footer>
   </section>
 
-  <script src="../../../../js/admin/admin.js"></script>
+  <script src="<c:url value="/js/components/navbar.js"/>"></script>
+<%--  <script src="<c:url value="/js/admin/admin.js"/>"></script>--%>
+  <script src="<c:url value="/js/admin/adminProduct.js"/>"></script>
+
 </body>
 
 </html>

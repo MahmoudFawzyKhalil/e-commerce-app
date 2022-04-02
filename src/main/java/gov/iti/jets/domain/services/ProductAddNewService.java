@@ -7,7 +7,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.List;
+
 public class ProductAddNewService {
+
 
     public static void addProduct( Product product ) {
         var em = JpaUtil.createEntityManager();

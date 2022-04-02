@@ -1,6 +1,7 @@
 package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.enums.Category;
+import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.models.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -9,8 +10,13 @@ import jakarta.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRepository extends AbstractRepository<Product> {
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
+import java.util.List;
+
+public class ProductRepository extends AbstractRepository<Product> {
+    private final static int PAGE_SIZE = 5;
     private int pageSize = 2;
 
     public ProductRepository( EntityManager entityManager ) {
@@ -18,24 +24,28 @@ public class ProductRepository extends AbstractRepository<Product> {
         this.setClazz( Product.class );
     }
 
+    public List<Product> getPageOfProduct( int pageNumber ) {
+        TypedQuery<Product> query = entityManager.createQuery( "FROM Product ", Product.class );
+
+        return query.setFirstResult( ( pageNumber - 1 ) * PAGE_SIZE )
+                .setMaxResults( PAGE_SIZE )
+                .getResultList();
+    }
+
+
+    public long getNumberOfPages() {
+        Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p" );
+        long countResult = (long) queryTotal.getSingleResult();
+
+        long finalPage = ( countResult % PAGE_SIZE > 0 ? 1 : 0 );
+
+        return ( countResult / PAGE_SIZE ) + finalPage;
+    }
+
     public void setPageSize( int pageSize ) {
         this.pageSize = pageSize;
     }
 
-    public long getNumberOfPages() {
-        Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p", Product.class );
-        long countResult = (long) queryTotal.getSingleResult();
-        long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );
-        return ( countResult / pageSize ) + finalPage;
-    }
-
-    public List<Product> getPage( int pageNumber ) {
-        TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product p ORDER BY p.id ASC", Product.class );
-
-        return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
-                .setMaxResults( pageSize )
-                .getResultList();
-    }
 
     public List<Product> findProductsByNameOrCategory( String productNameQuery, Category productCategory ) {
         TypedQuery<Product> queryByName =
@@ -47,7 +57,7 @@ public class ProductRepository extends AbstractRepository<Product> {
         String nameQuery = "%" + productNameQuery + "%";
 
         List<Product> products;
-        
+
         if ( productNameQuery.trim().isEmpty() && productCategory == null ) {
             // If no search criteria are provided, do not search
             products = new ArrayList<>();
@@ -67,5 +77,13 @@ public class ProductRepository extends AbstractRepository<Product> {
         }
 
         return products;
+    }
+
+    public List<Product> getPage( int pageNumber ) {
+        TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product p ORDER BY p.id ASC", Product.class );
+
+        return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
+                .setMaxResults( pageSize )
+                .getResultList();
     }
 }

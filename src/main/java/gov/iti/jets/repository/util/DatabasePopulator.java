@@ -81,6 +81,21 @@ public class DatabasePopulator {
         User user5 = new User( "Mariam", "Mohammed", "Mariam@gmail.com", hashedPassword, "01117950454", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
         users.add( user5 );
 
+        User user6 = new User( "Salma", "Fayez", "salma@gmail.com", hashedPassword, "01117950456", LocalDate.ofYearDay( 1997, 120 ), 4000, "Engineer", Role.CUSTOMER, new Address( "Iti", "Cairo" ) );
+        users.add( user6 );
+
+        User user7 = new User( "Ahmed", "Osama", "Osos@gmail.com", hashedPassword, "01117950457", LocalDate.ofYearDay( 1997, 88 ), 1000, "Java Developer", Role.CUSTOMER, new Address( "iti", "Giza" ) );
+        users.add( user7 );
+
+        User user8 = new User( "Ahmed", "Ashrf", "Ashrf@gmail.com", hashedPassword, "01117950458", LocalDate.ofYearDay( 1997, 90 ), 20000, "Web Developer", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
+        users.add( user8 );
+
+        User user9 = new User( "Hend", "Mohamed", "hend@gmail.com", hashedPassword, "01117950459", LocalDate.ofYearDay( 1997, 14 ), 40000, "Java Developer", Role.CUSTOMER, new Address( "iti", "Cairo" ) );
+        users.add( user9 );
+
+        User user10 = new User( "Hafsa", "Mohammed", "hafsa@gmail.com", hashedPassword, "01117950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user10 );
+
         // PERSIST USERS ************************
         UserRepository ur = new UserRepository( em );
         em.getTransaction().begin();
@@ -102,6 +117,30 @@ public class DatabasePopulator {
         user3.setShoppingCart( shoppingCart3 );
         shoppingCarts.add( shoppingCart3 );
 
+        ShoppingCart shoppingCart4 = new ShoppingCart();
+        user4.setShoppingCart( shoppingCart4 );
+        shoppingCarts.add( shoppingCart4 );
+
+        ShoppingCart shoppingCart5 = new ShoppingCart();
+        user5.setShoppingCart( shoppingCart5 );
+        shoppingCarts.add( shoppingCart5 );
+
+        ShoppingCart shoppingCart6 = new ShoppingCart();
+        user6.setShoppingCart( shoppingCart6 );
+        shoppingCarts.add( shoppingCart6 );
+
+        ShoppingCart shoppingCart7 = new ShoppingCart();
+        user7.setShoppingCart( shoppingCart7 );
+        shoppingCarts.add( shoppingCart7 );
+
+        ShoppingCart shoppingCart8 = new ShoppingCart();
+        user8.setShoppingCart( shoppingCart8 );
+        shoppingCarts.add( shoppingCart8 );
+
+        ShoppingCart shoppingCart9 = new ShoppingCart();
+        user9.setShoppingCart( shoppingCart9 );
+        shoppingCarts.add( shoppingCart9 );
+
 
         shoppingCart1.addCartLineItem( new CartLineItem( product1, 5 ) );
         shoppingCart1.addCartLineItem( new CartLineItem( product2, 3 ) );
@@ -116,6 +155,33 @@ public class DatabasePopulator {
         shoppingCart3.addCartLineItem( new CartLineItem( product6, 30 ) );
         shoppingCart3.addCartLineItem( new CartLineItem( product9, 25 ) );
 
+        shoppingCart4.addCartLineItem( new CartLineItem( product3, 10 ) );
+        shoppingCart4.addCartLineItem( new CartLineItem( product4, 2 ) );
+        shoppingCart4.addCartLineItem( new CartLineItem( product7, 20 ) );
+        shoppingCart4.addCartLineItem( new CartLineItem( product10, 11 ) );
+
+        shoppingCart5.addCartLineItem( new CartLineItem( product5, 15 ) );
+        shoppingCart5.addCartLineItem( new CartLineItem( product6, 30 ) );
+        shoppingCart5.addCartLineItem( new CartLineItem( product9, 25 ) );
+
+        shoppingCart6.addCartLineItem( new CartLineItem( product3, 10 ) );
+        shoppingCart6.addCartLineItem( new CartLineItem( product4, 2 ) );
+        shoppingCart6.addCartLineItem( new CartLineItem( product7, 20 ) );
+        shoppingCart6.addCartLineItem( new CartLineItem( product10, 11 ) );
+
+        shoppingCart7.addCartLineItem( new CartLineItem( product5, 15 ) );
+        shoppingCart7.addCartLineItem( new CartLineItem( product6, 30 ) );
+        shoppingCart7.addCartLineItem( new CartLineItem( product9, 25 ) );
+
+        shoppingCart8.addCartLineItem( new CartLineItem( product3, 10 ) );
+        shoppingCart8.addCartLineItem( new CartLineItem( product4, 2 ) );
+        shoppingCart8.addCartLineItem( new CartLineItem( product7, 20 ) );
+        shoppingCart8.addCartLineItem( new CartLineItem( product10, 11 ) );
+
+        shoppingCart9.addCartLineItem( new CartLineItem( product5, 15 ) );
+        shoppingCart9.addCartLineItem( new CartLineItem( product6, 30 ) );
+        shoppingCart9.addCartLineItem( new CartLineItem( product9, 25 ) );
+
 
         // PERSIST SHOPPING CARTS ************************
         ShoppingCartRepository scr = new ShoppingCartRepository( em );
@@ -125,19 +191,54 @@ public class DatabasePopulator {
 
         // CREATE ORDERS ************************
         List<Order> orders = new ArrayList<>();
+        User user = new UserRepository( em ).findOne( 74 ).get();
+
+        ShoppingCart shoppingCartt = new ShoppingCart();
+        user.setShoppingCart( shoppingCartt );
+        shoppingCarts.add( shoppingCartt );
+
+        shoppingCartt.addCartLineItem( new CartLineItem( product3, 10 ) );
+        shoppingCartt.addCartLineItem( new CartLineItem( product4, 2 ) );
+        shoppingCartt.addCartLineItem( new CartLineItem( product7, 20 ) );
+        shoppingCartt.addCartLineItem( new CartLineItem( product10, 11 ) );
 
 
-        Order order1 = new Order( user1 );
+        // PERSIST SHOPPING CARTS ************************
+        ShoppingCartRepository scr = new ShoppingCartRepository( em );
+        em.getTransaction().begin();
+        shoppingCarts.forEach( scr::create );
+        em.getTransaction().commit();
 
-        Order order2 = new Order( user2 );
 
-        Order order3 = new Order( user3 );
+        Order order1 = new Order( user );
+
+        Order order2 = new Order( user );
+
+        Order order3 = new Order( user );
+
+        Order order4 = new Order( user4 );
+
+        Order order5 = new Order( user5 );
+
+        Order order6 = new Order( user6 );
+
+        Order order7 = new Order( user7 );
+
+        Order order8 = new Order( user8 );
+
+        Order order9 = new Order( user9 );
 
         orders.add( order1 );
         orders.add( order2 );
         orders.add( order3 );
+        orders.add( order4 );
+        orders.add( order5 );
+        orders.add( order6 );
+        orders.add( order7 );
+        orders.add( order8 );
+        orders.add( order9 );
 
-        // PERSIST ORDERS ************************
+//         PERSIST ORDERS ************************
         OrderRepository or = new OrderRepository( em );
         em.getTransaction().begin();
         orders.forEach( or::create );
@@ -145,7 +246,7 @@ public class DatabasePopulator {
 
 //        System.out.println( emf.createEntityManager().find( Address.class, 5 ) );
 //        System.out.println( new UserRepository( em ).findOne( 4 ).get() );
-        System.out.println( new OrderRepository( em ).findAll() );
+    //    System.out.println( new OrderRepository( em ).findAll() );
 
     }
 }

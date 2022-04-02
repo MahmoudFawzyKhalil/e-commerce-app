@@ -45,7 +45,7 @@
               </div>
               <div class="hidden sm:block sm:ml-6">
                 <div class="flex">
-                  <a href="admin"
+                  <a href="<c:url value="/admin" />"
                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
               </div>
@@ -85,7 +85,7 @@
             -->
         <div id="mobileMenu" class="hidden sm:hidden">
           <div class="px-2 pt-2 pb-3">
-            <a href="admin"
+            <a href="<c:url value="/admin" />"
               class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
           </div>
         </div>
@@ -95,7 +95,7 @@
     <!--   Cards Section  -->
     <section id="Cards" class="flex justify-center">
       <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 mb-10">Managing The Website</h2>
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 mb-10">Manage The Website</h2>
         <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-1 lg:grid-cols-3 xl:gap-x-8">
           <div class="group relative">
             <div
@@ -106,9 +106,9 @@
             <div class="mt-4 flex justify-center">
               <div>
                 <h3 class="text-xl text-gray-700 hover:text-black">
-                  <a href="customer/listOfCustomer.jsp">
+                  <a href="admin/customers" >
                     <span aria-hidden="true" class="absolute inset-0"></span>
-                    Customers
+                    Manage Customers
                   </a>
                 </h3>
               </div>
@@ -123,7 +123,7 @@
             <div class="mt-4 flex justify-center">
               <div>
                 <h3 class=" text-gray-700  text-xl hover:text-black ">
-                  <a href="product/listOfProduct.jsp">
+                  <a href="<c:url value="/admin/products" />">
                     <span aria-hidden="true" class="absolute inset-0 "></span>
                     Manage Products
                   </a>
@@ -140,7 +140,7 @@
             <div class="mt-4 flex justify-center">
               <div>
                 <h3 class="text-xl  text-gray-700 hover:text-black">
-                  <a href="/app/admin/products/add">
+                  <a href="<c:url value="/admin/products/add" />">
                     <span aria-hidden="true" class="absolute inset-0"></span>
                     Add Product
                   </a>
@@ -160,7 +160,7 @@
       <footer class="bg-white">
         <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div class="flex justify-center space-x-6 md:order-2">
-            <a href="#" class="text-gray-400 hover:text-gray-500">
+              <a href="#" class="text-gray-400 hover:text-gray-500">
               <span class="sr-only">GitHub</span>
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path fill-rule="evenodd"
