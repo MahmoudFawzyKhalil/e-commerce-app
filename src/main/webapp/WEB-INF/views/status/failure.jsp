@@ -128,123 +128,23 @@
 </section>
 
 
-<!-- LOGIN FORM -->
+<!-- SUCCESS MESSAGE -->
 
 <section id="loginSection">
     <div class="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
         <div class="w-full max-w-md space-y-8">
             <div>
                 <img class="w-32 mx-auto" src="<c:url value="/img/common/logo.png"/>" alt="Workflow">
-                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Confirm your account</h2>
+                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Failed to confirm! 🙅‍♀️</h2>
             </div>
 
-            <form id="emailConfirmationForm" class="mt-8 space-y-6" action="#" method="POST">
-                <input type="hidden" name="remember" value="true">
-                <div class="-space-y-px rounded-md shadow-sm">
-                    <div>
-                        <label for="confirmationId" class="sr-only">Email address</label>
-                        <input id="confirmationId" name="confirmationId" type="text" required
-                               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                               placeholder="Confirmation code">
-                    </div>
-                </div>
+            <div>
+                <a href="<c:url value="/confirm"/>"
+                   class="relative flex justify-center px-4 py-2 text-xl font-medium text-indigo-600 underline  hover:text-indigo-800">
+                    Click here to try again
+                </a>
+            </div>
 
-                <div>
-                    <button type="submit" id="emailConfirmationButton"
-                            class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700">
-                        Confirm
-                    </button>
-
-                    <%--       Spinner             --%>
-                    <div class="relative flex justify-center px-4 py-2">
-                        <svg id="emailConfirmationSpinner"
-                             class="hidden w-8 "
-                             xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;"
-                             viewBox="0 0 100 100"
-                             preserveAspectRatio="xMidYMid">
-                            <g transform="rotate(0 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#191d3a">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.6101281269066504s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(32.72727272727273 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#93dbe9">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.5491153142159854s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(65.45454545454545 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#689cc5">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.4881025015253203s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(98.18181818181819 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#5e6fa3">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.42708968883465526s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(130.9090909090909 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#3b4368">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.3660768761439902s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(163.63636363636363 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#d9dbee">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.3050640634533252s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(196.36363636363637 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#b3b7e2">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.24405125076266015s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(229.0909090909091 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#191d3a">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.1830384380719951s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(261.8181818181818 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#93dbe9">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.12202562538133008s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(294.54545454545456 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#689cc5">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="-0.06101281269066504s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <g transform="rotate(327.27272727272725 50 50)">
-                                <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#5e6fa3">
-                                    <animate attributeName="opacity" values="1;0" keyTimes="0;1"
-                                             dur="0.6711409395973155s"
-                                             begin="0s" repeatCount="indefinite"></animate>
-                                </rect>
-                            </g>
-                            <!-- [ldio] generated by https://loading.io/ -->
-                        </svg>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 </section>

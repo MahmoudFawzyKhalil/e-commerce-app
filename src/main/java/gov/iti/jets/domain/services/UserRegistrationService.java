@@ -5,12 +5,11 @@ import gov.iti.jets.domain.util.EmailGateway;
 import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public class UserRegistrationService {
@@ -42,5 +41,29 @@ public class UserRegistrationService {
         } catch ( EmailException e ) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean confirmUserRegistration( String confirmationId ) {
+        EntityManager em = JpaUtil.createEntityManager();
+        UserRepository ur = new UserRepository( em );
+        EntityTransaction tx = em.getTransaction();
+        boolean confirmed = false;
+
+        Optional<User> optionalUser = ur.findUserByConfirmationId( confirmationId );
+        if ( optionalUser.isPresent() ) {
+            User user = optionalUser.get();
+            user.setConfirmedAccount( true );
+
+            if ( !user.isConfirmedAccount() ) {
+                tx.begin();
+                ur.update( user );
+                tx.commit();
+            }
+
+            em.close();
+            confirmed = true;
+        }
+
+        return confirmed;
     }
 }
