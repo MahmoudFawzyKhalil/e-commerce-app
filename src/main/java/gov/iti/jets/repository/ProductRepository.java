@@ -26,7 +26,7 @@ public class ProductRepository extends AbstractRepository<Product> {
 
 
     public List<Product> getPageOfProduct( int pageNumber ) {
-        TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product  p WHERE p.deleted = false ", Product.class );
+        TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product  p WHERE p.deleted = FALSE ", Product.class );
 
         return query.setFirstResult( ( pageNumber - 1 ) * PAGE_SIZE )
                 .setMaxResults( PAGE_SIZE )

@@ -9,15 +9,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-@WebServlet("/admin/products/delete")
+
+@WebServlet( "/admin/products/delete" )
 public class ProductDeleteControllerServlet extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        String productId = request.getParameter( "productId" );
-        System.out.println("***********"+productId);
+        try {
 
-        DomainFacade.deleteProduct( Integer.parseInt( productId ) );
+            String productId = request.getParameter( "productId" );
 
-        response.sendRedirect( request.getContextPath() +"/admin/products" );
+            DomainFacade.deleteProduct( Integer.parseInt( productId ) );
+
+            response.sendRedirect( request.getContextPath() + "/admin/products" );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            response.sendRedirect( request.getContextPath() + "/admin" );
+        }
     }
 }
