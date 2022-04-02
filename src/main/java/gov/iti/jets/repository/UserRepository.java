@@ -44,7 +44,7 @@ public class UserRepository extends AbstractRepository<User> {
 
 
     public List<User> getPage( int pageNumber ) {
-        TypedQuery<User> query = entityManager.createQuery( "FROM User", User.class );
+        TypedQuery<User> query = entityManager.createQuery( "FROM User u where u.role = 'CUSTOMER' ", User.class );
         return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
                 .setMaxResults( pageSize )
                 .getResultList();
@@ -52,7 +52,7 @@ public class UserRepository extends AbstractRepository<User> {
 
 
     public long getNumberOfPages() {
-        Query queryTotal = entityManager.createQuery( "SELECT COUNT(u.id) FROM User u" );
+        Query queryTotal = entityManager.createQuery( "SELECT COUNT(u.id) FROM User u where u.role = 'CUSTOMER' " );
         long countResult = (long) queryTotal.getSingleResult();
 
         long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );

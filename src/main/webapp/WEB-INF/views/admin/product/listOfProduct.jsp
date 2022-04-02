@@ -10,83 +10,89 @@
 </head>
 
 <body class="flex flex-col h-screen">
-  <section class="sticky top-0 z-50" id="adminNav">
-    <nav class="bg-gray-800">
-      <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div class="relative flex items-center justify-between h-16">
-          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <!-- Mobile menu button-->
-            <button id="mobileMenuToggleButton"
-              class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
-              aria-label="Main menu" aria-expanded="false">
-              <!-- Icon when menu is closed. -->
-              <!-- Menu open: "hidden", Menu closed: "block" -->
-              <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                </path>
-              </svg>
-              <!-- Icon when menu is open. -->
-              <!-- Menu open: "block", Menu closed: "hidden" -->
-              <svg class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
+<section class="sticky top-0 z-50" id="adminNav">
+  <nav class="bg-gray-800">
+    <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button id="mobileMenuToggleButton"
+                  class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+                  aria-label="Main menu" aria-expanded="false">
+            <!-- Icon when menu is closed. -->
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16">
+              </path>
+            </svg>
+            <!-- Icon when menu is open. -->
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
+          <div class="flex-shrink-0">
+            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
+                logo">
+            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
+                logo">
           </div>
-          <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-            <div class="flex-shrink-0">
-              <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
-              <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow logo">
-            </div>
-            <div class="hidden sm:block sm:ml-6">
-              <div class="flex">
-                <a href="<c:url value="/admin"/>"
-                  class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-              </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex">
+              <a href="<c:url value="/admin" />"
+                 class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
             </div>
           </div>
-          <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        </div>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-            <!-- PROFILE DROPDOWN -->
-            <div class="relative ml-3">
-              <div>
-                <button id="toggleProfileButton"
-                  class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
-                  aria-label="User menu" aria-haspopup="true">
-                  <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
-                  <span
-                    class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">John
-                    Doe</span>
-                </button>
-              </div>
+          <!-- PROFILE DROPDOWN -->
+          <div class="relative ml-3">
+            <div>
+              <button id="toggleProfileButton"
+                      class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
+                      aria-label="User menu" aria-haspopup="true">
+                <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
+                <span
+                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">${user.firstName}</span>
+              </button>
+            </div>
 
-              <div id="profileDropDown"
-                class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical"
-                  aria-labelledby="user-menu">
-                  <a href="#"
-                    class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                    role="menuitem">Sign out</a>
-                </div>
+            <div id="profileDropDown"
+                 class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
+              <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical"
+                   aria-labelledby="user-menu">
+                <form method="post" action="<c:url value="/logout"/>">
+                  <button name="submit" value="submit" type="submit"
+                          class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                          role="menuitem">Sign out
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!--
-                Mobile menu, toggle classes based on menu state.
+    </div>
+    <!--
+          Mobile menu, toggle classes based on menu state.
 
-                Menu open: "block", Menu closed: "hidden"
-              -->
-      <div id="mobileMenu" class="hidden sm:hidden">
-        <div class="px-2 pt-2 pb-3">
-          <a href="<c:url value="/admin" />"
-            class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-        </div>
+          Menu open: "block", Menu closed: "hidden"
+        -->
+    <div id="mobileMenu" class="hidden sm:hidden">
+      <div class="px-2 pt-2 pb-3">
+        <a href="<c:url value="/admin" />"
+           class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
       </div>
-    </nav>
-  </section>
+    </div>
+  </nav>
+</section>
 
-  <section id="productTable" class="mt-5">
+<section id="productTable" class="mt-5">
     <div class="px-4 sm:px-6 lg:px-8">
       <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
@@ -96,7 +102,7 @@
       <div class="flex flex-col mt-8">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg" id="tableParent">
               <table class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
                   <tr>
@@ -113,10 +119,10 @@
                       Price</th>
                     <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Category</th>
-                    <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
+                    <th scope="col" class="relative whitespace-nowrap cursor-pointer py-3.5 pl-3 pr-4 sm:pr-6">
                       <span class="sr-only">Edit</span>
                     </th>
-                    <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
+                    <th scope="col" class="relative whitespace-nowrap cursor-pointer py-3.5 pl-3 pr-4 sm:pr-6">
                       <span class="sr-only">Delete</span>
                     </th>
                   </tr>
@@ -158,6 +164,64 @@
           </div>
       </nav>
   </section>
+
+<section id="deleteAlert">
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div id="divOfDelete" class="fixed hidden z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+      <!--
+        Background overlay, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+      <!-- This element is to trick the browser into centering the modal contents. -->
+      <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div class="sm:flex sm:items-start">
+            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <!-- Heroicon name: outline/exclamation -->
+              <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>
+            </div>
+            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+              <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Delete product</h3>
+              <div class="mt-2">
+                <p class="text-sm text-gray-500">Are you sure you want to delete this product? All of your data will be permanently removed. This action cannot be undone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+<%--        href="/app/admin/products/delete?productId=4"--%>
+
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+          <button onclick="confirmDeletion()" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Delete</button>
+          <button onclick="cancelDeletion()" type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
 
 
   <section class="mt-auto" id="footer">

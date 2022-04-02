@@ -24,9 +24,9 @@ public class ProductRepository extends AbstractRepository<Product> {
         this.setClazz( Product.class );
     }
 
-    // TODO change to not get deleted products
+
     public List<Product> getPageOfProduct( int pageNumber ) {
-        TypedQuery<Product> query = entityManager.createQuery( "FROM Product ", Product.class );
+        TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product  p WHERE p.deleted = FALSE ", Product.class );
 
         return query.setFirstResult( ( pageNumber - 1 ) * PAGE_SIZE )
                 .setMaxResults( PAGE_SIZE )
@@ -34,7 +34,7 @@ public class ProductRepository extends AbstractRepository<Product> {
     }
 
     public long getNumberOfPages() {
-        Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p" );
+        Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p WHERE p.deleted = FALSE" );
         long countResult = (long) queryTotal.getSingleResult();
 
         long finalPage = ( countResult % PAGE_SIZE > 0 ? 1 : 0 );
