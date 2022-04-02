@@ -10,7 +10,7 @@ public class CartLineItem {
     @GeneratedValue
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne( cascade = CascadeType.ALL )
     private Product product;
 
     @Min( 0 )
@@ -68,5 +68,10 @@ public class CartLineItem {
 
     public long getTotalCost() {
         return this.quantity * this.getProduct().getPrice();
+    }
+
+    public String getTotalCostFormatted() {
+        long totalCost = getTotalCost();
+        return "" + totalCost / 100 + "." + totalCost % 100;
     }
 }
