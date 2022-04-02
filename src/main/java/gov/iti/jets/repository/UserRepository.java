@@ -30,6 +30,19 @@ public class UserRepository extends AbstractRepository<User> {
         return Optional.ofNullable( user );
     }
 
+    public Optional<User> findUserByConfirmationId( String confirmationId ) {
+        User user = null;
+        try {
+            TypedQuery<User> query = entityManager.createQuery( "SELECT u FROM User u WHERE u.confirmationId = :confirmationId", User.class );
+            query.setParameter( "confirmationId", confirmationId );
+            user = query.getSingleResult();
+        } catch ( NoResultException nre ) {
+            nre.printStackTrace();
+        }
+        return Optional.ofNullable( user );
+    }
+
+
     public List<User> getPage( int pageNumber ) {
         TypedQuery<User> query = entityManager.createQuery( "FROM User", User.class );
         return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
