@@ -7,6 +7,7 @@ let previousButton = document.getElementById("previousButton");
 
 let table = document.getElementById("tbody");
 let row = "";
+let deletedId = 0
 
 document.onload = navigate(1)
 
@@ -64,7 +65,7 @@ function handleStateChange() {
                           AAPS0L</span></a>
                     </td>
                     <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="/app/admin/products/delete?productId=${product.id}" class="text-indigo-600 hover:text-indigo-900">Delete<span class="sr-only">,
+                      <a onclick="deleteProduct(${product.id})" class="text-indigo-600 hover:text-indigo-900">Delete<span class="sr-only">,
                           AAPS0L</span></a>
                     </td>
                   </tr>
@@ -75,6 +76,18 @@ function handleStateChange() {
         validation(currentPageNumber.value)
         row = "";
     }
+}
+
+function deleteProduct(id) {
+    deletedId = id
+    document.getElementById("divOfDelete").classList.remove("hidden")
+}
+function cancelDeletion(){
+    document.getElementById("divOfDelete").classList.add("hidden")
+}
+
+function confirmDeletion() {
+    window.location.href = "/app/admin/products/delete?productId="+deletedId
 }
 
 function createXMLHttpRequest() {
