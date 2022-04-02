@@ -21,7 +21,6 @@ nextButton.addEventListener("click", (e) => {
 })
 
 function validation(num) {
-    console.log(num)
     if (num === "1") {
         previousButton.classList.add("hidden")
         previousButton.classList.add("disabled")
@@ -29,7 +28,7 @@ function validation(num) {
         previousButton.classList.remove("hidden")
         previousButton.classList.remove("disabled")
     }
-    if (num === pageNumber.value) {
+    if (num === pageNumber.value || pageNumber.value === "1") {
         nextButton.classList.add('hidden')
         nextButton.classList.add("disabled")
     } else {

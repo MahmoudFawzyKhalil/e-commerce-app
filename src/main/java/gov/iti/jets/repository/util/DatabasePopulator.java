@@ -96,6 +96,24 @@ public class DatabasePopulator {
         User user10 = new User( "Hafsa", "Mohammed", "hafsa@gmail.com", hashedPassword, "01117950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
         users.add( user10 );
 
+        User user11 = new User( "Hesham", "Mohammed", "Hesham@gmail.com", hashedPassword, "01127950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user11 );
+
+        User user12 = new User( "Hasham", "Mohammed", "Hasham@gmail.com", hashedPassword, "01121950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user12 );
+
+        User user13 = new User( "Abdelaziz", "Mohammed", "Abdelaziz@gmail.com", hashedPassword, "01122950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user13 );
+
+        User user14 = new User( "Amira", "Mohammed", "Amira@gmail.com", hashedPassword, "01123950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user14 );
+
+        User user15 = new User( "Mina", "Mohammed", "Mina@gmail.com", hashedPassword, "01124950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user15 );
+
+        User user16 = new User( "Hossam", "Mohammed", "Hossam@gmail.com", hashedPassword, "01125950450", LocalDate.ofYearDay( 1997, 80 ), 30000, "Web Developer", Role.CUSTOMER, new Address( "london street", "Cairo" ) );
+        users.add( user16 );
+
         // PERSIST USERS ************************
         UserRepository ur = new UserRepository( em );
         em.getTransaction().begin();
@@ -191,7 +209,7 @@ public class DatabasePopulator {
 
         // CREATE ORDERS ************************
         List<Order> orders = new ArrayList<>();
-        Order order1 = new Order( user1 );
+        Order order1 = new Order( user2 );
 
         Order order2 = new Order( user2 );
 
