@@ -61,6 +61,10 @@ public class OrderLineItem {
         return unitCost;
     }
 
+    public long getUnitCostFormatted() {
+        return unitCost/100;
+    }
+
     public void setUnitCost( long unitCost ) {
         this.unitCost = unitCost;
     }
