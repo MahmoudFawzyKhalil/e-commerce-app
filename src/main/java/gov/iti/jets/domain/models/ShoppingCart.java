@@ -48,7 +48,7 @@ public class ShoppingCart {
 
 
     public void removeCartLineItem( int productId ) {
-        this.cartLineItems.removeIf( cartLineItem -> cartLineItem.getId() == productId );
+        this.cartLineItems.removeIf( cartLineItem -> cartLineItem.getProduct().getId() == productId );
     }
 
     public long getTotal() {

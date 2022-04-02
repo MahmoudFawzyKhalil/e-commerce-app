@@ -155,13 +155,14 @@
                 <section aria-labelledby="cart-heading" class="lg:col-span-7">
                     <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
 
-                    <ul role="list" class="border-t border-b border-gray-200 divide-y divide-gray-200">
+                    <ul role="list" id="cartProductsList"
+                        class="border-t border-b border-gray-200 divide-y divide-gray-200">
 
                         <c:if test="${!empty shoppingCart}">
 
                             <c:forEach items="${shoppingCart.cartLineItemsUnmodifiable}" var="lineItem">
 
-                                <li class="flex py-6 sm:py-10">
+                                <li id="${lineItem.product.id}" class="flex py-6 sm:py-10">
                                     <div class="flex-shrink-0">
                                         <img src="<c:url value="/${lineItem.product.imageName}" context="/images"/>"
                                              alt="Front of men&#039;s Basic Tee in sienna."
@@ -183,15 +184,18 @@
                                             </div>
 
                                             <div class="mt-4 sm:mt-0 sm:pr-9">
-                                                <input type="number" name="quantity"
+                                                <input data-quantityId="${lineItem.product.id}" type="number"
+                                                       name="quantity"
                                                        class="max-w-full w-16 rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                       value="1" min="1" max="10">
+                                                       value="${lineItem.quantity}" min="1" max="10">
 
                                                 <div class="absolute top-0 right-0">
-                                                    <button data-productid="${lineItem.product.id}" type="button"
-                                                            class="inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500">
+                                                    <button data-productId="${lineItem.product.id}"
+                                                            type="button"
+                                                            class=" inline-flex p-2 -m-2 text-gray-400 hover:text-gray-500">
                                                         <!-- Heroicon name: solid/x -->
-                                                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+                                                        <svg class="w-5 h-5"
+                                                             xmlns="http://www.w3.org/2000/svg"
                                                              viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                             <path fill-rule="evenodd"
                                                                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -271,6 +275,7 @@
     </footer>
 </section>
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
+<script src="<c:url value="/js/cart/cart.js"/>"></script>
 </body>
 
 </html>
