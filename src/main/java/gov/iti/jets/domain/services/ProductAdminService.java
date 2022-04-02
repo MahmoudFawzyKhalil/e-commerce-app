@@ -26,7 +26,7 @@ public class ProductAdminService {
         Optional<Product> one = productRepository.findOne( productId );
         em.getTransaction().begin();
         if( one.isPresent() ){
-            productRepository.delete( one.get() );
+            one.get().setDeleted( true );
         }
         em.getTransaction().commit();
 

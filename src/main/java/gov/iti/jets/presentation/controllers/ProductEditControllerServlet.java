@@ -79,14 +79,17 @@ public class ProductEditControllerServlet extends HttpServlet {
         if ( photoName != null && !photoName.isEmpty() ) {
             String[] split = photoName.split( "\\." );
             photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
+            product = new Product( id, name, description, photoName, price, quantity, category );
+
         } else {
-            photoName = productFromDatabase.getImageName();
+            product = new Product( id, name, description, productFromDatabase.getImageName(), price, quantity, category );
         }
-        product = new Product( id, name, description, photoName, price, quantity, category );
 
         try {
             DomainFacade.updateProduct( product );
-            photo.write( "C:/ecommerce/" + photoName );
+            if ( photoName != null && !photoName.isEmpty() ){
+                photo.write( "C:/ecommerce/" + photoName );
+            }
             response.sendRedirect( request.getContextPath() + "/admin/products" );
         } catch ( RuntimeException e ) {
             productEditViewHelper.setFailedToEditProduct( true );

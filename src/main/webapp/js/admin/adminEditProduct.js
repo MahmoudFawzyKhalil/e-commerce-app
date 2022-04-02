@@ -1,83 +1,137 @@
-const image_input = document.getElementById("productPhotoEdit");
-var uploaded_image ="";
-
+let imageInput = document.getElementById("productPhotoEdit");
+let uploaded_image = "";
 let invalidElements = new Set();
-invalidElements.add(document.getElementById("nameEdit"))
-    .add(document.getElementById("descriptionEdit"))
+let submitButtonEdit = document.getElementById("submitButtonEdit")
+let cancelButtonEdit = document.getElementById("cancelButtonEdit")
+let name = document.getElementById("nameEdit")
+let description = document.getElementById("descriptionEdit")
+let category = document.getElementById("categoryEdit")
+let categoryValue = document.getElementById("valueOfCategory")
+let image = document.getElementById("imageOfProductEdit")
+let failDiv = document.getElementById("failDivEdit")
+let nameValidation = document.getElementById("nameValidationEdit")
+let quantity = document.getElementById("quantityEdit")
+let price = document.getElementById("priceEdit")
+let descriptionValidation = document.getElementById("descriptionValidationEdit")
+let spinner = document.getElementById("spinner");
+const descriptionValue = description.value.length
+const nameValue = name.value.length
+let changeflag = false
+
+category.value = categoryValue.value
 
 
-document.getElementById("categoryEdit").value = document.getElementById("valueOfCategory").value
+validation(false)
 
-image_input.addEventListener("change", function (){
-    console.log(image_input.value);
+imageInput.addEventListener("change", function () {
     const reader = new FileReader();
-    reader.addEventListener("load", ()=>{
+    reader.addEventListener("load", () => {
         uploaded_image = reader.result;
-        document.getElementById("imageOfProductEdit").src = `${uploaded_image}`;
+        image.src = `${uploaded_image}`;
+        changeflag = true;
+        validation(changeflag);
     });
     reader.readAsDataURL(this.files[0]);
 })
 
-function dismissSuccessDivEdit(){
-    document.getElementById("successDivEdit").classList.add("hidden");
+function dismissFailsDivEdit() {
+    failDiv.classList.add("hidden")
 }
 
-function dismissFailsDivEdit(){
-    document.getElementById("failDivEdit").classList.add("hidden")
-}
+name.addEventListener("change",ev => {
+    changeflag = true
+    validation(changeflag)
+})
+description.addEventListener("change",ev => {
+    changeflag = true
+    validation(changeflag)
+})
+quantity.addEventListener("change",ev => {
+    console.log("quantityEvent")
+    changeflag = true
+    validation(changeflag)
+})
+price.addEventListener("change",ev => {
+    console.log("priceEvent")
+    changeflag = true
+    validation(changeflag)
+})
+category.addEventListener("change",ev => {
+    console.log("CategoryEvent")
+    changeflag = true
+    validation(changeflag)
+})
 
-const name = document.getElementById('nameEdit');
-name.addEventListener('blur',(e)=>{
-    console.log((name.value.length))
-    if(((name.value.length) < 3) ||((name.value.length)>200)){
-        console.log("leeeeh")
-        document.getElementById("nameValidationEdit").classList.remove("hidden")
-        document.getElementById("submitButtonEdit").classList.add("disabled")
-    }else{
+name.addEventListener('blur', (e) => {
+
+    if (((name.value.length) < 3) || ((name.value.length) > 200)) {
+        nameValidation.classList.remove("hidden")
+        if(!invalidElements.has(name)){
+            invalidElements.add(name)
+        }
+        validation(false)
+    } else {
         invalidElements.delete(name);
-        document.getElementById("nameValidationEdit").classList.add("hidden")
-        document.getElementById("submitButtonEdit").classList.remove("disabled")
-
+        nameValidation.classList.add("hidden")
+        validation(changeflag)
     }
 })
-const description = document.getElementById("descriptionEdit")
-description.addEventListener("blur",(e)=>{
-    if(description.value.length<3 ||description.value.length>1000){
-        document.getElementById("descriptionValidationEdit").classList.remove("hidden")
-        document.getElementById("submitButtonEdit").classList.add("disabled")
+description.addEventListener("blur", (e) => {
 
-    }else{
+    if (description.value.length < 3 || description.value.length > 1000) {
+        descriptionValidation.classList.remove("hidden")
+        if(!invalidElements.has(description)){
+            invalidElements.add(description)
+        }
+        validation(false)
+    } else {
         invalidElements.delete(description);
-        document.getElementById("descriptionValidationEdit").classList.add("hidden")
-        document.getElementById("submitButtonEditEdit").classList.remove("disabled")
-
+        descriptionValidation.classList.add("hidden")
+        validation(changeflag)
     }
 })
-//
-const quantity = document.getElementById("quantityEdit")
 quantity.addEventListener('blur', (e) => {
     if (quantity.value <= 0) {
         quantity.value = 1;
     }
 });
-//
-const price = document.getElementById("priceEdit")
+
+
 price.addEventListener('blur', (e) => {
     if (price.value <= 0) {
         price.value = 1;
     }
 });
-//
-const submitButton = document.getElementById("submitButton");
-const spinner = document.getElementById("spinner");
-const cancelButton = document.getElementById("cancelButton")
-submitButton.addEventListener("click", (e) => {
-    console.log(invalidElements.size)
+
+
+submitButtonEdit.addEventListener("click", (e) => {
     if (invalidElements.size !== 0) {
         return;
     }
     document.getElementById("productEditForm").submit();
-    submitButton.classList.add('hidden');
-    cancelButton.classList.add('hidden')
+    submitButtonEdit.classList.add('hidden');
+    cancelButtonEdit.classList.add('hidden')
     spinner.classList.remove('hidden');
 })
+
+//VALIDATED
+
+function validation(change) {
+
+    console.log(invalidElements.size)
+    if(invalidElements.size > 0){
+        console.log("in if")
+        submitButtonEdit.classList.add("hidden")
+    }
+    else{
+        console.log("in else")
+        if(change){
+            console.log("in sec if")
+            submitButtonEdit.classList.remove("hidden")
+        }else {
+            console.log("in sec else    ")
+            submitButtonEdit.classList.add("hidden")
+        }
+    }
+
+}
