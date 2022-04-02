@@ -81,6 +81,12 @@ public class User {
     }
 
 
+    // TODO remove EGP and add it to JSP
+    public String getCreditLimitFormatted() {
+        return "EGP "+creditLimit/100+".00";
+    }
+
+
     public String getFullName() {
         return firstName + " " + lastName;
     }
@@ -161,6 +167,19 @@ public class User {
         this.role = role;
     }
 
+    public Optional<ShoppingCart> getShoppingCart() {
+        return Optional.ofNullable( this.shoppingCart );
+    }
+
+    public void setShoppingCart( ShoppingCart shoppingCart ) {
+        shoppingCart._setOwner( this );
+        this.shoppingCart = shoppingCart;
+    }
+
+    public String getAddressFormatted(){
+        return this.address.getStreet() + ", " + this.address.getCity();
+    }
+
     public String getBirthdayFormatted() {
         return this.birthday.format( DateTimeFormatter.ofPattern( "MM/dd/yyyy" ) );
     }
@@ -171,15 +190,6 @@ public class User {
 
     public void setPhoneNumber( String phoneNumber ) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Optional<ShoppingCart> getShoppingCart() {
-        return Optional.ofNullable( this.shoppingCart );
-    }
-
-    public void setShoppingCart( ShoppingCart shoppingCart ) {
-        shoppingCart._setOwner( this );
-        this.shoppingCart = shoppingCart;
     }
 
     @Override

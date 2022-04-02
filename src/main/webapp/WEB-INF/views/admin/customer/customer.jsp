@@ -1,11 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--@elvariable id="order" type="gov.iti.jets.domain.models.Order"--%>
+<%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../css/tailwind-out.css">
+    <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
     <title>Admin Dashboard</title>
 </head>
 
@@ -36,14 +38,14 @@
                     </div>
                     <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                         <div class="flex-shrink-0">
-                            <img class="block w-auto h-8 lg:hidden" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
-                            <img class="hidden w-auto h-8 lg:block" src="<c:url value=" /img/common/logo.png" />"
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png" />"
                             alt="Workflow logo">
                         </div>
                         <div class="hidden sm:block sm:ml-6">
                             <div class="flex">
-                                <a href="admin"
+                                <a href="<c:url value="/admin" />"
                                     class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                             </div>
                         </div>
@@ -84,7 +86,7 @@
               -->
             <div id="mobileMenu" class="hidden sm:hidden">
                 <div class="px-2 pt-2 pb-3">
-                    <a href="admin"
+                    <a href="<c:url value="/admin" />"
                         class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
                 </div>
             </div>
@@ -100,37 +102,37 @@
                     <div class="bg-white shadow sm:rounded-lg">
                         <div class="px-4 py-5 sm:px-6">
                             <h2 id="applicant-information-title" class="text-lg font-medium leading-6 text-gray-900">
-                                User Name</h2>
+                                ${user.fullName}</h2>
                         </div>
                         <div class="px-4 py-5 border-t border-gray-200 sm:px-6">
                             <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">ID</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">1</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.id}</dd>
                                 </div>
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">Email</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">samasemo@example.com</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.email}</dd>
                                 </div>
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">Address</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">Cairo Egypt</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.addressFormatted}</dd>
                                 </div>
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">Phone</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">01146931276</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.phoneNumber}</dd>
                                 </div>
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">Job</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">Rgasa</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.job}</dd>
                                 </div>
                                 <div class="sm:col-span-1">
                                     <dt class="text-sm font-medium text-gray-500">Birthday</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">31/3/1997</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.birthday}</dd>
                                 </div>
                                 <div class="sm:col-span-2">
                                     <dt class="text-sm font-medium text-gray-500">Credit Limit</dt>
-                                    <dd class="mt-1 text-sm text-gray-900">10,000</dd>
+                                    <dd class="mt-1 text-sm text-gray-900">${user.creditLimit}</dd>
                                 </div>
 
                             </dl>
@@ -177,51 +179,18 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody class="bg-white divide-y divide-gray-200">
+                                                        <c:forEach items="${orderList}" var="order">
                                                             <tr>
-                                                                <td
-                                                                    class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
-                                                                    1
+                                                                <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${order.id}</td>
+                                                                <td class="px-2 py-2 text-sm text-gray-900 ">${order.timestamp}
                                                                 </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
-                                                                </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
-                                                                <td
-                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                                    <a href="orderItems.jsp"
-                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
-                                                                            class="sr-only">, AAPS0L</span></a>
+                                                                <td class="px-2 py-2 text-sm text-gray-500 ">${order.total}</td>
+                                                                <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
+                                                                    <a href="/app/admin/customers/customer/order?orderId=${order.id}&userId=${user.id}" class="text-indigo-600 hover:text-indigo-900">Order<span class="sr-only">, AAPS0L</span></a>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td
-                                                                    class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
-                                                                    1
-                                                                </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
-                                                                </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
-                                                                <td
-                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                                    <a href="orderItems.jsp"
-                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
-                                                                            class="sr-only">, AAPS0L</span></a>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td
-                                                                    class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">
-                                                                    1
-                                                                </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">25/3/2022
-                                                                </td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">1,000</td>
-                                                                <td
-                                                                    class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                                    <a href="orderItems.jsp"
-                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
-                                                                            class="sr-only">, AAPS0L</span></a>
-                                                                </td>
-                                                            </tr>
+                                                        </c:forEach>
+
                                                             <!-- More transactions... -->
                                                         </tbody>
                                                     </table>
@@ -262,7 +231,8 @@
         </footer>
     </section>
 
-    <script src="../../../../js/admin/admin.js"></script>
+    <script src="<c:url value="/js/components/navbar.js"/>"></script>
+    <script src="<c:url value="/js/admin/admin.js"/>"></script>
 </body>
 
 </html>

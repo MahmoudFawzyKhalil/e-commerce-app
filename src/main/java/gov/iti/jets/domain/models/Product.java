@@ -10,28 +10,45 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Product {
 
-    private static final String DEFAULT_IMAGE = "default";
+    private static final String DEFAULT_IMAGE = "default.jpeg";
 
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
-    @NotNull @Size( min = 3, max = 200 )
+    @NotNull
+    @Size( min = 3, max = 200 )
     @Column( name = "product_name" )
-    String name;
+    private String name;
 
-    @Size( max = 1000 ) String description;
+    @Size( min = 3, max = 1000 )
+    private String description;
 
-    String imageName;
+    private String imageName;
 
-    @Min( 0 ) long price;
+    @Min( 0 )
+    private long price;
 
-    @Min( 0 ) int quantity;
+    @Min( 0 )
+    private int quantity;
 
-    @NotNull Category category;
+    @NotNull
+    private Category category;
+
+    private boolean deleted = false;
 
     protected Product() {
 
+    }
+
+    public Product( int id, String name, String description, String imageName, long price, int quantity, Category category ) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.setImageName( imageName );
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
     }
 
     public Product( String name, String description, String imageName, long price, int quantity, Category category ) {
@@ -102,6 +119,19 @@ public class Product {
 
     public String getPriceFormatted() {
         return "" + this.price / 100 + "." + this.price % 100;
+    }
+
+    // TODO remove getPriceFormatting + add EGP to JSP
+    public String getPriceFormatting() {
+        return "EGP " + ( (int) price / 100 ) + ".00";
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted( boolean deleted ) {
+        this.deleted = deleted;
     }
 
     @Override

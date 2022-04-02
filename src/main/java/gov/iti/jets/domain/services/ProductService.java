@@ -6,6 +6,7 @@ import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     public static List<Product> getAPageOfProducts( int pageNumber ) {
@@ -22,5 +23,13 @@ public class ProductService {
         List<Product> products = pr.findProductsByNameOrCategory( productNameQuery, productCategory );
         em.close();
         return products;
+    }
+
+    public static Optional<Product> findProductById( int productId ) {
+        var em = JpaUtil.createEntityManager();
+        ProductRepository pr = new ProductRepository( em );
+        var optionalProduct = pr.findOne( productId );
+        em.close();
+        return optionalProduct;
     }
 }
