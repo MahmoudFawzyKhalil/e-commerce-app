@@ -16,10 +16,18 @@ public class AdminCustomerControllerServlet extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/customer/customer.jsp" );
-        int id =Integer.parseInt( request.getParameter( "id" ) ) ;
-        request.setAttribute( "orderList",DomainFacade.getOrders( id ) );
-        request.setAttribute( "user",DomainFacade.getCustomerByID( id ).get() );
-        requestDispatcher.forward( request, response );
+        try {
+            int id = Integer.parseInt( request.getParameter( "id" ) );
+
+            request.setAttribute( "orderList", DomainFacade.getAllOrdersForUser( id ) );
+            request.setAttribute( "user", DomainFacade.getCustomerByID( id ).get() );
+
+            requestDispatcher.forward( request, response );
+
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            response.sendRedirect( request.getContextPath() + "/admin" );
+        }
     }
 
 }

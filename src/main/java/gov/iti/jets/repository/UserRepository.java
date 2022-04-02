@@ -2,16 +2,14 @@ package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.models.User;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 public class UserRepository extends AbstractRepository<User> {
-    private static int pageSize =0;
+    private final static int pageSize = 5;
 
     public UserRepository( EntityManager entityManager ) {
         super( entityManager );
@@ -27,8 +25,7 @@ public class UserRepository extends AbstractRepository<User> {
     }
 
     public List<User> getPage( int pageNumber ) {
-        Query query = entityManager.createQuery( "FROM User" );
-
+        TypedQuery<User> query = entityManager.createQuery( "FROM User", User.class );
         return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
                 .setMaxResults( pageSize )
                 .getResultList();
@@ -44,8 +41,5 @@ public class UserRepository extends AbstractRepository<User> {
         return ( countResult / pageSize ) + finalPage;
     }
 
-    public void setPageSize( int pageSize ) {
-        this.pageSize = pageSize;
-    }
 
 }

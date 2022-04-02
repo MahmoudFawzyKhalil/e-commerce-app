@@ -26,43 +26,34 @@ public class DomainFacade {
     }
 
     public static List<Product> getPageOfProduct( int pageNumber ) {
-        return ProductAdminService.getProduct( pageNumber );
+        return ProductAdminService.getPageOfProduct( pageNumber );
     }
 
-    public static void setPageSizeOfProduct( int pageSize ) {
-        ProductAdminService.setPageSize( pageSize );
-    }
-
-    public static long getPageNumberOfProduct() {
-        return ProductAdminService.getPageNumber();
+    public static long getNumberOfPagesOfProduct() {
+        return ProductAdminService.getNumberOfPagesOfProduct();
     }
 
     public static List<User> getPageOfCustomers( int pageNumber ) {
-        return GetListOfCustomersService.getPage( pageNumber );
+        return AdminListOfCustomersService.getPage( pageNumber );
     }
-
-    public static void setPageSizeOfCustomers( int pageSize ) {
-        GetListOfCustomersService.setPage( pageSize );
-    }
-
     public static long getPageNumberOfCustomers() {
-        return GetListOfCustomersService.getPageNumber();
+        return AdminListOfCustomersService.getNumberOfPages();
     }
 
-    public static List<Order> getOrders( int id ) {
-        return CustomerListOFOrdersService.getAllOrdersForUser( id );
+    public static List<Order> getAllOrdersForUser( int userId ) {
+        return UserListOfOrdersService.getAllOrdersForUser( userId );
     }
 
     public static Optional<User> getCustomerByID( int id ) {
-        return CustomerListOFOrdersService.getCustomerbyId( id );
+        return UserListOfOrdersService.getCustomerById( id );
     }
 
-    public static List<OrderLineItem> getItems( int id ) {
-        return OrderListOfItemsService.getAllItemsForOrder( id );
+    public static List<OrderLineItem> getItemsByOrderId( int id ) {
+        return OrderListOfItemsService.getItemsByOrderId( id );
     }
 
     public static Optional<Order> getOrderByID( int id ) {
-        return OrderListOfItemsService.getOrderbyId( id );
+        return OrderListOfItemsService.getOrderById( id );
     }
 
 }

@@ -5,7 +5,6 @@ import gov.iti.jets.domain.models.Product;
 import gov.iti.jets.domain.models.User;
 import jakarta.json.Json;
 import jakarta.json.JsonObjectBuilder;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

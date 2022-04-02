@@ -41,7 +41,7 @@ function validation(num) {
 
 function navigate(PageNumber) {
     createXMLHttpRequest();
-    url = "/app/ListAjex?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
+    url = "/app/ListAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
     console.log(url)
     req.open("GET", url, true);
     req.onreadystatechange = handleStateChange;

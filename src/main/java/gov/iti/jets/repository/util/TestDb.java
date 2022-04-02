@@ -4,6 +4,7 @@ import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.*;
+import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.OrderRepository;
 import gov.iti.jets.repository.ProductRepository;
 import gov.iti.jets.repository.ShoppingCartRepository;
@@ -88,7 +89,8 @@ public class TestDb {
 //    }
 //    public static void main( String[] args ) {
 //        List<User> userList= new ArrayList<>();
-//        userList= DomainFacade.getAllUser();
+//        userList= DomainFacade.getPageOfCustomers(1);
+//        System.out.println(userList);
 //        for ( User user:userList) {
 //            System.out.println(user.getFullName());
 //        }
@@ -120,4 +122,15 @@ public class TestDb {
 //        new ProductRepository( em ).findOne( 4 ).get();
 //
 //    }
+//    public static void main( String[] args ) {
+//        EntityManager em = JpaUtil.createEntityManager();
+//        UserRepository userRepository = new UserRepository( em );
+//        List<User> userList= new ArrayList<>();
+//        userList= userRepository.getPage( 5 );
+//        for(User user :userList){
+//            System.out.println(user);
+//        }
+//        em.close();
+//    }
+
 }

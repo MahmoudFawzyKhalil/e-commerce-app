@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet( "/ListAjex" )
+@WebServlet( "/ListAjax" )
 public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
 
     @Override
@@ -25,20 +25,17 @@ public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         int pageNumber = Integer.parseInt( request.getParameter( "pg" ) );
 
-        List<User> userList;
-        userList = DomainFacade.getPageOfCustomers( pageNumber );
+        List<User> userList= DomainFacade.getPageOfCustomers( pageNumber );
         List<String> jsonList = new ArrayList<>();
 
         for ( User user : userList ) {
             jsonList.add( userToJson( user ) );
         }
-
         out.print( jsonList );
     }
 
     private String userToJson( User user ) {
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-        System.out.println(user.getCreditLimitFormatting());
         jsonObjectBuilder.add( "id", user.getId() )
                 .add( "name", user.getFullName() )
                 .add( "email", user.getEmail() )
@@ -47,7 +44,8 @@ public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
                 .add( "birthday", user.getBirthday().toString() )
                 .add( "job", user.getJob() )
                 .add( "creditLimit", user.getCreditLimit() )
-                .add( "creditLimitFormatting", user.getCreditLimitFormatting() );
+                .add( "creditLimitFormatting", user.getCreditLimitFormatted() )
+        ;
         return jsonObjectBuilder.build().toString();
     }
 

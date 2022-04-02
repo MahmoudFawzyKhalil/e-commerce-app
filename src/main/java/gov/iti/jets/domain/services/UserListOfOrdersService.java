@@ -7,21 +7,24 @@ import gov.iti.jets.repository.OrderRepository;
 import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CustomerListOFOrdersService {
-    public static  List<Order> getAllOrdersForUser(int id){
+public class UserListOfOrdersService {
+    public static List<Order> getAllOrdersForUser( int userId ) {
         EntityManager em = JpaUtil.createEntityManager();
         OrderRepository orderRepository = new OrderRepository( em );
-        return orderRepository.findAllByUserId(id);
+        var orders = orderRepository.findAllByUserId( userId );
+        em.close();
+        return orders;
     }
 
-    public static Optional<User> getCustomerbyId( int id ) {
+    public static Optional<User> getCustomerById( int id ) {
         EntityManager em = JpaUtil.createEntityManager();
         UserRepository userRepository = new UserRepository( em );
-        return userRepository.findOne( id );
+        var optionalUser = userRepository.findOne( id );
+        em.close();
+        return optionalUser;
     }
 }
 

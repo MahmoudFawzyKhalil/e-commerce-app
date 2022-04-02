@@ -19,8 +19,7 @@ public class AdminListOfCustomerControllerServlet extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/customer/listOfCustomer.jsp" );
-        DomainFacade.setPageSizeOfCustomers( 5 );
-        request.setAttribute( "pageNumber",DomainFacade.getPageNumberOfCustomers() );
+        request.setAttribute( "pageNumber", DomainFacade.getPageNumberOfCustomers() );
         requestDispatcher.forward( request, response );
     }
 

@@ -3,8 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.models.Product;
-import gov.iti.jets.presentation.viewhelpers.ProductAddNewViewHelper;
-import gov.iti.jets.presentation.viewhelpers.ProductAdminViewHelper;
+import gov.iti.jets.presentation.viewhelpers.ProductEditViewHelper;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -23,14 +22,14 @@ public class ProductEditControllerServlet extends HttpServlet {
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        ProductAdminViewHelper productAdminViewHelper = new ProductAdminViewHelper();
-        productAdminViewHelper.setFailedToAddProduct( false );
+        ProductEditViewHelper productEditViewHelper = new ProductEditViewHelper();
+        productEditViewHelper.setFailedToEditProduct( false );
 
         int id = 0;
 
         if ( request.getParameter( "productId" ) == null ) {
             id = (int) request.getAttribute( "id" );
-            productAdminViewHelper.setFailedToAddProduct( true );
+            productEditViewHelper.setFailedToEditProduct( true );
         } else {
             id = Integer.parseInt( request.getParameter( "productId" ) );
         }
@@ -38,11 +37,11 @@ public class ProductEditControllerServlet extends HttpServlet {
         if ( id != 0 ) {
             Product product = DomainFacade.getProductById( id );
             product.setPrice( (int) ( product.getPrice() / 100 ) );
-            productAdminViewHelper.setProduct( product );
+            productEditViewHelper.setProduct( product );
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher( "/WEB-INF/views/admin/product/editProduct.jsp" );
-        request.setAttribute( "productHelper", productAdminViewHelper );
+        request.setAttribute( "productHelper", productEditViewHelper );
 
 
         requestDispatcher.forward( request, response );
@@ -52,7 +51,7 @@ public class ProductEditControllerServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         Product product;
         int id = 0;
-        ProductAdminViewHelper productAdminViewHelper = new ProductAdminViewHelper();
+        ProductEditViewHelper productEditViewHelper = new ProductEditViewHelper();
         String name = request.getParameter( "nameEdit" );
         String description = request.getParameter( "descriptionEdit" );
         int quantity = Integer.parseInt( request.getParameter( "quantityEdit" ) );
@@ -63,10 +62,10 @@ public class ProductEditControllerServlet extends HttpServlet {
         if ( !request.getParameter( "idEdit" ).isEmpty() ) {
             id = Integer.parseInt( request.getParameter( "idEdit" ) );
         }
-        Product productGetDatabase = DomainFacade.getProductById( id );
+        Product productFromDatabase = DomainFacade.getProductById( id );
 
-        productAdminViewHelper.setFailedToAddProduct( false );
-        request.setAttribute( "productHelper", productAdminViewHelper );
+        productEditViewHelper.setFailedToEditProduct( false );
+        request.setAttribute( "productHelper", productEditViewHelper );
 
         try {
             photo = request.getPart( "productPhotoEdit" );
@@ -80,21 +79,21 @@ public class ProductEditControllerServlet extends HttpServlet {
         if ( photoName != null && !photoName.isEmpty() ) {
             String[] split = photoName.split( "\\." );
             photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
-            product = new Product( id, name, description, photoName, price, quantity, category );
         } else {
-            photoName = productGetDatabase.getImageName();
-            product = new Product( id, name, description, productGetDatabase.getImageName(), price, quantity, category );
+            photoName = productFromDatabase.getImageName();
         }
+        product = new Product( id, name, description, photoName, price, quantity, category );
 
         try {
             DomainFacade.updateProduct( product );
             photo.write( "C:/ecommerce/" + photoName );
-            response.sendRedirect( "/app/admin/products" );
+            response.sendRedirect( request.getContextPath() + "/admin/products" );
         } catch ( RuntimeException e ) {
-            productAdminViewHelper.setFailedToAddProduct( true );
+            productEditViewHelper.setFailedToEditProduct( true );
             request.setAttribute( "id", id );
             doGet( request, response );
         }
+
     }
 
     public String getFileName( Part photo ) {

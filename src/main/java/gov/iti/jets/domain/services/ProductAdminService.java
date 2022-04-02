@@ -1,13 +1,10 @@
 package gov.iti.jets.domain.services;
 
 import gov.iti.jets.domain.models.Product;
-import gov.iti.jets.domain.models.User;
 import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.ProductRepository;
-import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,18 +33,16 @@ public class ProductAdminService {
         em.close();
     }
 
-    public static void main( String[] args ) {
-        ProductAdminService.deleteProduct( 1 );
-    }
-
     public static Product getProductById(int id){
         EntityManager em = JpaUtil.createEntityManager();
         ProductRepository productRepository = new ProductRepository( em );
+        //ToDo
         Product product = productRepository.findOne( id ).get();
+        em.close();
         return product;
     }
 
-    public static List<Product> getProduct(int pageNumber){
+    public static List<Product> getPageOfProduct( int pageNumber){
         EntityManager em = JpaUtil.createEntityManager();
         ProductRepository productRepository = new ProductRepository( em );
         List<Product> productList;
@@ -55,18 +50,12 @@ public class ProductAdminService {
         em.close();
         return productList;
     }
-    public static long getPageNumber(){
+    public static long getNumberOfPagesOfProduct(){
         EntityManager em = JpaUtil.createEntityManager();
         ProductRepository productRepository = new ProductRepository( em );
         long pageNumber = productRepository.getNumberOfPages();
         em.close();
         return pageNumber;
 
-    }
-    public static void setPageSize( int pageSize ) {
-        EntityManager em = JpaUtil.createEntityManager();
-        ProductRepository productRepository = new ProductRepository( em );
-        productRepository.setPageSize( pageSize );
-        em.close();
     }
 }

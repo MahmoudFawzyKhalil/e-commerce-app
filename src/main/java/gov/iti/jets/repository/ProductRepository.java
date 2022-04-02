@@ -1,14 +1,14 @@
 package gov.iti.jets.repository;
 
 import gov.iti.jets.domain.models.Product;
-import gov.iti.jets.domain.models.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class ProductRepository extends AbstractRepository<Product> {
-    private static int pageSize =0;
+    private final static int PAGE_SIZE =5;
 
     public ProductRepository(EntityManager entityManager) {
         super(entityManager);
@@ -16,10 +16,10 @@ public class ProductRepository extends AbstractRepository<Product> {
     }
 
     public List<Product> getPageOfProduct( int pageNumber ) {
-        Query query = entityManager.createQuery( "FROM Product " );
+        TypedQuery<Product> query = entityManager.createQuery( "FROM Product " ,Product.class);
 
-        return query.setFirstResult( ( pageNumber - 1 ) * pageSize )
-                .setMaxResults( pageSize )
+        return query.setFirstResult( ( pageNumber - 1 ) * PAGE_SIZE )
+                .setMaxResults( PAGE_SIZE )
                 .getResultList();
     }
 
@@ -28,12 +28,9 @@ public class ProductRepository extends AbstractRepository<Product> {
         Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p" );
         long countResult = (long) queryTotal.getSingleResult();
 
-        long finalPage = ( countResult % pageSize > 0 ? 1 : 0 );
+        long finalPage = ( countResult % PAGE_SIZE > 0 ? 1 : 0 );
 
-        return ( countResult / pageSize ) + finalPage;
-    }
-    public void setPageSize( int size ) {
-        pageSize = size;
+        return ( countResult / PAGE_SIZE ) + finalPage;
     }
 
 

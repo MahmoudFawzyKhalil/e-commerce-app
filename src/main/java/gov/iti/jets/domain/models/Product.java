@@ -27,8 +27,6 @@ public class Product {
 
     @Min(0) int quantity;
 
-    String priceFormatting;
-
     @NotNull Category category;
 
     protected Product() {
@@ -51,7 +49,6 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
         this.category = category;
-        setPriceFormatting( price );
     }
     public Product(String name, String description, String imageName, long price, int quantity, Category category) {
         this.name = name;
@@ -60,16 +57,10 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
         this.category = category;
-        setPriceFormatting( price );
-
-    }
-
-    public void setPriceFormatting( long price ) {
-        this.priceFormatting = "EGP "+((int) price/100)+".00";
     }
 
     public String getPriceFormatting() {
-        return priceFormatting;
+        return "EGP "+((int) price/100)+".00";
     }
 
     public int getId() {

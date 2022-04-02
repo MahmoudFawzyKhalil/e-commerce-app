@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--@elvariable id="helper" type="gov.iti.jets.presentation.viewhelpers.ProductAddNewViewHelper"--%>
+<%--@elvariable id="productHelper" type="gov.iti.jets.presentation.viewhelpers.ProductEditViewHelper"--%>
 <html lang="en">
 
 <head>
@@ -290,7 +290,7 @@ plugins: [
 </section>
 
 <section id="feedback" class="mt-3">
-    <c:if test="${productHelper.failedToAddProduct}">
+    <c:if test="${productHelper.failedToEditProduct}">
         <div id="failDivEdit" class="rounded-md bg-red-50 p-4 mt-3">
 
             <div class="flex">
