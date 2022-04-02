@@ -191,30 +191,6 @@ public class DatabasePopulator {
 
         // CREATE ORDERS ************************
         List<Order> orders = new ArrayList<>();
-        User user = new UserRepository( em ).findOne( 74 ).get();
-
-        ShoppingCart shoppingCartt = new ShoppingCart();
-        user.setShoppingCart( shoppingCartt );
-        shoppingCarts.add( shoppingCartt );
-
-        shoppingCartt.addCartLineItem( new CartLineItem( product3, 10 ) );
-        shoppingCartt.addCartLineItem( new CartLineItem( product4, 2 ) );
-        shoppingCartt.addCartLineItem( new CartLineItem( product7, 20 ) );
-        shoppingCartt.addCartLineItem( new CartLineItem( product10, 11 ) );
-
-
-        // PERSIST SHOPPING CARTS ************************
-        ShoppingCartRepository scr = new ShoppingCartRepository( em );
-        em.getTransaction().begin();
-        shoppingCarts.forEach( scr::create );
-        em.getTransaction().commit();
-
-
-        Order order1 = new Order( user );
-
-        Order order2 = new Order( user );
-
-        Order order3 = new Order( user );
 
         Order order4 = new Order( user4 );
 
@@ -228,9 +204,6 @@ public class DatabasePopulator {
 
         Order order9 = new Order( user9 );
 
-        orders.add( order1 );
-        orders.add( order2 );
-        orders.add( order3 );
         orders.add( order4 );
         orders.add( order5 );
         orders.add( order6 );
@@ -238,15 +211,11 @@ public class DatabasePopulator {
         orders.add( order8 );
         orders.add( order9 );
 
-//         PERSIST ORDERS ************************
+        // PERSIST ORDERS ************************
         OrderRepository or = new OrderRepository( em );
         em.getTransaction().begin();
         orders.forEach( or::create );
         em.getTransaction().commit();
-
-//        System.out.println( emf.createEntityManager().find( Address.class, 5 ) );
-//        System.out.println( new UserRepository( em ).findOne( 4 ).get() );
-    //    System.out.println( new OrderRepository( em ).findAll() );
 
     }
 }

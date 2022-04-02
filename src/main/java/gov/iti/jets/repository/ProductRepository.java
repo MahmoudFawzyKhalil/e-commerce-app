@@ -24,6 +24,7 @@ public class ProductRepository extends AbstractRepository<Product> {
         this.setClazz( Product.class );
     }
 
+    // TODO change to not get deleted products
     public List<Product> getPageOfProduct( int pageNumber ) {
         TypedQuery<Product> query = entityManager.createQuery( "FROM Product ", Product.class );
 
@@ -47,6 +48,7 @@ public class ProductRepository extends AbstractRepository<Product> {
     }
 
 
+    // TODO change to not get deleted products
     public List<Product> findProductsByNameOrCategory( String productNameQuery, Category productCategory ) {
         TypedQuery<Product> queryByName =
                 entityManager.createQuery( "SELECT p FROM Product p WHERE p.name LIKE :name", Product.class );
@@ -79,6 +81,7 @@ public class ProductRepository extends AbstractRepository<Product> {
         return products;
     }
 
+    // TODO change to not get deleted products
     public List<Product> getPage( int pageNumber ) {
         TypedQuery<Product> query = entityManager.createQuery( "SELECT p FROM Product p ORDER BY p.id ASC", Product.class );
 

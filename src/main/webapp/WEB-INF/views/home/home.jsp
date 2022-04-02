@@ -97,7 +97,6 @@
                                    class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                                    role="menuitem">Profile
                                 </a>
-                                <%-- TODO suspicious /logout spring security stuff--%>
                                 <form method="post" action="<c:url value="/logout"/>">
                                     <button name="submit" value="submit" type="submit"
                                             class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -207,7 +206,7 @@
                         <p class="mt-1 text-sm text-gray-300">Discover our collection of precious chocolates.</p>
                     </div>
                     <a id="viewTheCollectionButton"
-                       class="flex items-center justify-center flex-shrink-0 px-4 py-3 mt-6 text-base font-medium text-white bg-white bg-opacity-0 border border-white border-opacity-25 rounded-md hover:bg-opacity-10 sm:mt-0 sm:ml-8 lg:ml-0 lg:w-full">View
+                       class="cursor-pointer flex items-center justify-center flex-shrink-0 px-4 py-3 mt-6 text-base font-medium text-white bg-white bg-opacity-0 border border-white border-opacity-25 rounded-md hover:bg-opacity-10 sm:mt-0 sm:ml-8 lg:ml-0 lg:w-full">View
                         the collection</a>
                 </div>
             </div>
