@@ -52,9 +52,9 @@ public class UserRegistrationService {
         Optional<User> optionalUser = ur.findUserByConfirmationId( confirmationId );
         if ( optionalUser.isPresent() ) {
             User user = optionalUser.get();
-            user.setConfirmedAccount( true );
 
             if ( !user.isConfirmedAccount() ) {
+                user.setConfirmedAccount( true );
                 tx.begin();
                 ur.update( user );
                 tx.commit();

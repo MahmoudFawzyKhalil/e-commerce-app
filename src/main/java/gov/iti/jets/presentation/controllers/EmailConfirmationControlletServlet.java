@@ -27,9 +27,9 @@ public class EmailConfirmationControlletServlet extends HttpServlet {
         boolean isConfirmed = DomainFacade.confirmUserRegistration( confirmationId );
 
         if ( isConfirmed ) {
-            request.getRequestDispatcher( "/WEB-INF/views/status/success.jsp" ).forward( request, response );
+            request.getRequestDispatcher( "/WEB-INF/views/emailConfirmationStatus/success.jsp" ).forward( request, response );
         } else {
-            request.getRequestDispatcher( "/WEB-INF/views/status/failure.jsp" ).forward( request, response );
+            request.getRequestDispatcher( "/WEB-INF/views/emailConfirmationStatus/failure.jsp" ).forward( request, response );
         }
 
     }
