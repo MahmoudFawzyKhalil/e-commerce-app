@@ -63,6 +63,28 @@ public class User {
     @OneToOne( mappedBy = "owner" )
     private ShoppingCart shoppingCart;
 
+    private boolean confirmedAccount = false;
+
+    private String confirmationId;
+
+    public String getConfirmationId() {
+        return confirmationId;
+    }
+
+    public void setConfirmationId( String confirmationId ) {
+        this.confirmationId = confirmationId;
+    }
+
+
+    public boolean isConfirmedAccount() {
+        return confirmedAccount;
+    }
+
+    public void setConfirmedAccount( boolean confirmedAccount ) {
+        this.confirmedAccount = confirmedAccount;
+    }
+
+
     protected User() {
 
     }
@@ -83,7 +105,7 @@ public class User {
 
     // TODO remove EGP and add it to JSP
     public String getCreditLimitFormatted() {
-        return "EGP "+creditLimit/100+".00";
+        return "EGP " + creditLimit / 100 + ".00";
     }
 
 
@@ -176,7 +198,7 @@ public class User {
         this.shoppingCart = shoppingCart;
     }
 
-    public String getAddressFormatted(){
+    public String getAddressFormatted() {
         return this.address.getStreet() + ", " + this.address.getCity();
     }
 
