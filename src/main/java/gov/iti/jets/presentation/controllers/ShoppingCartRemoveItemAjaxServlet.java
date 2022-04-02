@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet( "/cart/remove" )
-public class ShoppingCartRemoveItemControllerServlet extends HttpServlet {
+public class ShoppingCartRemoveItemAjaxServlet extends HttpServlet {
 
     private final Jsonb jsonb = JsonbBuilder.create();
 
@@ -31,8 +31,9 @@ public class ShoppingCartRemoveItemControllerServlet extends HttpServlet {
 
             out.write( jsonb.toJson( sessionShoppingCart.getTotalFormatted() ) );
 
-        } catch ( NumberFormatException nfe ) {
-            nfe.printStackTrace();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            response.sendError( 400 );
         }
 
     }

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet( "/cart/update" )
-public class ShoppingCartUpdateQuantityControllerServlet extends HttpServlet {
+public class ShoppingCartUpdateQuantityAjaxServlet extends HttpServlet {
     private final Jsonb jsonb = JsonbBuilder.create();
 
     @Override
@@ -31,8 +31,9 @@ public class ShoppingCartUpdateQuantityControllerServlet extends HttpServlet {
             sessionShoppingCart.updateCartLineItemProductQuantity( productToUpdateId, productNewQuantity );
 
             out.write( jsonb.toJson( sessionShoppingCart.getTotalFormatted() ) );
-        } catch ( NumberFormatException nfe ) {
-            nfe.printStackTrace();
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            response.sendError( 400 );
         }
 
     }

@@ -12,8 +12,6 @@ cartProductList.addEventListener('click', e => {
         return
     }
 
-    // console.log(targetId, " remove")
-
     handleRemoveProductFromCart(targetId)
 })
 
@@ -26,9 +24,6 @@ function handleRemoveProductFromCart(productId) {
 
     const productElement = document.getElementById(`${productId}`)
 
-    // console.log("inside handle remove")
-    // console.log(productElement)
-
     productElement.classList.add('hidden');
 
     removeProductFromCart(productId).then(json => orderTotal.innerText = `EGP ${json}`)
@@ -38,14 +33,9 @@ function handleRemoveProductFromCart(productId) {
 
 cartProductList.addEventListener('focusout', e => {
 
-    console.log("unblurred")
-
     const targetName = e.target.name
     if (targetName === "quantity") {
-        console.log("targetName inside if " + targetName)
         const targetProductId = e.target.dataset.quantityid
-        console.log("productId" + targetProductId)
-        console.log(e.target.value)
         const targetProductQuantity = e.target.value
         handleUpdateProductQuantity(targetProductId, targetProductQuantity)
     }

@@ -14,11 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 public class DomainFacade {
-    public  static void deleteProduct (int productId){ ProductAdminService.deleteProduct( productId );}
+    public static void deleteProduct( int productId ) {
+        ProductAdminService.deleteProduct( productId );
+    }
 
-    public static Product updateProduct (Product product) { return  ProductAdminService.updateProduct( product );}
+    public static Product updateProduct( Product product ) {
+        return ProductAdminService.updateProduct( product );
+    }
 
-    public static Product getProductById (int id) {return ProductAdminService.getProductById( id );}
+    public static Product getProductById( int id ) {
+        return ProductAdminService.getProductById( id );
+    }
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
@@ -50,11 +56,6 @@ public class DomainFacade {
         return ProductService.getProductsByNameAndCategory( productNameQuery, productCategory );
     }
 
-    public static Optional<Product> getProductById( int productId ) {
-        return ProductService.getProductById( productId );
-    }
-
-
     public static void updateUser( User user ) {
         UserUpdateProfileService.updateUser( user );
     }
@@ -74,6 +75,7 @@ public class DomainFacade {
     public static List<User> getPageOfCustomers( int pageNumber ) {
         return AdminListOfCustomersService.getPage( pageNumber );
     }
+
     public static long getPageNumberOfCustomers() {
         return AdminListOfCustomersService.getNumberOfPages();
     }

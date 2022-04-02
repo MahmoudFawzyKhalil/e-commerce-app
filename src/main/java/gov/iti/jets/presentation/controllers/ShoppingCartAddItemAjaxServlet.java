@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @WebServlet( "/cart/add" )
-public class ShoppingCartAddItemControllerServlet extends HttpServlet {
+public class ShoppingCartAddItemAjaxServlet extends HttpServlet {
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
@@ -33,16 +33,16 @@ public class ShoppingCartAddItemControllerServlet extends HttpServlet {
         try {
 
             int parsedAddedProductId = Integer.parseInt( addedProductId );
-            Optional<Product> addedProduct = DomainFacade.getProductById( parsedAddedProductId );
+            Optional<Product> addedProduct = DomainFacade.findProductById( parsedAddedProductId );
 
             if ( addedProduct.isPresent() ) {
                 CartLineItem addedCartLineItem = new CartLineItem( addedProduct.get(), 1 );
                 shoppingCart.addCartLineItem( addedCartLineItem );
                 System.out.println( shoppingCart.getCartLineItemsUnmodifiable() );
             }
-        } catch ( NumberFormatException nfe ) {
-            nfe.printStackTrace();
-            response.sendRedirect( "/home" );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            response.sendError( 400 );
         }
     }
 
