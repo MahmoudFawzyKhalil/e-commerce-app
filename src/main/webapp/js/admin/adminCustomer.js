@@ -49,9 +49,11 @@ function navigate(PageNumber) {
 }
 
 function handleStateChange() {
+    console.log("feehh ehh")
     if (req.readyState === 4 && req.status === 200) {
         let list = JSON.parse(req.responseText);
         list.forEach(user => {
+            console.log("hey")
             let address = JSON.parse(user.address)
             row += ` <tr>
                         <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${user.id}
@@ -62,7 +64,7 @@ function handleStateChange() {
                         <td class="px-2 py-2 text-sm text-gray-500 ">${address.street}, ${address.city}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.birthday}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimit}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimitFormatting}</td>
                         <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
                             <a href='/app/admin/customers/customer?id=${user.id}' class="text-indigo-600 hover:text-indigo-900">View</a>
                         </td>

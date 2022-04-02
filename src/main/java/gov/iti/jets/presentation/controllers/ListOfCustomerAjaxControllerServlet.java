@@ -38,19 +38,22 @@ public class ListOfCustomerAjaxControllerServlet extends HttpServlet {
 
     private String userToJson( User user ) {
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-        jsonObjectBuilder.add( "id",user.getId() )
+        System.out.println(user.getCreditLimitFormatting());
+        jsonObjectBuilder.add( "id", user.getId() )
                 .add( "name", user.getFullName() )
-                .add( "email" ,user.getEmail())
+                .add( "email", user.getEmail() )
                 .add( "phoneNumber", user.getPhoneNumber() )
                 .add( "address", addressToJson( user.getAddress() ) )
-                .add( "birthday", user.getBirthday().toString())
-                .add( "job",user.getJob() )
-                .add( "creditLimit",user.getCreditLimit() );
+                .add( "birthday", user.getBirthday().toString() )
+                .add( "job", user.getJob() )
+                .add( "creditLimit", user.getCreditLimit() )
+                .add( "creditLimitFormatting", user.getCreditLimitFormatting() );
         return jsonObjectBuilder.build().toString();
     }
+
     private String addressToJson( Address address ) {
         JsonObjectBuilder jsonObjectBuilder = Json.createObjectBuilder();
-        jsonObjectBuilder.add( "city",address.getCity() )
+        jsonObjectBuilder.add( "city", address.getCity() )
                 .add( "street", address.getStreet() );
         return jsonObjectBuilder.build().toString();
     }

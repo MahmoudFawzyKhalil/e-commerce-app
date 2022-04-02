@@ -117,7 +117,7 @@ plugins: [
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form  id="productEditForm" action="<c:url value="/admin/products/edit"/>" enctype="multipart/form-data" method="POST">
-                        <input type="hidden" value="${id}" id="idEdit" name="idEdit">
+                        <input type="hidden" value="${productHelper.product.id}" id="idEdit" name="idEdit">
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 bg-white sm:col-span-4">
@@ -203,7 +203,7 @@ plugins: [
                             </button>
                             <button id="submitButtonEdit" type="submit"
                                     class="inline-flex justify-center px-4 py-2 ml-3 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Add
+                                Edit
                             </button>
 
                             <svg id="spinner" class="hidden w-20 inline-flex justify-center px-4 py-2 ml-3 "
@@ -290,40 +290,6 @@ plugins: [
 </section>
 
 <section id="feedback" class="mt-3">
-    <c:if test="${productHelper.successfullyAddedProduct}">
-        <input hidden id="" value="">
-        <div id="successDivEdit" class="rounded-md bg-green-50 p-4">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <!-- Heroicon name: solid/check-circle -->
-                    <svg class="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                         fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <p class="text-sm font-medium text-green-800">Successfully Added</p>
-                </div>
-                <div class="ml-auto pl-3">
-                    <div class="-mx-1.5 -my-1.5">
-                        <button type="button" id="successDismissEdit" onclick="dismissSuccessDivEdit()"
-                                class="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
-                            <span class="sr-only">Dismiss</span>
-                            <!-- Heroicon name: solid/x -->
-                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                 fill="currentColor" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </c:if>
     <c:if test="${productHelper.failedToAddProduct}">
         <div id="failDivEdit" class="rounded-md bg-red-50 p-4 mt-3">
 

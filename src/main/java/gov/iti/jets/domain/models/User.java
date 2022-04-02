@@ -60,6 +60,8 @@ public class User {
     @OneToOne( mappedBy = "owner" )
     private ShoppingCart shoppingCart;
 
+    private String creditLimitFormatting;
+
     protected User() {
 
     }
@@ -75,8 +77,17 @@ public class User {
         this.job = job;
         this.role = role;
         this.address = address;
+        setCreditLimitFormatting( creditLimit );
     }
 
+
+    public String getCreditLimitFormatting() {
+        return creditLimitFormatting;
+    }
+
+    public void setCreditLimitFormatting( long creditLimit ) {
+        this.creditLimitFormatting = "EGP "+creditLimit+".00";
+    }
 
     public String getFullName() {
         return firstName + " " + lastName;

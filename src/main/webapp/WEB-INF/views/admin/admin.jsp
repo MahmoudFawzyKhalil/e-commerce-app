@@ -95,7 +95,7 @@
     <!--   Cards Section  -->
     <section id="Cards" class="flex justify-center">
       <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 mb-10">Managing The Website</h2>
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 mb-10">Manage The Website</h2>
         <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-1 lg:grid-cols-3 xl:gap-x-8">
           <div class="group relative">
             <div
@@ -108,7 +108,7 @@
                 <h3 class="text-xl text-gray-700 hover:text-black">
                   <a href="admin/customers" >
                     <span aria-hidden="true" class="absolute inset-0"></span>
-                    Customers
+                    Manage Customers
                   </a>
                 </h3>
               </div>

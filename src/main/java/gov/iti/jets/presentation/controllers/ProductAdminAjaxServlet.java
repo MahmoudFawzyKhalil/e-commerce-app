@@ -38,6 +38,7 @@ public class ProductAdminAjaxServlet extends HttpServlet {
                 .add( "description" ,product.getDescription())
                 .add( "quantity", product.getQuantity() )
                 .add( "price", product.getPrice())
+                .add( "priceFormatting", product.getPriceFormatting())
                 .add( "category",product.getCategory().name() );
         return jsonObjectBuilder.build().toString();
     }
