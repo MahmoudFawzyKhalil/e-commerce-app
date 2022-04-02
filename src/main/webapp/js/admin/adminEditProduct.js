@@ -1,12 +1,13 @@
 let imageInput = document.getElementById("productPhotoEdit");
 let uploaded_image = "";
 let invalidElements = new Set();
+let changedElements = new Set();
 let submitButtonEdit = document.getElementById("submitButtonEdit")
 let cancelButtonEdit = document.getElementById("cancelButtonEdit")
 let name = document.getElementById("nameEdit")
 let description = document.getElementById("descriptionEdit")
 let category = document.getElementById("categoryEdit")
-let categoryValue = document.getElementById("valueOfCategory")
+let categoryValueFromInputField = document.getElementById("valueOfCategory")
 let image = document.getElementById("imageOfProductEdit")
 let failDiv = document.getElementById("failDivEdit")
 let nameValidation = document.getElementById("nameValidationEdit")
@@ -14,22 +15,25 @@ let quantity = document.getElementById("quantityEdit")
 let price = document.getElementById("priceEdit")
 let descriptionValidation = document.getElementById("descriptionValidationEdit")
 let spinner = document.getElementById("spinner");
-const descriptionValue = description.value.length
-const nameValue = name.value.length
-let changeflag = false
+const descriptionValue = description.value
+const nameValue = name.value
+const priceValue = price.value
+const quantityValue = quantity.value
+const categoryValue = categoryValueFromInputField.value
 
-category.value = categoryValue.value
+
+category.value = categoryValue
 
 
-validation(false)
+validation()
 
 imageInput.addEventListener("change", function () {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
         uploaded_image = reader.result;
         image.src = `${uploaded_image}`;
-        changeflag = true;
-        validation(changeflag);
+        changedElements.add(image)
+        validation();
     });
     reader.readAsDataURL(this.files[0]);
 })
@@ -39,27 +43,57 @@ function dismissFailsDivEdit() {
 }
 
 name.addEventListener("change",ev => {
-    changeflag = true
-    validation(changeflag)
+    if(name.value !== nameValue){
+        changedElements.add(name)
+        validation()
+    }else {
+        changedElements.delete(name)
+        validation()
+    }
 })
 description.addEventListener("change",ev => {
-    changeflag = true
-    validation(changeflag)
+    if(description.value !== descriptionValue){
+        changedElements.add(description)
+        validation()
+    }
+    else {
+        changedElements.delete(description)
+        validation()
+
+    }
 })
 quantity.addEventListener("change",ev => {
-    console.log("quantityEvent")
-    changeflag = true
-    validation(changeflag)
+    if(quantity.value !== quantityValue){
+        changedElements.add(quantity)
+        validation()
+
+    }else {
+        changedElements.delete(quantity)
+        validation()
+
+    }
 })
 price.addEventListener("change",ev => {
-    console.log("priceEvent")
-    changeflag = true
-    validation(changeflag)
+    if(price.value !== priceValue){
+        changedElements.add(price)
+        validation()
+
+    }else {
+        changedElements.delete(price)
+        validation()
+
+    }
 })
 category.addEventListener("change",ev => {
-    console.log("CategoryEvent")
-    changeflag = true
-    validation(changeflag)
+    if(category.value !== categoryValue){
+        changedElements.add(category)
+        validation()
+
+    }else {
+        changedElements.delete(category)
+        validation()
+
+    }
 })
 
 name.addEventListener('blur', (e) => {
@@ -69,11 +103,11 @@ name.addEventListener('blur', (e) => {
         if(!invalidElements.has(name)){
             invalidElements.add(name)
         }
-        validation(false)
+        validation()
     } else {
         invalidElements.delete(name);
         nameValidation.classList.add("hidden")
-        validation(changeflag)
+        validation()
     }
 })
 description.addEventListener("blur", (e) => {
@@ -83,11 +117,11 @@ description.addEventListener("blur", (e) => {
         if(!invalidElements.has(description)){
             invalidElements.add(description)
         }
-        validation(false)
+        validation()
     } else {
         invalidElements.delete(description);
         descriptionValidation.classList.add("hidden")
-        validation(changeflag)
+        validation()
     }
 })
 quantity.addEventListener('blur', (e) => {
@@ -116,7 +150,7 @@ submitButtonEdit.addEventListener("click", (e) => {
 
 //VALIDATED
 
-function validation(change) {
+function validation() {
 
     console.log(invalidElements.size)
     if(invalidElements.size > 0){
@@ -124,12 +158,10 @@ function validation(change) {
         submitButtonEdit.classList.add("hidden")
     }
     else{
-        console.log("in else")
-        if(change){
-            console.log("in sec if")
+        console.log("chabge"+changedElements.size)
+        if(changedElements.size>0){
             submitButtonEdit.classList.remove("hidden")
         }else {
-            console.log("in sec else    ")
             submitButtonEdit.classList.add("hidden")
         }
     }

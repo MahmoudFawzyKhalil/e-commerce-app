@@ -157,6 +157,7 @@ plugins: [
                                       id="nameValidation">This field is invalid</span>
                             </div>
 
+    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="description"
@@ -169,6 +170,7 @@ plugins: [
                                       id="descriptionValidation">This field is invalid</span>
                             </div>
 
+    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
@@ -360,6 +362,7 @@ plugins: [
     </c:if>
 </section>
 
+    
 
 <section class="mt-auto" id="footer">
     <footer class="bg-white">
