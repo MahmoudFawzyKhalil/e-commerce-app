@@ -4,7 +4,8 @@ let pageNumber = document.getElementById("pageNumber");
 let currentPageNumber = document.getElementById("currentPageNumber");
 let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
-
+let tableParent = document.getElementById("tableParent");
+let msgDiv="";
 let table = document.getElementById("tbody");
 let row = "";
 let deletedId = 0
@@ -22,7 +23,9 @@ nextButton.addEventListener("click", (e) => {
 })
 
 function validation(num) {
-    console.log(num)
+    console.log(pageNumber.value === "1");
+    console.log(pageNumber.value == "0");
+    console.log(pageNumber.value )
     if (num === "1") {
         previousButton.classList.add("hidden")
         previousButton.classList.add("disabled")
@@ -30,7 +33,7 @@ function validation(num) {
         previousButton.classList.remove("hidden")
         previousButton.classList.remove("disabled")
     }
-    if (num === pageNumber.value) {
+    if (num === pageNumber.value || pageNumber.value === "0") {
         nextButton.classList.add('hidden')
         nextButton.classList.add("disabled")
     } else {
@@ -72,6 +75,13 @@ function handleStateChange() {
             `
             // href="<c:url value="/admin/products/add" />"
         });
+        if(list.length == 0){
+            console.log("null")
+            msgDiv= `<h4 class="text-center">No Products</h4>`
+            tableParent.innerHTML = msgDiv;
+            msgDiv="";
+        }
+
         table.innerHTML = row;
         validation(currentPageNumber.value)
         row = "";
