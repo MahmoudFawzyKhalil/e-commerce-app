@@ -80,10 +80,8 @@ public class User {
         this.address = address;
     }
 
-
-    // TODO remove EGP and add it to JSP
     public String getCreditLimitFormatted() {
-        return "EGP "+creditLimit/100+".00";
+        return creditLimit/100+"";
     }
 
 

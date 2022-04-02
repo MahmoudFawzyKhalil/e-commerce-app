@@ -33,11 +33,10 @@ public class ProductAdminService {
         em.close();
     }
 
-    public static Product getProductById(int id){
+    public static Optional<Product> getProductById( int id){
         EntityManager em = JpaUtil.createEntityManager();
         ProductRepository productRepository = new ProductRepository( em );
-        //ToDo
-        Product product = productRepository.findOne( id ).get();
+        Optional<Product> product = productRepository.findOne( id );
         em.close();
         return product;
     }

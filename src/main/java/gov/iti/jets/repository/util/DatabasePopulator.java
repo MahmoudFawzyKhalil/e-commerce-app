@@ -191,6 +191,11 @@ public class DatabasePopulator {
 
         // CREATE ORDERS ************************
         List<Order> orders = new ArrayList<>();
+        Order order1 = new Order( user1 );
+
+        Order order2 = new Order( user2 );
+
+        Order order3 = new Order( user3 );
 
         Order order4 = new Order( user4 );
 
@@ -204,6 +209,9 @@ public class DatabasePopulator {
 
         Order order9 = new Order( user9 );
 
+        orders.add( order1 );
+        orders.add( order2 );
+        orders.add( order3 );
         orders.add( order4 );
         orders.add( order5 );
         orders.add( order6 );
