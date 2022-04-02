@@ -39,8 +39,23 @@ function handleRemoveProductFromCart(productId) {
 cartProductList.addEventListener('focusout', e => {
 
     console.log("unblurred")
-    console.log("name " + e.target.name)
-    console.log("id " + e.target.dataset.quantityid)
-    
 
+    const targetName = e.target.name
+    if (targetName === "quantity") {
+        console.log("targetName inside if " + targetName)
+        const targetProductId = e.target.dataset.quantityid
+        console.log("productId" + targetProductId)
+        console.log(e.target.value)
+        const targetProductQuantity = e.target.value
+        handleUpdateProductQuantity(targetProductId, targetProductQuantity)
+    }
 })
+
+async function updateProductQuantity(productId, productQuantity) {
+    const result = await fetch(`/app/cart/update?id=${productId}&quantity=${productQuantity}`)
+    return result.json()
+}
+
+function handleUpdateProductQuantity(productId, productQuantity) {
+    updateProductQuantity(productId, productQuantity).then(json => orderTotal.innerText = `EGP ${json}`)
+}
