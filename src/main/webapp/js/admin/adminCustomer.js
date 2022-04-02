@@ -4,7 +4,8 @@ let pageNumber = document.getElementById("pageNumber");
 let currentPageNumber = document.getElementById("currentPageNumber");
 let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
-
+let tableParent = document.getElementById("tableParent");
+let msgDiv="";
 let table = document.getElementById("tbody");
 let row = "";
 
@@ -21,6 +22,7 @@ nextButton.addEventListener("click", (e) => {
 })
 
 function validation(num) {
+    console.log(pageNumber.value === "1")
     if (num === "1") {
         previousButton.classList.add("hidden")
         previousButton.classList.add("disabled")
@@ -28,7 +30,7 @@ function validation(num) {
         previousButton.classList.remove("hidden")
         previousButton.classList.remove("disabled")
     }
-    if (num === pageNumber.value || pageNumber.value === "1") {
+    if (num === pageNumber.value || pageNumber.value === "0") {
         nextButton.classList.add('hidden')
         nextButton.classList.add("disabled")
     } else {
@@ -70,6 +72,12 @@ function handleStateChange() {
                     </tr>
             `
         });
+        if(list.length == 0){
+            console.log("null")
+            msgDiv= `<h4 class="text-center">No Customers</h4>`
+            tableParent.innerHTML = msgDiv;
+            msgDiv="";
+        }
         table.innerHTML = row;
         validation(currentPageNumber.value)
         row = "";
