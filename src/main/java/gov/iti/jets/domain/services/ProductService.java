@@ -25,6 +25,15 @@ public class ProductService {
         return products;
     }
 
+    public static Optional<Product> getProductById( int productId ) {
+        var em = JpaUtil.createEntityManager();
+        ProductRepository pr = new ProductRepository( em );
+
+        Optional<Product> product = pr.findOne( productId );
+        em.close();
+        return product;
+    }
+
     public static Optional<Product> findProductById( int productId ) {
         var em = JpaUtil.createEntityManager();
         ProductRepository pr = new ProductRepository( em );

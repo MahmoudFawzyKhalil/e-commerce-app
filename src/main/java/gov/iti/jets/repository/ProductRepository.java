@@ -33,7 +33,6 @@ public class ProductRepository extends AbstractRepository<Product> {
                 .getResultList();
     }
 
-
     public long getNumberOfPages() {
         Query queryTotal = entityManager.createQuery( "SELECT COUNT(p.id) FROM Product p" );
         long countResult = (long) queryTotal.getSingleResult();
@@ -79,6 +78,15 @@ public class ProductRepository extends AbstractRepository<Product> {
         }
 
         return products;
+    }
+
+    public Product findProductById( long productId ) {
+        TypedQuery<Product> queryById = entityManager.createQuery( "SELECT p FROM Product p WHERE p.id = :productId ", Product.class );
+
+        Product product = queryById.setParameter( "productId", productId ).getSingleResult();
+
+
+        return product;
     }
 
     // TODO change to not get deleted products

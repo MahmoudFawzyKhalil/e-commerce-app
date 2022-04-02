@@ -8,6 +8,7 @@ import gov.iti.jets.domain.models.User;
 import gov.iti.jets.domain.services.*;
 
 import gov.iti.jets.domain.models.Product;
+import gov.iti.jets.domain.services.ProductAddNewService;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,6 +49,11 @@ public class DomainFacade {
     public static List<Product> getProductsByNameAndCategory( String productNameQuery, Category productCategory ) {
         return ProductService.getProductsByNameAndCategory( productNameQuery, productCategory );
     }
+
+    public static Optional<Product> getProductById( int productId ) {
+        return ProductService.getProductById( productId );
+    }
+
 
     public static void updateUser( User user ) {
         UserUpdateProfileService.updateUser( user );
