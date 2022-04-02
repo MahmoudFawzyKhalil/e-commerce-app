@@ -135,29 +135,22 @@
         <div class="w-full max-w-md space-y-8">
             <div>
                 <img class="w-32 mx-auto" src="<c:url value="/img/common/logo.png"/>" alt="Workflow">
-                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Failed to confirm! 🙅‍♀️</h2>
+                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">We sent you an email!</h2>
             </div>
 
             <div>
                 <a href="<c:url value="/confirm"/>"
                    class="relative flex justify-center px-4 py-2 text-xl font-medium text-indigo-600 underline  hover:text-indigo-800">
-                    Click here to try again
+                    Click here to confirm
                 </a>
             </div>
-
-            <div>
-                <a href="<c:url value="/confirm/resend"/>"
-                   class="relative flex justify-center px-4 py-2 text-xl font-medium text-indigo-600 underline  hover:text-indigo-800">
-                    Click here to resend email
-                </a>
-            </div>
-
 
         </div>
     </div>
 </section>
 
 <!-- FOOTER -->
+
 <section class="mt-auto" id="footer">
     <footer class="bg-white">
         <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">

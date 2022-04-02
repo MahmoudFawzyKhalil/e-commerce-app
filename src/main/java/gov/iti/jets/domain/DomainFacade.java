@@ -99,4 +99,8 @@ public class DomainFacade {
     public static boolean confirmUserRegistration( String confirmationId ) {
         return UserRegistrationService.confirmUserRegistration( confirmationId );
     }
+
+    public static boolean resendConfirmationEmail( String email ) {
+        return UserRegistrationService.resendConfirmationEmail( email );
+    }
 }

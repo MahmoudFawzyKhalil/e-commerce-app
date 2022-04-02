@@ -66,4 +66,19 @@ public class UserRegistrationService {
 
         return confirmed;
     }
+
+    public static boolean resendConfirmationEmail( String email ) {
+        EntityManager em = JpaUtil.createEntityManager();
+        UserRepository ur = new UserRepository( em );
+        EntityTransaction tx = em.getTransaction();
+        boolean emailSent = false;
+
+        Optional<User> optionalUser = ur.findUserByEmail( email );
+        if ( optionalUser.isPresent() ) {
+            User user = optionalUser.get();
+            sendConfirmationEmail( user );
+            emailSent = true;
+        }
+        return emailSent;
+    }
 }
