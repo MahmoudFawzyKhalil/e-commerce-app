@@ -10,7 +10,8 @@ public class CartLineItem {
     @GeneratedValue
     private int id;
 
-    @ManyToOne( cascade = CascadeType.ALL )
+    @ManyToOne
+    // TODO I removed CascadeType.ALL from this and OrderLineItem, did anyone need it?
     private Product product;
 
     @Min( 0 )
@@ -73,5 +74,15 @@ public class CartLineItem {
     public String getTotalCostFormatted() {
         long totalCost = getTotalCost();
         return "" + totalCost / 100 + "." + totalCost % 100;
+    }
+
+    public boolean refreshDataToValidateShoppingCart() {
+        boolean wasOutdated = this.product.refreshDataToValidateCartLineItems( this.quantity );
+
+        if ( wasOutdated && this.quantity > this.product.getQuantity() ) {
+            this.quantity = this.product.getQuantity();
+        }
+
+        return wasOutdated;
     }
 }

@@ -1,6 +1,7 @@
 package gov.iti.jets.domain.models;
 
 import gov.iti.jets.domain.enums.Category;
+import gov.iti.jets.domain.util.JpaUtil;
 import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -137,5 +138,34 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", imageName='" + imageName + '\'' + ", price=" + price + ", quantity=" + quantity + ", category=" + category + '}';
+    }
+
+    public boolean refreshDataToValidateCartLineItems( int cartLineItemQuantity ) {
+
+        var em = JpaUtil.createEntityManager();
+        Product updatedProduct = em.find( Product.class, this.getId() );
+        em.close();
+
+        boolean wasOutdated = false;
+
+        copyState( updatedProduct );
+
+        int quantityAfterRefresh = this.quantity;
+
+        if ( quantityAfterRefresh < cartLineItemQuantity || this.deleted ) {
+            wasOutdated = true;
+        }
+
+        return wasOutdated;
+    }
+
+    private void copyState( Product updatedProduct ) {
+        this.setImageName( updatedProduct.imageName );
+        this.setCategory( updatedProduct.category );
+        this.setName( updatedProduct.name );
+        this.setPrice( updatedProduct.price );
+        this.setDeleted( updatedProduct.deleted );
+        this.setQuantity( updatedProduct.quantity );
+        this.setDescription( updatedProduct.description );
     }
 }

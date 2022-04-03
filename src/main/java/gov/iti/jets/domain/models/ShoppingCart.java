@@ -3,7 +3,6 @@ package gov.iti.jets.domain.models;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -82,6 +81,10 @@ public class ShoppingCart {
         return Set.copyOf( cartLineItems );
     }
 
+    public boolean isEmpty() {
+        return cartLineItems.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "ShoppingCart{" +
@@ -89,5 +92,35 @@ public class ShoppingCart {
                 ", owner=" + owner.getFullName() +
                 ", cartLineItems=" + cartLineItems +
                 '}';
+    }
+
+    /**
+     * Refreshes the data of each CartLineItem
+     * and if the CartLineItem's product was deleted it
+     * removes it from the ShoppingCart.
+     *
+     * @return false if ShoppingCart if no items were deleted and all item quantities are greater than or equal to their Product's quantity, true if the ShoppingCart had an item deleted or an item's quantity was reduced
+     */
+    public boolean refreshAndValidateData() {
+
+        boolean wasOutdated = false;
+
+        var iterator = this.cartLineItems.iterator();
+
+        while ( iterator.hasNext() ) {
+            var item = iterator.next();
+
+            boolean itemOutdated = item.refreshDataToValidateShoppingCart();
+
+            if ( itemOutdated ) {
+                wasOutdated = true;
+                boolean itemIsNowDeleted = item.getProduct().isDeleted();
+                if ( itemIsNowDeleted ) {
+                    iterator.remove();
+                }
+            }
+        }
+
+        return wasOutdated;
     }
 }

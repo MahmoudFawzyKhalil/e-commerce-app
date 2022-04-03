@@ -86,4 +86,8 @@ public class Order {
                 ", total=" + total +
                 '}';
     }
+
+    public String getTotalFormatted() {
+        return "" + this.total / 100 + "." + this.total % 100;
+    }
 }

@@ -29,15 +29,15 @@ public class PaymentGateway {
         Stripe.apiKey = "sk_test_51Kk78hAgrOPQLNmpvgf3FTYVfP7JDD0uLxXkZcFqW0cFHhVv6NxiUZbKcyW8W1S3uEl5L7HAUh2eCO5rb0252MYX00NqNrhmHM";
     }
 
-    public static String payForOrder( Order order, CardDto card ) throws Exception {
+    public static void payForOrder( Order order, CardDto card ) throws Exception {
         User owner = order.getOwner();
         Customer customer = createStripeCustomer( owner.getEmail(), owner.getFullName() );
         PaymentMethod paymentMethod = createStripePaymentMethod( card );
         PaymentIntent paymentIntent = createStripePaymentIntent( customer.getId(), paymentMethod.getId(), order.getTotal() );
         paymentIntent.confirm();
-        return parseReceiptFromPaymentIntent( paymentIntent );
     }
 
+/*
     private static String parseReceiptFromPaymentIntent( PaymentIntent paymentIntent ) {
         JsonElement jsonElement = JsonParser.parseString( paymentIntent.toJson() );
         JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -49,6 +49,7 @@ public class PaymentGateway {
                 .getAsJsonPrimitive( "receipt_url" )
                 .getAsString();
     }
+*/
 
     private static Customer createStripeCustomer( String email, String name ) throws StripeException {
         CustomerCreateParams customerCreateParams =

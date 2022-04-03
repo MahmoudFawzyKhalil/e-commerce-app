@@ -10,7 +10,7 @@ public class OrderLineItem {
     @GeneratedValue
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Product product;
 
     @Min( 0 )
