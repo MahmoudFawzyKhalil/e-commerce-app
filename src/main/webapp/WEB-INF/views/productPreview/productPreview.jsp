@@ -184,12 +184,25 @@
                     <form>
 
                         <div class="mt-10">
-                            <button type="submit"
+                            <button data-productId="${product.id}" id="addToCartButton" type="submit"
                                     class="flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
                                 Add
                                 to cart
                             </button>
                         </div>
+
+                        <div id="addedToCartIcon" class="hidden mt-6">
+                            <a
+                                    class="relative flex items-center justify-center px-8 py-2 text-sm font-medium text-gray-900 bg-gray-100 border border-transparent rounded-md cursor-default">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+
 
                     </form>
                 </section>
@@ -223,5 +236,6 @@
     </footer>
 </section>
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
+<script src="<c:url value="/js/product/product.js"/>"></script>
 </body>
 </html>

@@ -25,7 +25,8 @@
                         <!-- Menu open: "hidden", Menu closed: "block" -->
                         <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16"></path>
+                                  d="M4 6h16M4 12h16M4 18h16">
+                            </path>
                         </svg>
                         <!-- Icon when menu is open. -->
                         <!-- Menu open: "block", Menu closed: "hidden" -->
@@ -37,10 +38,10 @@
                 </div>
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0">
-                        <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png" />"
-                             alt="Workflow logo">
-                        <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png" />"
-                             alt="Workflow logo">
+                        <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
+                logo">
+                        <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
+                logo">
                     </div>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
@@ -49,8 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
                     <!-- PROFILE DROPDOWN -->
                     <div class="relative ml-3">
@@ -60,8 +60,7 @@
                                     aria-label="User menu" aria-haspopup="true">
                                 <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                                 <span
-                                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">John
-                                        Doe</span>
+                                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">${user.firstName}</span>
                             </button>
                         </div>
 
@@ -69,9 +68,12 @@
                              class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
                             <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical"
                                  aria-labelledby="user-menu">
-                                <a href="#"
-                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                   role="menuitem">Sign out</a>
+                                <form method="post" action="<c:url value="/logout"/>">
+                                    <button name="submit" value="submit" type="submit"
+                                            class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                            role="menuitem">Sign out
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -79,10 +81,10 @@
             </div>
         </div>
         <!--
-            Mobile menu, toggle classes based on menu state.
+              Mobile menu, toggle classes based on menu state.
 
-            Menu open: "block", Menu closed: "hidden"
-          -->
+              Menu open: "block", Menu closed: "hidden"
+            -->
         <div id="mobileMenu" class="hidden sm:hidden">
             <div class="px-2 pt-2 pb-3">
                 <a href="<c:url value="/admin" />"
@@ -155,6 +157,7 @@ plugins: [
                                       id="nameValidation">This field is invalid</span>
                             </div>
 
+    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="description"
@@ -167,6 +170,7 @@ plugins: [
                                       id="descriptionValidation">This field is invalid</span>
                             </div>
 
+    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
@@ -358,6 +362,7 @@ plugins: [
     </c:if>
 </section>
 
+    
 
 <section class="mt-auto" id="footer">
     <footer class="bg-white">

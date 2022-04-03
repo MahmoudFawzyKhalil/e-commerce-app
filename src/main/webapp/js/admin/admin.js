@@ -1,73 +1,114 @@
-// IMAGE
-const image_input = document.getElementById("productPhoto");
-var uploaded_image ="";
-
+let imageInput = document.getElementById("productPhoto");
+let uploaded_image = "";
 let invalidElements = new Set();
-invalidElements.add(document.getElementById("name"))
-    .add(document.getElementById("description"))
+let submitButton = document.getElementById("submitButton")
+let cancelButton = document.getElementById("cancelButton")
+let name = document.getElementById("name")
+let description = document.getElementById("description")
+let category = document.getElementById("category")
+let image = document.getElementById("imageOfProduct")
+let failDiv = document.getElementById("failDiv")
+let successDiv = document.getElementById("successDiv")
+let nameValidation = document.getElementById("nameValidation")
+let quantity = document.getElementById("quantity")
+let price = document.getElementById("price")
+let descriptionValidation = document.getElementById("descriptionValidation")
+let spinner = document.getElementById("spinner");
+let changeflag = false
 
-image_input.addEventListener("change", function (){
-    console.log(image_input.value);
+invalidElements.add(name).add(description)
+validation(false)
+
+imageInput.addEventListener("change", function () {
     const reader = new FileReader();
-    reader.addEventListener("load", ()=>{
+    reader.addEventListener("load", () => {
         uploaded_image = reader.result;
-        document.getElementById("imageOfProduct").src = `${uploaded_image}`;
+        image.src = `${uploaded_image}`;
+        changeflag = true;
+        validation(changeflag);
     });
     reader.readAsDataURL(this.files[0]);
 })
 
- function dismissSuccessDiv(){
-    document.getElementById("successDiv").classList.add("hidden");
-  }
+function dismissSuccessDiv() {
+    successDiv.classList.add("hidden");
+}
 
- function dismissFailsDiv(){
-     document.getElementById("failDiv").classList.add("hidden")
- }
+function dismissFailsDiv() {
+    failDiv.classList.add("hidden")
+}
+
+name.addEventListener("change", ev => {
+    changeflag = true
+    validation(changeflag)
+
+})
+description.addEventListener("change", ev => {
+    changeflag = true
+    validation(changeflag)
+
+})
+quantity.addEventListener("change", ev => {
+    changeflag = true
+    validation(changeflag)
+
+})
+price.addEventListener("change", ev => {
+    changeflag = true
+    validation(changeflag)
+
+})
+category.addEventListener("change", ev => {
+    changeflag = true
+    validation(changeflag)
+
+})
 
 
- // VALIDATION
+// VALIDATION
 
-
-const name = document.getElementById('name');
-name.addEventListener('blur',(e)=>{
-    console.log((name.value.length))
-    if(((name.value.length) < 3) ||((name.value.length)>200)){
-        document.getElementById("nameValidation").classList.remove("hidden")
-    }else{
+name.addEventListener('blur', (e) => {
+    if (((name.value.length) < 3) || ((name.value.length) > 200)) {
+        nameValidation.classList.remove("hidden")
+        if (!invalidElements.has(name)) {
+            invalidElements.add(name)
+        }
+        validation(false)
+    } else {
         invalidElements.delete(name);
-        document.getElementById("nameValidation").classList.add("hidden")
+        nameValidation.classList.add("hidden")
+        validation(changeflag)
     }
 })
-const description = document.getElementById("description")
-description.addEventListener("blur",(e)=>{
-    if(description.value.length===0 ||description.value.length>1000){
-        document.getElementById("descriptionValidation").classList.remove("hidden")
-    }else{
+description.addEventListener("blur", (e) => {
+    if (description.value.length === 0 || description.value.length > 1000) {
+        descriptionValidation.classList.remove("hidden")
+        if (!invalidElements.has(description)) {
+            invalidElements.add(description)
+        }
+        validation(false)
+    } else {
         invalidElements.delete(description);
-        document.getElementById("descriptionValidation").classList.add("hidden")
+        descriptionValidation.classList.add("hidden")
+        validation(changeflag)
     }
 })
 
- const quantity = document.getElementById("quantity")
- quantity.addEventListener('blur', (e) => {
-     if (quantity.value <= 0) {
-         quantity.value = 1;
-     }
- });
+quantity.addEventListener('blur', (e) => {
+    if (quantity.value <= 0) {
+        quantity.value = 1;
+    }
+});
 
- const price = document.getElementById("price")
- price.addEventListener('blur', (e) => {
-     if (price.value <= 0) {
-         price.value = 1;
-     }
- });
+price.addEventListener('blur', (e) => {
+    if (price.value <= 0) {
+        price.value = 1;
+    }
+});
 
- //SPINNER
-const submitButton = document.getElementById("submitButton");
-const spinner = document.getElementById("spinner");
-const cancelButton = document.getElementById("cancelButton")
+//SPINNER
+
 submitButton.addEventListener("click", (e) => {
-    console.log(invalidElements.size)
     if (invalidElements.size !== 0) {
         return;
     }
@@ -76,3 +117,24 @@ submitButton.addEventListener("click", (e) => {
     cancelButton.classList.add('hidden')
     spinner.classList.remove('hidden');
 })
+
+//VALIDATED
+
+function validation(change) {
+
+    console.log(invalidElements.size)
+    if (invalidElements.size > 0) {
+        console.log("in if")
+        submitButton.classList.add("hidden")
+    } else {
+        console.log("in else")
+        if (change) {
+            console.log("in sec if")
+            submitButton.classList.remove("hidden")
+        } else {
+            console.log("in sec else    ")
+            submitButton.classList.add("hidden")
+        }
+    }
+
+}

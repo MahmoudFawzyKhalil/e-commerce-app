@@ -22,9 +22,7 @@ public class DomainFacade {
         return ProductAdminService.updateProduct( product );
     }
 
-    public static Product getProductById( int id ) {
-        return ProductAdminService.getProductById( id );
-    }
+    public static Optional<Product> getProductById ( int id) {return ProductAdminService.getProductById( id );}
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
@@ -75,7 +73,6 @@ public class DomainFacade {
     public static List<User> getPageOfCustomers( int pageNumber ) {
         return AdminListOfCustomersService.getPage( pageNumber );
     }
-
     public static long getPageNumberOfCustomers() {
         return AdminListOfCustomersService.getNumberOfPages();
     }
@@ -96,4 +93,11 @@ public class DomainFacade {
         return OrderListOfItemsService.getOrderById( id );
     }
 
+    public static boolean confirmUserRegistration( String confirmationId ) {
+        return UserRegistrationService.confirmUserRegistration( confirmationId );
+    }
+
+    public static boolean resendConfirmationEmail( String email ) {
+        return UserRegistrationService.resendConfirmationEmail( email );
+    }
 }
