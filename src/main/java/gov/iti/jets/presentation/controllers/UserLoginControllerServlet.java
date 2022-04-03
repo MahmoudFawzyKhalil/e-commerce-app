@@ -110,8 +110,6 @@ public class UserLoginControllerServlet extends HttpServlet {
     }
 
 
-    //TODO test method
-    ///////Merging shoppingCarts
     private void updateSessionShoppingCart( HttpServletRequest request, User user ) {
 
         Optional<ShoppingCart> optionalStoredShoppingCart = user.getShoppingCart();
