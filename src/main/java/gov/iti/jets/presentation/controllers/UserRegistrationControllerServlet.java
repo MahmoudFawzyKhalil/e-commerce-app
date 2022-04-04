@@ -48,7 +48,7 @@ public class UserRegistrationControllerServlet extends HttpServlet {
 
             DomainFacade.registerNewUser( user );
 
-            response.sendRedirect( "login" );
+            response.sendRedirect( "confirm" );
 
         } catch ( Exception e ) {
             e.printStackTrace();

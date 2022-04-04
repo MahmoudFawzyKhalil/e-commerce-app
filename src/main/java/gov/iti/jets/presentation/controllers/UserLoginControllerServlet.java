@@ -57,17 +57,21 @@ public class UserLoginControllerServlet extends HttpServlet {
 
         if ( optionalUser.isPresent() ) {
             User user = optionalUser.get();
-            request.getSession().setAttribute( "user", user );
-            if ( rememberMe != null ) {
-                String emailPasswordCookieString = user.getEmail() + "+" + user.getPassword();
-                Cookie rememberMeCookie = new Cookie( "rememberMeCookie", emailPasswordCookieString );
-                response.addCookie( rememberMeCookie );
+            if ( user.isConfirmedAccount() ) {
+                request.getSession().setAttribute( "user", user );
+
+                if ( rememberMe != null ) {
+                    String emailPasswordCookieString = user.getEmail() + "+" + user.getPassword();
+                    Cookie rememberMeCookie = new Cookie( "rememberMeCookie", emailPasswordCookieString );
+                    response.addCookie( rememberMeCookie );
+                }
+
+                forwardLocation = determineUserForwardLocation( user );
+                updateSessionShoppingCart( request, user );
+                response.sendRedirect( forwardLocation );
+            } else {
+                request.getRequestDispatcher( "/WEB-INF/views/emailConfirmationStatus/notConfirmedLogin.jsp" ).forward( request, response );
             }
-
-            forwardLocation = determineUserForwardLocation( user );
-            updateSessionShoppingCart( request, user );
-            response.sendRedirect( forwardLocation );
-
         } else {
             response.sendRedirect( "login?failed=true" );
         }
@@ -106,8 +110,6 @@ public class UserLoginControllerServlet extends HttpServlet {
     }
 
 
-    //TODO test method
-    ///////Merging shoppingCarts
     private void updateSessionShoppingCart( HttpServletRequest request, User user ) {
 
         Optional<ShoppingCart> optionalStoredShoppingCart = user.getShoppingCart();

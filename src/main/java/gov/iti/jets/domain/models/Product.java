@@ -122,11 +122,6 @@ public class Product {
         return "" + this.price / 100 + "." + this.price % 100;
     }
 
-    // TODO remove getPriceFormatting + add EGP to JSP
-    public String getPriceFormatting() {
-        return "EGP " + ( (int) price / 100 ) + ".00";
-    }
-
     public boolean isDeleted() {
         return deleted;
     }

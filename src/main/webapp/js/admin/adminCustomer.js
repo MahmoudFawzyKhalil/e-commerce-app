@@ -4,7 +4,8 @@ let pageNumber = document.getElementById("pageNumber");
 let currentPageNumber = document.getElementById("currentPageNumber");
 let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
-
+let tableParent = document.getElementById("tableParent");
+let msgDiv="";
 let table = document.getElementById("tbody");
 let row = "";
 
@@ -21,7 +22,7 @@ nextButton.addEventListener("click", (e) => {
 })
 
 function validation(num) {
-    console.log(num)
+    console.log(pageNumber.value === "1")
     if (num === "1") {
         previousButton.classList.add("hidden")
         previousButton.classList.add("disabled")
@@ -29,7 +30,7 @@ function validation(num) {
         previousButton.classList.remove("hidden")
         previousButton.classList.remove("disabled")
     }
-    if (num === pageNumber.value) {
+    if (num === pageNumber.value || pageNumber.value === "0") {
         nextButton.classList.add('hidden')
         nextButton.classList.add("disabled")
     } else {
@@ -64,13 +65,19 @@ function handleStateChange() {
                         <td class="px-2 py-2 text-sm text-gray-500 ">${address.street}, ${address.city}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.birthday}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
-                        <td class="px-2 py-2 text-sm text-gray-500 ">${user.creditLimitFormatting}</td>
+                        <td class="px-2 py-2 text-sm text-gray-500 ">EGP ${user.creditLimitFormatting}.00</td>
                         <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
                             <a href='/app/admin/customers/customer?id=${user.id}' class="text-indigo-600 hover:text-indigo-900">View</a>
                         </td>
                     </tr>
             `
         });
+        if(list.length == 0){
+            console.log("null")
+            msgDiv= `<h4 class="text-center">No Customers</h4>`
+            tableParent.innerHTML = msgDiv;
+            msgDiv="";
+        }
         table.innerHTML = row;
         validation(currentPageNumber.value)
         row = "";

@@ -41,9 +41,7 @@ public class Order {
     }
 
     public void populateLineItemsFromCart( ShoppingCart shoppingCart ) {
-        shoppingCart.getCartLineItemsUnmodifiable().forEach( cartLineItem -> {
-            this.addOrderLineItem( new OrderLineItem( cartLineItem ) );
-        } );
+        shoppingCart.getCartLineItemsUnmodifiable().forEach( cartLineItem -> this.addOrderLineItem( new OrderLineItem( cartLineItem ) ) );
     }
 
     public void addOrderLineItem( OrderLineItem orderLineItem ) {
@@ -74,6 +72,10 @@ public class Order {
 
     public long getTotal() {
         return total;
+    }
+
+    public long getTotalFormatted() {
+        return total/100;
     }
 
     @Override
