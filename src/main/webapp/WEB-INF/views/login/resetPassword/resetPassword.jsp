@@ -135,59 +135,38 @@
         <div class="w-full max-w-md space-y-8">
             <div>
                 <img class="w-32 mx-auto" src="<c:url value="/img/common/logo.png"/>" alt="Workflow">
-                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Sign in to your account</h2>
+                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Reset your password</h2>
             </div>
 
-            <form id="loginForm" class="mt-8 space-y-6" action="#" method="POST">
+            <form id="emailConfirmationForm" class="mt-8 space-y-6" action="#" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
-                        <label for="emailAddress" class="sr-only">Email address</label>
-                        <input id="emailAddress" name="emailAddress" type="email" required
+                        <label for="confirmationId" class="sr-only">Confirmattion id</label>
+                        <input id="confirmationId" name="confirmationId" type="text" required
                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                               placeholder="Email address">
-                    </div>
-                    <div>
-                        <label for="password" class="sr-only">Password</label>
-                        <input id="password" name="password" type="password" required
-                               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                               placeholder="Password">
+                               placeholder="Confirmation code">
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="rememberMe" name="rememberMe" type="checkbox"
-                               class="w-4 h-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500">
-                        <label for="rememberMe" class="block ml-2 text-sm text-gray-900"> Remember me </label>
-                    </div>
-
-                    <div class="text-sm">
-                        <a href="<c:url value="/reset/password"/>"
-                           class=" font-medium text-gray-600 hover:text-gray-500">
-                            Forgot your password? </a>
+                <div class="-space-y-px rounded-md shadow-sm">
+                    <div>
+                        <label for="newPassword" class="sr-only">Password</label>
+                        <input id="newPassword" name="newPassword" type="password" required
+                               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
+                               placeholder="New password">
                     </div>
                 </div>
 
                 <div>
-                    <button type="submit" id="loginSubmitButton"
+                    <button type="submit" id="emailConfirmationButton"
                             class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <!-- Heroicon name: solid/lock-closed -->
-                            <svg class="w-5 h-5 text-indigo-500 group-hover:text-indigo-400"
-                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                 aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                        Sign in
+                        Reset
                     </button>
 
                     <%--       Spinner             --%>
                     <div class="relative flex justify-center px-4 py-2">
-                        <svg id="loginSpinner"
+                        <svg id="emailConfirmationSpinner"
                              class="hidden w-8 "
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;"
@@ -273,6 +252,14 @@
                             <!-- [ldio] generated by https://loading.io/ -->
                         </svg>
                     </div>
+
+                    <div>
+                        <a href="<c:url value="/reset/password"/>"
+                           class="relative flex justify-center px-4 py-2 text-xl font-medium text-indigo-600 underline  hover:text-indigo-800">
+                            Click here to resend email
+                        </a>
+                    </div>
+
                 </div>
             </form>
         </div>
@@ -324,6 +311,6 @@
 </section>
 </body>
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
-<script src="<c:url value="/js/login/login.js"/>"></script>
+<%--<script src="<c:url value="/js/login/login.js"/>"></script>--%>
 
 </html>

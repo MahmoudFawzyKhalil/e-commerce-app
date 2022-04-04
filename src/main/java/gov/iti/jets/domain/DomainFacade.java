@@ -28,7 +28,9 @@ public class DomainFacade {
         return ProductAdminService.updateProduct( product );
     }
 
-    public static Optional<Product> getProductById ( int id) {return ProductAdminService.getProductById( id );}
+    public static Optional<Product> getProductById( int id ) {
+        return ProductAdminService.getProductById( id );
+    }
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
@@ -103,11 +105,16 @@ public class DomainFacade {
     public static void payForAndFulfilOrder( ShoppingCart shoppingCart, CardDto card ) throws Exception {
         OrderService.payForAndFulfilOrder( shoppingCart, card );
     }
+
     public static boolean confirmUserRegistration( String confirmationId ) {
         return UserRegistrationService.confirmUserRegistration( confirmationId );
     }
 
     public static boolean resendConfirmationEmail( String email ) {
         return UserRegistrationService.resendConfirmationEmail( email );
+    }
+
+    public static boolean resetPassword( String email, String passwordResetId ) {
+        return UserLoginService.resetPassword( email, passwordResetId );
     }
 }
