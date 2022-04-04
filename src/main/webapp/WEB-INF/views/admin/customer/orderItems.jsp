@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="order" type="gov.iti.jets.domain.models.Order"--%>
-<%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
+<%--@elvariable id="customer" type="gov.iti.jets.domain.models.User"--%>
 <%--@elvariable id="item" type="gov.iti.jets.domain.models.OrderLineItem"--%>
 
 <html lang="en">
@@ -116,7 +116,7 @@
                             </div>
                             <div class="sm:col-span-1">
                                 <dt class="text-sm font-medium text-gray-500">Owner Name</dt>
-                                <dd class="mt-1 text-sm text-gray-900">${user.fullName}</dd>
+                                <dd class="mt-1 text-sm text-gray-900">${customer.fullName}</dd>
                             </div>
                             <div class="sm:col-span-1">
                                 <dt class="text-sm font-medium text-gray-500">Total cost</dt>

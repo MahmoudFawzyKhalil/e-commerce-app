@@ -20,7 +20,7 @@ public class AdminCustomerControllerServlet extends HttpServlet {
             int id = Integer.parseInt( request.getParameter( "id" ) );
 
             request.setAttribute( "orderList", DomainFacade.getAllOrdersForUser( id ) );
-            request.setAttribute( "user", DomainFacade.getCustomerByID( id ).get() );
+            request.setAttribute( "customer", DomainFacade.getCustomerByID( id ).get() );
 
             requestDispatcher.forward( request, response );
 
