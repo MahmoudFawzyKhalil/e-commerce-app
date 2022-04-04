@@ -161,7 +161,7 @@
                 <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Reset your password</h2>
             </div>
 
-            <form id="emailConfirmationForm" class="mt-8 space-y-6" action="<c:url value="/reset/password"/>"
+            <form id="passwordResetForm" class="mt-8 space-y-6" action="<c:url value="/reset/password"/>"
                   method="POST">
                 <input type="hidden" name="email" value="${email}">
                 <div class="-space-y-px rounded-md shadow-sm">
@@ -193,7 +193,7 @@
 
                     <%--       Spinner             --%>
                     <div class="relative flex justify-center px-4 py-2">
-                        <svg id="emailConfirmationSpinner"
+                        <svg id="passwordResetSpinner"
                              class="hidden w-8 "
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;"
