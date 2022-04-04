@@ -74,10 +74,6 @@ public class Order {
         return total;
     }
 
-    public long getTotalFormatted() {
-        return total/100;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
