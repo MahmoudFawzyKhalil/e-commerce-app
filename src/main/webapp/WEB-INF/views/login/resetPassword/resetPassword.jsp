@@ -127,6 +127,29 @@
     </nav>
 </section>
 
+<%--Alert section--%>
+
+<section id="alertSection">
+    <c:if test="${!empty failed}">
+        <div class="rounded-md bg-red-50 p-4">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <!-- Heroicon name: solid/x-circle -->
+                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                         fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">Couldn't reset password, please try again.</h3>
+                </div>
+            </div>
+        </div>
+    </c:if>
+</section>
+
 
 <!-- LOGIN FORM -->
 
@@ -138,11 +161,12 @@
                 <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Reset your password</h2>
             </div>
 
-            <form id="emailConfirmationForm" class="mt-8 space-y-6" action="#" method="POST">
-                <input type="hidden" name="remember" value="true">
+            <form id="emailConfirmationForm" class="mt-8 space-y-6" action="<c:url value="/reset/password"/>"
+                  method="POST">
+                <input type="hidden" name="email" value="${email}">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
-                        <label for="confirmationId" class="sr-only">Confirmattion id</label>
+                        <label for="confirmationId" class="sr-only">Confirmation id</label>
                         <input id="confirmationId" name="confirmationId" type="text" required
                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
                                placeholder="Confirmation code">
@@ -155,11 +179,14 @@
                         <input id="newPassword" name="newPassword" type="password" required
                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
                                placeholder="New password">
+                        <span class="hidden text-xs text-red-500"
+                              id="newPasswordValidation">Password must be at least 8 characters long.</span>
                     </div>
                 </div>
 
                 <div>
-                    <button type="submit" id="emailConfirmationButton"
+                    <button type="submit" id="passwordResetConfirmationButton"
+                            disabled
                             class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700">
                         Reset
                     </button>
@@ -254,7 +281,7 @@
                     </div>
 
                     <div>
-                        <a href="<c:url value="/reset/password"/>"
+                        <a href="<c:url value="/reset/password/email"/>"
                            class="relative flex justify-center px-4 py-2 text-xl font-medium text-indigo-600 underline  hover:text-indigo-800">
                             Click here to resend email
                         </a>
@@ -309,8 +336,10 @@
         </div>
     </footer>
 </section>
+
 </body>
+
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
-<%--<script src="<c:url value="/js/login/login.js"/>"></script>--%>
+<script src="<c:url value="/js/login/resetPassword.js"/>"></script>
 
 </html>

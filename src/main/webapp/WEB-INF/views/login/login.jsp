@@ -163,7 +163,7 @@
                     </div>
 
                     <div class="text-sm">
-                        <a href="<c:url value="/reset/password"/>"
+                        <a href="<c:url value="/reset/password/email"/>"
                            class=" font-medium text-gray-600 hover:text-gray-500">
                             Forgot your password? </a>
                     </div>

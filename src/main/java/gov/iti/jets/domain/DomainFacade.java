@@ -15,6 +15,7 @@ import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.domain.util.PaymentGateway;
 import gov.iti.jets.repository.OrderRepository;
 import gov.iti.jets.repository.ProductRepository;
+import org.apache.commons.mail.EmailException;
 
 import java.util.List;
 import java.util.Optional;
@@ -114,7 +115,11 @@ public class DomainFacade {
         return UserRegistrationService.resendConfirmationEmail( email );
     }
 
-    public static boolean resetPassword( String email, String passwordResetId ) {
-        return UserLoginService.resetPassword( email, passwordResetId );
+    public static String sendResetPasswordEmail( String email ) throws Exception {
+        return UserLoginService.sendResetPasswordEmail( email );
+    }
+
+    public static void resetPassword( String email, String newPassword ) {
+        UserLoginService.resetPassword( email, newPassword );
     }
 }

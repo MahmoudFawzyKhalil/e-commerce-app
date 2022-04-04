@@ -6,6 +6,7 @@ import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import org.apache.commons.mail.EmailException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,23 +47,43 @@ public class UserLoginService {
     }
 
 
-    public static boolean resetPassword( String email, String passwordResetId ) {
+    public static String sendResetPasswordEmail( String email ) throws Exception {
         var em = JpaUtil.createEntityManager();
         var ur = new UserRepository( em );
 
-        boolean emailSent = false;
+        String passwordResetId = null;
+        var optionalUser = ur.findUserByEmail( email );
+        em.close();
+
+        if ( optionalUser.isPresent() ) {
+            passwordResetId = UUID.randomUUID().toString();
+            EmailGateway.sendResetPasswordEmail( email, passwordResetId );
+        } else {
+            throw new IllegalArgumentException( "user doesn't exist!!" );
+        }
+
+        return passwordResetId;
+    }
+
+    public static void resetPassword( String email, String newPassword ) {
+        var em = JpaUtil.createEntityManager();
+        var ur = new UserRepository( em );
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         var optionalUser = ur.findUserByEmail( email );
 
         if ( optionalUser.isPresent() ) {
-            try {
-                EmailGateway.sendResetPasswordEmail( email, passwordResetId );
-                emailSent = true;
-            } catch ( EmailException e ) {
-                e.printStackTrace();
-            }
-
+            User user = optionalUser.get();
+            user.setPassword( encoder.encode( newPassword ) );
+            EntityTransaction tx = em.getTransaction();
+            tx.begin();
+            ur.update( user );
+            tx.commit();
+            em.close();
+        } else {
+            throw new IllegalArgumentException( "user doesn't exist!!" );
         }
 
-        return emailSent;
     }
 }
