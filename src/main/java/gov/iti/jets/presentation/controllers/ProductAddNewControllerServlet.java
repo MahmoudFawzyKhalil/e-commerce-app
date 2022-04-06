@@ -65,7 +65,7 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         try {
             DomainFacade.addProduct( product );
             if ( photoName != null && !photoName.isEmpty() ) {
-                photo.write( "C:/ecommerce/" + photoName );
+                photo.write( System.getProperty( "user.dir" ) + "/ecommerce/" + photoName );
             }
             productAddNewViewHelper.setSuccessfullyAddedProduct( true );
         } catch ( RuntimeException e ) {
