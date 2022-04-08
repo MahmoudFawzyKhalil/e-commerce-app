@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
 
+import javax.swing.plaf.IconUIResource;
 import javax.swing.text.html.parser.Entity;
 
 @WebListener
@@ -27,8 +28,11 @@ public class SessionListener implements HttpSessionListener {
         User sessionUser = (User) session.getAttribute( "user" );
         ShoppingCart sessionShoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
 
+        System.out.println( "************************************************" );
         if ( sessionUser != null && sessionShoppingCart != null ) {
             DomainFacade.persistShoppingCart( sessionShoppingCart );
+            System.out.println( "+++++++++++++++++++++++++++++++++++++++++++++++++++" );
         }
+        System.out.println( "----------------------------------------------------" );
     }
 }

@@ -28,11 +28,17 @@ public class EmailGateway {
 
 
     public static void sendUserRegistrationConfirmationEmail( String receiverMail, String confirmationId ) throws EmailException {
-        var htmlEmail = createNewEmail();
-        htmlEmail.setSubject( "Confirm your ChocoTown account" );
-        htmlEmail.addTo( receiverMail );
-        htmlEmail.setHtmlMsg( createConfirmationEmailBody( receiverMail, confirmationId ) );
-        htmlEmail.send();
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "Confirm your ChocoTown account" );
+            try {
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createConfirmationEmailBody( receiverMail, confirmationId ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+            }
+        } ).start();
     }
 
     public static void main( String[] args ) {
@@ -894,11 +900,17 @@ public class EmailGateway {
     }
 
 
-    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) throws EmailException {
-        var htmlEmail = createNewEmail();
-        htmlEmail.setSubject( "You order is on its way!" );
-        htmlEmail.addTo( receiverMail );
-        htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
-        htmlEmail.send();
+    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) {
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "You order is on its way!" );
+            try {
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+            }
+        } ).start();
     }
 }
