@@ -28,11 +28,8 @@ public class SessionListener implements HttpSessionListener {
         User sessionUser = (User) session.getAttribute( "user" );
         ShoppingCart sessionShoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
 
-        System.out.println( "************************************************" );
         if ( sessionUser != null && sessionShoppingCart != null ) {
             DomainFacade.persistShoppingCart( sessionShoppingCart );
-            System.out.println( "+++++++++++++++++++++++++++++++++++++++++++++++++++" );
         }
-        System.out.println( "----------------------------------------------------" );
     }
 }
