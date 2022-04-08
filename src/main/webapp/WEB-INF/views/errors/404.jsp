@@ -11,7 +11,7 @@
     <title>Page not found</title>
 </head>
 
-<body class="flex flex-col h-screen h-full">
+<body class="h-full">
 <section class="sticky top-0 z-50" id="customerNav">
     <nav class="bg-gray-800">
         <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -143,13 +143,19 @@
 
 
 <section id="error">
-    <main class="min-h-full bg-cover bg-top sm:bg-top" style="background-image: url('https://images.unsplash.com/photo-1602540738621-e7dfebf0af79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')">
+    <main class="min-h-full bg-cover bg-top sm:bg-top"
+          style="background-image: url('https://images.unsplash.com/photo-1602540738621-e7dfebf0af79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')">
         <div class="max-w-7xl mx-auto px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-48">
-            <p class="text-sm font-semibold text-indigo-800 text-opacity-50 uppercase tracking-wide">404 | Page not found</p>
-            <h1 class="mt-2 text-4xl font-extrabold text-indigo-700 tracking-tight sm:text-5xl">Uh oh! I think you’re lost.</h1>
-            <p class="mt-2 text-lg font-medium text-indigo-800 text-opacity-50">It looks like the page you’re looking for doesn't exist.</p>
+            <p class="text-sm font-semibold text-indigo-800 text-opacity-50 uppercase tracking-wide">404 | Page not
+                found</p>
+            <h1 class="mt-2 text-4xl font-extrabold text-indigo-700 tracking-tight sm:text-5xl">Uh oh! I think you’re
+                lost.</h1>
+            <p class="mt-2 text-lg font-medium text-indigo-800 text-opacity-50">It looks like the page you’re looking
+                for doesn't exist.</p>
             <div class="mt-6">
-                <a href="<c:url value="/"/>" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-800 text-opacity-75 bg-white bg-opacity-50 sm:bg-opacity-50 sm:hover:bg-opacity-75"> Go back home </a>
+                <a href="<c:url value="/"/>"
+                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-800 text-opacity-75 bg-white bg-opacity-50 sm:bg-opacity-50 sm:hover:bg-opacity-75">
+                    Go back home </a>
             </div>
         </div>
     </main>
