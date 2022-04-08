@@ -27,7 +27,7 @@
     </session-config>
 
     <!--    <error-page>
-            <location>/WEB-INF/error.jsp</location>
+            <location>/WEB-INF/views/error.jsp</location>
         </error-page>-->
 
 </web-app>
