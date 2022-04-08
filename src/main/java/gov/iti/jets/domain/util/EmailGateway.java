@@ -37,16 +37,39 @@ public class EmailGateway {
                 htmlEmail.send();
             } catch ( EmailException e ) {
                 e.printStackTrace();
+                throw new RuntimeException( "User registration confirmation email failed to send!" );
             }
         } ).start();
     }
 
-    public static void main( String[] args ) {
-        try {
-            sendResetPasswordEmail( "mariem.mfe@gmail.com", UUID.randomUUID().toString() );
-        } catch ( EmailException e ) {
-            e.printStackTrace();
-        }
+    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) {
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "You order is on its way!" );
+            try {
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+                throw new RuntimeException( "Order confirmation email failed to send!" );
+            }
+        } ).start();
+    }
+
+    public static void sendResetPasswordEmail( String receiverMail, String passwordResetId ) throws EmailException {
+        new Thread( () -> {
+            try {
+                var htmlEmail = createNewEmail();
+                htmlEmail.setSubject( "Password reset" );
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createResetPasswordEmailBody( passwordResetId ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+                throw new RuntimeException( "Reset password email failed to send!" );
+            }
+        } ).start();
     }
 
     private static String createConfirmationEmailBody( String receiverEmail, String confirmationId ) {
@@ -899,7 +922,6 @@ public class EmailGateway {
                 "</html>\n";
     }
 
-
     private static String createResetPasswordEmailBody( String passwordResetId ) {
         return "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional //EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
                 "<html xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\">\n" +
@@ -1200,29 +1222,6 @@ public class EmailGateway {
                 "</body>\n" +
                 "\n" +
                 "</html>\n";
-    }
-
-
-    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) {
-        new Thread( () -> {
-            var htmlEmail = createNewEmail();
-            htmlEmail.setSubject( "You order is on its way!" );
-            try {
-                htmlEmail.addTo( receiverMail );
-                htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
-                htmlEmail.send();
-            } catch ( EmailException e ) {
-                e.printStackTrace();
-            }
-        } ).start();
-    }
-
-    public static void sendResetPasswordEmail( String receiverMail, String passwordResetId ) throws EmailException {
-        var htmlEmail = createNewEmail();
-        htmlEmail.setSubject( "Password reset" );
-        htmlEmail.addTo( receiverMail );
-        htmlEmail.setHtmlMsg( createResetPasswordEmailBody( passwordResetId ) );
-        htmlEmail.send();
     }
 
 }
