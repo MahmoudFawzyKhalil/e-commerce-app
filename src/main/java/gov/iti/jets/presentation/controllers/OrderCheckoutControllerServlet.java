@@ -64,11 +64,12 @@ public class OrderCheckoutControllerServlet extends HttpServlet {
             User user = (User) session.getAttribute( "user" );
             user.setShoppingCart( newShoppingCart );
 
-            response.sendRedirect( "payment/success" );
+            request.getRequestDispatcher( "/WEB-INF/views/success/success.jsp" ).forward( request, response );
 
         } catch ( Exception e ) {
             e.printStackTrace();
-            response.sendRedirect( "payment/failure" );
+            request.getRequestDispatcher( "/WEB-INF/views/failure/failure.jsp" ).forward( request, response );
+
         }
 
     }
