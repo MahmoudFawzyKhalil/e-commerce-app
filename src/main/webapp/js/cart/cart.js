@@ -49,3 +49,16 @@ async function updateProductQuantity(productId, productQuantity) {
 function handleUpdateProductQuantity(productId, productQuantity) {
     updateProductQuantity(productId, productQuantity).then(json => orderTotal.innerText = `EGP ${json}`)
 }
+
+
+//SPINNER
+
+const checkoutSpinner = document.getElementById("checkoutSpinner");
+const checkoutButton = document.getElementById("checkoutButton");
+
+checkoutButton.addEventListener('click', (e) => {
+    checkoutButton.classList.add('hidden');
+    checkoutSpinner.classList.remove('hidden');
+})
+
+

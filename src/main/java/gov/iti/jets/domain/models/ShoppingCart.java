@@ -123,4 +123,8 @@ public class ShoppingCart {
 
         return wasOutdated;
     }
+
+    public void removeAllItems() {
+        this.cartLineItems.clear();
+    }
 }

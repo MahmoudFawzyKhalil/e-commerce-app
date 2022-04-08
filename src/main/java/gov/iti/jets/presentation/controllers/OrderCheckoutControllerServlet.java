@@ -1,12 +1,9 @@
 package gov.iti.jets.presentation.controllers;
 
-import com.oracle.wls.shaded.org.apache.xpath.operations.Or;
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.dtos.CardDto;
-import gov.iti.jets.domain.models.Order;
 import gov.iti.jets.domain.models.ShoppingCart;
 import gov.iti.jets.domain.models.User;
-import gov.iti.jets.domain.util.PaymentGateway;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -59,16 +56,14 @@ public class OrderCheckoutControllerServlet extends HttpServlet {
             DomainFacade.payForAndFulfilOrder( shoppingCart, card );
 
             // Reset shopping cart if successful purchase
-            var newShoppingCart = new ShoppingCart();
-            session.setAttribute( "shoppingCart", newShoppingCart );
-            User user = (User) session.getAttribute( "user" );
-            user.setShoppingCart( newShoppingCart );
+            shoppingCart.removeAllItems();
 
-            response.sendRedirect( "payment/success" );
+            request.getRequestDispatcher( "/WEB-INF/views/success/success.jsp" ).forward( request, response );
 
         } catch ( Exception e ) {
             e.printStackTrace();
-            response.sendRedirect( "payment/failure" );
+            request.getRequestDispatcher( "/WEB-INF/views/failure/failure.jsp" ).forward( request, response );
+
         }
 
     }

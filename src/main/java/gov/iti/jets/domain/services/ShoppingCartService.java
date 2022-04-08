@@ -15,12 +15,11 @@ public class ShoppingCartService {
         var tx = em.getTransaction();
 
         ShoppingCartRepository scr = new ShoppingCartRepository( em );
-//        UserRepository ur = new UserRepository( em );
         tx.begin();
         scr.update( shoppingCart );
-//        ur.update( shoppingCart.getOwner() );
         tx.commit();
 
+        em.close();
     }
 
 }

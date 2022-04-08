@@ -28,11 +28,17 @@ public class EmailGateway {
 
 
     public static void sendUserRegistrationConfirmationEmail( String receiverMail, String confirmationId ) throws EmailException {
-        var htmlEmail = createNewEmail();
-        htmlEmail.setSubject( "Confirm your ChocoTown account" );
-        htmlEmail.addTo( receiverMail );
-        htmlEmail.setHtmlMsg( createConfirmationEmailBody( receiverMail, confirmationId ) );
-        htmlEmail.send();
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "Confirm your ChocoTown account" );
+            try {
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createConfirmationEmailBody( receiverMail, confirmationId ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+            }
+        } ).start();
     }
 
     public static void main( String[] args ) {
@@ -780,101 +786,6 @@ public class EmailGateway {
                 "                </div>\n" +
                 "            </div>\n" +
                 "\n" +
-                "\n" +
-                "            <div class=\"u-row-container\"\n" +
-                "                 style=\"padding: 0px;background-image: url('https://i.imgur.com/DNJybIo.jpg');background-repeat: no-repeat;background-position: center top;background-color: transparent\">\n" +
-                "                <div class=\"u-row\"\n" +
-                "                     style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #f0f5fa;\">\n" +
-                "                    <div style=\"border-collapse: collapse;display: table;width: 100%;background-color: transparent;\">\n" +
-                "                        <!--[if (mso)|(IE)]>\n" +
-                "                        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n" +
-                "                            <tr>\n" +
-                "                                <td style=\"padding: 0px;background-image: url('https://i.imgur.com/DNJybIo.jpg');background-repeat: no-repeat;background-position: center top;background-color: transparent;\"\n" +
-                "                                    align=\"center\">\n" +
-                "                                    <table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width:600px;\">\n" +
-                "                                        <tr style=\"background-color: #f0f5fa;\"><![endif]-->\n" +
-                "\n" +
-                "                        <!--[if (mso)|(IE)]>\n" +
-                "                        <td align=\"center\" width=\"600\"\n" +
-                "                            style=\"width: 600px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\"\n" +
-                "                            valign=\"top\"><![endif]-->\n" +
-                "                        <div class=\"u-col u-col-100\"\n" +
-                "                             style=\"max-width: 320px;min-width: 600px;display: table-cell;vertical-align: top;\">\n" +
-                "                            <div style=\"width: 100% !important;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n" +
-                "                                <!--[if (!mso)&(!IE)]><!-->\n" +
-                "                                <div style=\"padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-radius: 0px;-webkit-border-radius: 0px; -moz-border-radius: 0px;\">\n" +
-                "                                    <!--<![endif]-->\n" +
-                "\n" +
-                "                                    <table id=\"u_content_heading_2\" style=\"font-family:arial,helvetica,sans-serif;\"\n" +
-                "                                           role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
-                "                                        <tbody>\n" +
-                "                                        <tr>\n" +
-                "                                            <td class=\"v-container-padding-padding\"\n" +
-                "                                                style=\"overflow-wrap:break-word;word-break:break-word;padding:40px 10px 0px 40px;font-family:arial,helvetica,sans-serif;\"\n" +
-                "                                                align=\"left\">\n" +
-                "\n" +
-                "                                                <h3 class=\"v-font-size\"\n" +
-                "                                                    style=\"margin: 0px; color: #26264f; line-height: 140%; text-align: left; word-wrap: break-word; font-weight: normal; font-family: 'Montserrat',sans-serif; font-size: 26px;\">\n" +
-                "                                                    <strong>Click below to view your receipt<br/><br/></strong>\n" +
-                "                                                </h3>\n" +
-                "\n" +
-                "                                            </td>\n" +
-                "                                        </tr>\n" +
-                "                                        </tbody>\n" +
-                "                                    </table>\n" +
-                "\n" +
-                "                                    <table id=\"u_content_button_1\" style=\"font-family:arial,helvetica,sans-serif;\"\n" +
-                "                                           role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" border=\"0\">\n" +
-                "                                        <tbody>\n" +
-                "                                        <tr>\n" +
-                "                                            <td class=\"v-container-padding-padding\"\n" +
-                "                                                style=\"overflow-wrap:break-word;word-break:break-word;padding:10px 10px 70px;font-family:arial,helvetica,sans-serif;\"\n" +
-                "                                                align=\"left\">\n" +
-                "\n" +
-                "                                                <div align=\"center\">\n" +
-                "                                                    <!--[if mso]>\n" +
-                "                                                    <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"\n" +
-                "                                                           style=\"border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:arial,helvetica,sans-serif;\">\n" +
-                "                                                        <tr>\n" +
-                "                                                            <td style=\"font-family:arial,helvetica,sans-serif;\"\n" +
-                "                                                                align=\"center\">\n" +
-                "                                                                <v:roundrect xmlns:v=\"urn:schemas-microsoft-com:vml\"\n" +
-                "                                                                             xmlns:w=\"urn:schemas-microsoft-com:office:word\"\n" +
-                "                                                                             href=\"https://unlayer.com\"\n" +
-                "                                                                             style=\"height:64px; v-text-anchor:middle; width:434px;\"\n" +
-                "                                                                             arcsize=\"1.5%\" stroke=\"f\"\n" +
-                "                                                                             fillcolor=\"#6a71a8\">\n" +
-                "                                                                    <w:anchorlock/>\n" +
-                "                                                                    <center style=\"color:#FFFFFF;font-family:arial,helvetica,sans-serif;\">\n" +
-                "                                                    <![endif]-->\n" +
-                "                                                    <a href=\"\" target=\"_blank\" class=\"v-size-width\"\n" +
-                "                                                       style=\"box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #6a71a8; border-radius: 1px;-webkit-border-radius: 1px; -moz-border-radius: 1px; width:75%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;\">\n" +
-                "                                                        <span style=\"display:block;padding:21px 20px;line-height:120%;\">\n" +
-                "                                                            <span\n" +
-                "                                                                    style=\"font-size: 18px; line-height: 21.6px; font-family: Rubik, sans-serif;\">\n" +
-                "                                                                <span\n" +
-                "                                                                        style=\"line-height: 21.6px; font-size: 18px;\">Receipt</span>\n" +
-                "                                                        </span>\n" +
-                "                                                        </span>\n" +
-                "                                                    </a>\n" +
-                "                                                    <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->\n" +
-                "                                                </div>\n" +
-                "\n" +
-                "                                            </td>\n" +
-                "                                        </tr>\n" +
-                "                                        </tbody>\n" +
-                "                                    </table>\n" +
-                "\n" +
-                "                                    <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
-                "                        <!--[if (mso)|(IE)]></td><![endif]-->\n" +
-                "                        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->\n" +
-                "                    </div>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "\n" +
-                "\n" +
                 "            <div class=\"u-row-container\" style=\"padding: 0px;background-color: #26264f\">\n" +
                 "                <div class=\"u-row\"\n" +
                 "                     style=\"Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;\">\n" +
@@ -989,11 +900,17 @@ public class EmailGateway {
     }
 
 
-    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) throws EmailException {
-        var htmlEmail = createNewEmail();
-        htmlEmail.setSubject( "You order is on its way!" );
-        htmlEmail.addTo( receiverMail );
-        htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
-        htmlEmail.send();
+    public static void sendOrderConfirmationEmail( String receiverMail, String totalFormatted ) {
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "You order is on its way!" );
+            try {
+                htmlEmail.addTo( receiverMail );
+                htmlEmail.setHtmlMsg( createOrderConfirmationEmailBody( totalFormatted ) );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+            }
+        } ).start();
     }
 }
