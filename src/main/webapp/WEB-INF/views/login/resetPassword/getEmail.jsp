@@ -128,6 +128,30 @@
 </section>
 
 
+<%--Alert section--%>
+
+<section id="alertSection">
+    <c:if test="${!empty failed}">
+        <div class="rounded-md bg-red-50 p-4">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <!-- Heroicon name: solid/x-circle -->
+                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                         fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                              clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-red-800">Couldn't send the email, please try again.</h3>
+                </div>
+            </div>
+        </div>
+    </c:if>
+</section>
+
+
 <!-- LOGIN FORM -->
 
 <section id="loginSection">
@@ -135,59 +159,29 @@
         <div class="w-full max-w-md space-y-8">
             <div>
                 <img class="w-32 mx-auto" src="<c:url value="/img/common/logo.png"/>" alt="Workflow">
-                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Sign in to your account</h2>
+                <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">Enter your email</h2>
             </div>
 
-            <form id="loginForm" class="mt-8 space-y-6" action="#" method="POST">
+            <form id="getEmailForm" class="mt-8 space-y-6" action="#" method="POST">
                 <input type="hidden" name="remember" value="true">
                 <div class="-space-y-px rounded-md shadow-sm">
                     <div>
-                        <label for="emailAddress" class="sr-only">Email address</label>
-                        <input id="emailAddress" name="emailAddress" type="email" required
+                        <label for="emailField" class="sr-only">Email address</label>
+                        <input id="emailField" name="email" type="email" required
                                class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
                                placeholder="Email address">
-                    </div>
-                    <div>
-                        <label for="password" class="sr-only">Password</label>
-                        <input id="password" name="password" type="password" required
-                               class="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-gray-500 focus:border-gray-500 focus:z-10 sm:text-sm"
-                               placeholder="Password">
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="rememberMe" name="rememberMe" type="checkbox"
-                               class="w-4 h-4 text-gray-600 border-gray-300 rounded focus:ring-gray-500">
-                        <label for="rememberMe" class="block ml-2 text-sm text-gray-900"> Remember me </label>
-                    </div>
-
-                    <div class="text-sm">
-                        <a href="<c:url value="/reset/password/email"/>"
-                           class=" font-medium text-gray-600 hover:text-gray-500">
-                            Forgot your password? </a>
                     </div>
                 </div>
 
                 <div>
-                    <button type="submit" id="loginSubmitButton"
+                    <button type="submit" id="emailSendButton"
                             class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <!-- Heroicon name: solid/lock-closed -->
-                            <svg class="w-5 h-5 text-indigo-500 group-hover:text-indigo-400"
-                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                 aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                      clip-rule="evenodd"></path>
-                            </svg>
-                        </span>
-                        Sign in
+                        Send email
                     </button>
 
                     <%--       Spinner             --%>
                     <div class="relative flex justify-center px-4 py-2">
-                        <svg id="loginSpinner"
+                        <svg id="emailSendSpinner"
                              class="hidden w-8 "
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;"
@@ -324,6 +318,6 @@
 </section>
 </body>
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
-<script src="<c:url value="/js/login/login.js"/>"></script>
+<script src="<c:url value="/js/login/getEmail.js"/>"></script>
 
 </html>

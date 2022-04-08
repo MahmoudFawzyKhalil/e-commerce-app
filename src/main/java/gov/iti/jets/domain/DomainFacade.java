@@ -15,6 +15,7 @@ import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.domain.util.PaymentGateway;
 import gov.iti.jets.repository.OrderRepository;
 import gov.iti.jets.repository.ProductRepository;
+import org.apache.commons.mail.EmailException;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +29,9 @@ public class DomainFacade {
         return ProductAdminService.updateProduct( product );
     }
 
-    public static Optional<Product> getProductById ( int id) {return ProductAdminService.getProductById( id );}
+    public static Optional<Product> getProductById( int id ) {
+        return ProductAdminService.getProductById( id );
+    }
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
@@ -103,11 +106,20 @@ public class DomainFacade {
     public static void payForAndFulfilOrder( ShoppingCart shoppingCart, CardDto card ) throws Exception {
         OrderService.payForAndFulfilOrder( shoppingCart, card );
     }
+
     public static boolean confirmUserRegistration( String confirmationId ) {
         return UserRegistrationService.confirmUserRegistration( confirmationId );
     }
 
     public static boolean resendConfirmationEmail( String email ) {
         return UserRegistrationService.resendConfirmationEmail( email );
+    }
+
+    public static String sendResetPasswordEmail( String email ) throws Exception {
+        return UserLoginService.sendResetPasswordEmail( email );
+    }
+
+    public static void resetPassword( String email, String newPassword ) {
+        UserLoginService.resetPassword( email, newPassword );
     }
 }
