@@ -133,11 +133,58 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.3.2</version>
             </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.39.1</version>
+
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>fabric8-image-test</name>
+                            <build>
+                                <!-- Evaluated starting with ${project.basedir}/src/main/docker
+                                            (convention over configuration)-->
+                                <contextDir>/</contextDir>
+                                <!-- Describes where to copy files from -->
+                                <assemblies>
+                                    <!-- No two assemblies can share the same name -->
+                                    <assembly>
+                                        <!-- Explicit name, if not given defaults to 'maven' -->
+                                        <name>res</name> <!-- res i.e. resources -->
+                                        <!-- Description of where to copy from written inline -->
+                                        <!-- Copies the final artifact (.war) to target/docker/<imageName>/build/res/ -->
+                                        <inline>
+                                            <fileSet>
+                                                <directory>${project.basedir}/src/main/docker/res</directory>
+                                                <outputDirectory>/</outputDirectory>
+                                            </fileSet>
+                                        </inline>
+                                    </assembly>
+
+                                    <assembly>
+                                        <!-- Description of where to copy from defined by the plugin itself -->
+                                        <!-- Copies the final artifact (.war) to target/docker/<imageName>/build/maven/ -->
+                                        <descriptorRef>artifact</descriptorRef>
+                                    </assembly>
+                                </assemblies>
+                                <tags>
+                                    <tag>latest</tag>
+                                </tags>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 </project>
