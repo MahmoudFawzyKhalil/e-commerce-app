@@ -41,6 +41,8 @@ public class OrderService {
 
         tx.commit();
 
+        em.close();
+
         EmailGateway.sendOrderConfirmationEmail( order.getOwner().getEmail(), order.getTotalFormatted() );
     }
 }
