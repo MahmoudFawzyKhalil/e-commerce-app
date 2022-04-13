@@ -16,7 +16,7 @@ cartProductList.addEventListener('click', e => {
 })
 
 async function removeProductFromCart(productId) {
-    const result = await fetch(`/app/cart/remove?id=${productId}`);
+    const result = await fetch(`/cart/remove?id=${productId}`);
     return result.json()
 }
 
@@ -42,7 +42,7 @@ cartProductList.addEventListener('focusout', e => {
 })
 
 async function updateProductQuantity(productId, productQuantity) {
-    const result = await fetch(`/app/cart/update?id=${productId}&quantity=${productQuantity}`)
+    const result = await fetch(`/cart/update?id=${productId}&quantity=${productQuantity}`)
     return result.json()
 }
 

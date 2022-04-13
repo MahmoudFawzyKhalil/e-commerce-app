@@ -5,7 +5,7 @@ let currentPageNumber = document.getElementById("currentPageNumber");
 let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
 let tableParent = document.getElementById("tableParent");
-let msgDiv="";
+let msgDiv = "";
 let table = document.getElementById("tbody");
 let row = "";
 
@@ -42,7 +42,7 @@ function validation(num) {
 
 function navigate(PageNumber) {
     createXMLHttpRequest();
-    url = "/app/ListAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
+    url = "/ListAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
     console.log(url)
     req.open("GET", url, true);
     req.onreadystatechange = handleStateChange;
@@ -67,16 +67,16 @@ function handleStateChange() {
                         <td class="px-2 py-2 text-sm text-gray-500 ">${user.job}</td>
                         <td class="px-2 py-2 text-sm text-gray-500 ">EGP ${user.creditLimitFormatting}.00</td>
                         <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                            <a href='/app/admin/customers/customer?id=${user.id}' class="text-indigo-600 hover:text-indigo-900">View</a>
+                            <a href='/admin/customers/customer?id=${user.id}' class="text-indigo-600 hover:text-indigo-900">View</a>
                         </td>
                     </tr>
             `
         });
-        if(list.length == 0){
+        if (list.length == 0) {
             console.log("null")
-            msgDiv= `<h4 class="text-center">No Customers</h4>`
+            msgDiv = `<h4 class="text-center">No Customers</h4>`
             tableParent.innerHTML = msgDiv;
-            msgDiv="";
+            msgDiv = "";
         }
         table.innerHTML = row;
         validation(currentPageNumber.value)

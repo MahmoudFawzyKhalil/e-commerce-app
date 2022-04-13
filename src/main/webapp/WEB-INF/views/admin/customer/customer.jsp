@@ -191,7 +191,7 @@
                                                                     EGP ${order.totalFormatted}.00
                                                                 </td>
                                                                 <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
-                                                                    <a href="/app/admin/customers/customer/order?orderId=${order.id}&userId=${customer.id}"
+                                                                    <a href="/admin/customers/customer/order?orderId=${order.id}&userId=${customer.id}"
                                                                        class="text-indigo-600 hover:text-indigo-900">Order<span
                                                                             class="sr-only">, AAPS0L</span></a>
                                                                 </td>

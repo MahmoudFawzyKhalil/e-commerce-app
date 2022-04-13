@@ -5,7 +5,7 @@ let currentPageNumber = document.getElementById("currentPageNumber");
 let nextButton = document.getElementById("nextButton");
 let previousButton = document.getElementById("previousButton");
 let tableParent = document.getElementById("tableParent");
-let msgDiv="";
+let msgDiv = "";
 let table = document.getElementById("tbody");
 let row = "";
 let deletedId = 0
@@ -25,7 +25,7 @@ nextButton.addEventListener("click", (e) => {
 function validation(num) {
     console.log(pageNumber.value === "1");
     console.log(pageNumber.value == "0");
-    console.log(pageNumber.value )
+    console.log(pageNumber.value)
     if (num === "1") {
         previousButton.classList.add("hidden")
         previousButton.classList.add("disabled")
@@ -45,7 +45,7 @@ function validation(num) {
 
 function navigate(PageNumber) {
     createXMLHttpRequest();
-    url = "/app/productAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
+    url = "/productAjax?pg=" + PageNumber + "&timeStamp=" + new Date().getTime();
     console.log(url)
     req.open("GET", url, true);
     req.onreadystatechange = handleStateChange;
@@ -64,7 +64,7 @@ function handleStateChange() {
                     <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">EGP ${product.priceFormatting}</td>
                     <td class="px-2 py-2 text-sm text-gray-500 whitespace-nowrap">${product.category}</td>
                     <td class="relative py-2 pl-3 pr-4 text-sm cursor-pointer font-medium text-right whitespace-nowrap sm:pr-6">
-                      <a href="/app/admin/products/edit?productId=${product.id}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
+                      <a href="/admin/products/edit?productId=${product.id}" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">,
                           AAPS0L</span></a>
                     </td>
                     <td class="relative py-2 pl-3 pr-4 text-sm cursor-pointer font-medium text-right whitespace-nowrap sm:pr-6">
@@ -75,11 +75,11 @@ function handleStateChange() {
             `
             // href="<c:url value="/admin/products/add" />"
         });
-        if(list.length == 0){
+        if (list.length == 0) {
             console.log("null")
-            msgDiv= `<h4 class="text-center">No Products</h4>`
+            msgDiv = `<h4 class="text-center">No Products</h4>`
             tableParent.innerHTML = msgDiv;
-            msgDiv="";
+            msgDiv = "";
         }
 
         table.innerHTML = row;
@@ -92,12 +92,13 @@ function deleteProduct(id) {
     deletedId = id
     document.getElementById("divOfDelete").classList.remove("hidden")
 }
-function cancelDeletion(){
+
+function cancelDeletion() {
     document.getElementById("divOfDelete").classList.add("hidden")
 }
 
 function confirmDeletion() {
-    window.location.href = "/app/admin/products/delete?productId="+deletedId
+    window.location.href = "/admin/products/delete?productId=" + deletedId
 }
 
 function createXMLHttpRequest() {

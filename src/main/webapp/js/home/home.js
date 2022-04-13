@@ -5,7 +5,7 @@ const loadMoreSpinner = document.getElementById("loadMoreSpinner");
 let currentPage = 1;
 
 async function getProductPage() {
-    const response = await fetch(`/app/products?page=${currentPage}`);
+    const response = await fetch(`/products?page=${currentPage}`);
     return await response.json();
 }
 
@@ -44,7 +44,7 @@ function appendProductPage(json) {
         productsMarkup +=
             `
         <div class="p-2 rounded-lg shadow-md cursor-pointer hover:shadow-xl">
-            <a href="/app/product?id=${product.id}">
+            <a href="/product?id=${product.id}">
                 <div class="relative">
                     <div class="relative w-full overflow-hidden rounded-lg h-72">
                         <img src="/images/${product.imageName}"
@@ -86,7 +86,7 @@ const viewTheCollectionButton = document.getElementById("viewTheCollectionButton
 
 async function searchForProducts() {
     console.log("HELLO")
-    const response = await fetch(`/app/products/search?query=${searchInput.value}&category=${categorySelect.value}`);
+    const response = await fetch(`/products/search?query=${searchInput.value}&category=${categorySelect.value}`);
     return await response.json();
 }
 
@@ -135,11 +135,11 @@ function replaceProductsMarkupWithSearch(json) {
         if (product.quantity === 0) {
             return;
         }
-        
+
         productsMarkup +=
             `
         <div class="p-2 rounded-lg shadow-md cursor-pointer hover:shadow-xl">
-            <a href="/app/product?id=${product.id}">
+            <a href="/product?id=${product.id}">
                 <div class="relative">
                     <div class="relative w-full overflow-hidden rounded-lg h-72">
                         <img src="/images/${product.imageName}"
@@ -202,7 +202,7 @@ productsContainer.addEventListener('click', e => {
 })
 
 async function addProductToCart(id) {
-    const result = await fetch(`/app/cart/add?id=${id}`)
+    const result = await fetch(`/cart/add?id=${id}`)
     return result.status
 }
 

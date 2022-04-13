@@ -11,7 +11,7 @@ addToCartButton.addEventListener('click', e => {
 
 
 async function addProductToCart(id) {
-    const result = await fetch(`/app/cart/add?id=${id}`)
+    const result = await fetch(`/cart/add?id=${id}`)
     return result.status
 }
 
