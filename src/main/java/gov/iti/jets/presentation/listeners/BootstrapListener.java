@@ -1,19 +1,20 @@
 package gov.iti.jets.presentation.listeners;
 
+import gov.iti.jets.domain.util.AppConfig;
 import gov.iti.jets.domain.util.JpaUtil;
 import jakarta.servlet.*;
-import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebListener
-public class JpaListener implements ServletContextListener {
+public class BootstrapListener implements ServletContextListener {
 
-    public JpaListener() {
+    public BootstrapListener() {
     }
 
     @Override
     public void contextInitialized( ServletContextEvent sce ) {
         try {
+            AppConfig.load();
             Class.forName( "gov.iti.jets.domain.util.JpaUtil" );
         } catch ( ClassNotFoundException e ) {
             e.printStackTrace();

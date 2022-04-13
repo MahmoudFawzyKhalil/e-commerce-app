@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.models.Product;
+import gov.iti.jets.domain.util.AppConfig;
 import gov.iti.jets.presentation.viewhelpers.ProductEditViewHelper;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -56,7 +57,7 @@ public class ProductEditControllerServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         Product product;
         int id = 0;
-        try{
+        try {
             ProductEditViewHelper productEditViewHelper = new ProductEditViewHelper();
             String name = request.getParameter( "nameEdit" );
             String description = request.getParameter( "descriptionEdit" );
@@ -70,7 +71,7 @@ public class ProductEditControllerServlet extends HttpServlet {
             }
 
             Optional<Product> optionalProductFromDatabase = DomainFacade.getProductById( id );
-            Product productFromDatabase=optionalProductFromDatabase.get();
+            Product productFromDatabase = optionalProductFromDatabase.get();
 
             productEditViewHelper.setFailedToEditProduct( false );
             request.setAttribute( "productHelper", productEditViewHelper );
@@ -96,8 +97,8 @@ public class ProductEditControllerServlet extends HttpServlet {
 
             try {
                 DomainFacade.updateProduct( product );
-                if ( photoName != null && !photoName.isEmpty() ){
-                    photo.write( "C:/ecommerce/" + photoName );
+                if ( photoName != null && !photoName.isEmpty() ) {
+                    photo.write( AppConfig.IMG_PATH + photoName );
                 }
                 response.sendRedirect( request.getContextPath() + "/admin/products" );
             } catch ( RuntimeException e ) {
@@ -106,7 +107,7 @@ public class ProductEditControllerServlet extends HttpServlet {
                 doGet( request, response );
             }
 
-        }catch ( Exception e ) {
+        } catch ( Exception e ) {
             response.sendRedirect( request.getContextPath() + "/admin" );
         }
 

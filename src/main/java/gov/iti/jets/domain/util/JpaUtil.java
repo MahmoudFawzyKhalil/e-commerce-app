@@ -22,9 +22,9 @@ public class JpaUtil {
         HikariConfig config = new HikariConfig();
         HikariDataSource ds;
 
-        config.setJdbcUrl( "jdbc:mysql://localhost:3306/ecommerce?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false" );
-        config.setUsername( "manager" );
-        config.setPassword( "manager" );
+        config.setJdbcUrl( String.format( "jdbc:mysql://%s:3306/ecommerce?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false", AppConfig.DB_HOST ) );
+        config.setUsername( AppConfig.DB_USER );
+        config.setPassword( AppConfig.DB_PASSWORD );
         config.setMaximumPoolSize( 30 );
         config.addDataSourceProperty( "cachePrepStmts", true );
         config.addDataSourceProperty( "prepStmtCacheSize", 250 );
