@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>ChocoTown</title>
+    <title>Register | ChocoTown</title>
 </head>
 
 <body class="flex flex-col h-screen">
@@ -44,19 +45,21 @@
                                  alt="Workflow logo">
                         </a>
                     </div>
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="flex">
-                            <a href="<c:url value="/register"/>"
-                               class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Register</a>
+                    <c:if test="${user == null}">
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="flex">
+                                <a href="<c:url value="register"/>"
+                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Register</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="flex">
-                            <a href="<c:url value="/login"/>"
-                               class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Sign
-                                in</a>
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="flex">
+                                <a href="<c:url value="/login"/>"
+                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Sign
+                                    in</a>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
                             <a href="<c:url value="/cart"/>"
@@ -71,33 +74,39 @@
                         </div>
                     </div>
                 </div>
-                <div
-                        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                    <!-- PROFILE DROPDOWN  - HIDDEN WHEN NOT LOGGED IN!!!!-->
-                    <div class="relative hidden ml-3">
+                <!-- PROFILE DROPDOWN  - HIDDEN WHEN NOT LOGGED IN!!!!-->
+                <div
+                        class="<c:if test="${user == null}">hidden</c:if> absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <div class="relative ml-3">
                         <div>
                             <button id="toggleProfileButton"
                                     class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
                                     aria-label="User menu" aria-haspopup="true">
                                 <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
                                 <span
-                                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">John
-                                        Doe</span>
+                                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">${user.firstName}</span>
                             </button>
                         </div>
 
                         <div id="profileDropDown"
                              class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                            <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical"
-                                 aria-labelledby="user-menu">
-                                <a href="#"
-                                   class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                   role="menuitem">Sign out</a>
+                            <div class="py-1 bg-white rounded-md shadow-xs">
+                                <a href="<c:url value="/profile"/>"
+                                   class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                   role="menuitem">Profile
+                                </a>
+                                <form method="post" action="<c:url value="/logout"/>">
+                                    <button name="submit" value="submit" type="submit"
+                                            class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                            role="menuitem">Sign out
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -107,18 +116,20 @@
           Menu open: "block", Menu closed: "hidden"
         -->
         <div id="mobileMenu" class="hidden sm:hidden">
-            <div class="px-2 pt-2 pb-3">
-                <a href="<c:url value="/register"/>"
-                   class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                    Register
-                </a>
-            </div>
-            <div class="px-2 pt-2 pb-3">
-                <a href="<c:url value="/login"/>"
-                   class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                    Sign in
-                </a>
-            </div>
+            <c:if test="${user == null}">
+                <div class="px-2 pt-2 pb-3">
+                    <a href="<c:url value="register"/>"
+                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                        Register
+                    </a>
+                </div>
+                <div class="px-2 pt-2 pb-3">
+                    <a href="<c:url value="/login"/>"
+                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                        Sign in
+                    </a>
+                </div>
+            </c:if>
             <div class="px-2 pt-2 pb-3">
                 <a href="<c:url value="/cart"/>"
                    class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">

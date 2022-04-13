@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">

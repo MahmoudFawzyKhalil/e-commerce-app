@@ -5,18 +5,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>Admin Dashboard | ChocoTown</title>
+    <title>Please enable cookies to use this site | ChocoTown</title>
 </head>
 
-<body class="flex flex-col h-screen">
-
-
-<!--  Admin NAVBAR -->
-<section class="sticky top-0 z-50" id="adminNav">
+<body class="h-full">
+<section class="sticky top-0 z-50" id="customerNav">
     <nav class="bg-gray-800">
         <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="relative flex items-center justify-between h-16">
@@ -29,8 +25,7 @@
                         <!-- Menu open: "hidden", Menu closed: "block" -->
                         <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16">
-                            </path>
+                                  d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                         <!-- Icon when menu is open. -->
                         <!-- Menu open: "block", Menu closed: "hidden" -->
@@ -42,21 +37,48 @@
                 </div>
                 <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                     <div class="flex-shrink-0">
-                        <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
-                logo">
-                        <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>" alt="Workflow
-                logo">
+                        <a href="<c:url value="/"/>">
+                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
+                        <a href="<c:url value="/"/>">
+                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>"
+                                 alt="Workflow logo">
+                        </a>
                     </div>
+                    <c:if test="${user == null}">
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="flex">
+                                <a href="<c:url value="register"/>"
+                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Register</a>
+                            </div>
+                        </div>
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="flex">
+                                <a href="<c:url value="/login"/>"
+                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Sign
+                                    in</a>
+                            </div>
+                        </div>
+                    </c:if>
                     <div class="hidden sm:block sm:ml-6">
                         <div class="flex">
-                            <a href="<c:url value="/admin" />"
-                               class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
+                            <a href="<c:url value="/cart"/>"
+                               class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <span>Cart</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
 
-                    <!-- PROFILE DROPDOWN -->
+                <!-- PROFILE DROPDOWN  - HIDDEN WHEN NOT LOGGED IN!!!!-->
+                <div
+                        class="<c:if test="${user == null}">hidden</c:if> absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                     <div class="relative ml-3">
                         <div>
                             <button id="toggleProfileButton"
@@ -70,8 +92,11 @@
 
                         <div id="profileDropDown"
                              class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                            <div class="py-1 bg-white rounded-md shadow-xs" role="menu" aria-orientation="vertical"
-                                 aria-labelledby="user-menu">
+                            <div class="py-1 bg-white rounded-md shadow-xs">
+                                <a href="<c:url value="/profile"/>"
+                                   class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+                                   role="menuitem">Profile
+                                </a>
                                 <form method="post" action="<c:url value="/logout"/>">
                                     <button name="submit" value="submit" type="submit"
                                             class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -82,86 +107,62 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-        <!--
-              Mobile menu, toggle classes based on menu state.
 
-              Menu open: "block", Menu closed: "hidden"
-            -->
+        <!--
+          Mobile menu, toggle classes based on menu state.
+
+          Menu open: "block", Menu closed: "hidden"
+        -->
         <div id="mobileMenu" class="hidden sm:hidden">
+            <c:if test="${user == null}">
+                <div class="px-2 pt-2 pb-3">
+                    <a href="<c:url value="register"/>"
+                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                        Register
+                    </a>
+                </div>
+                <div class="px-2 pt-2 pb-3">
+                    <a href="<c:url value="/login"/>"
+                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                        Sign in
+                    </a>
+                </div>
+            </c:if>
             <div class="px-2 pt-2 pb-3">
-                <a href="<c:url value="/admin" />"
-                   class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
+                <a href="<c:url value="/cart"/>"
+                   class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                    Cart
+                </a>
             </div>
         </div>
     </nav>
 </section>
 
-<!--   Cards Section  -->
-<section id="Cards" class="flex justify-center">
-    <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900 mb-10">Manage The Website</h2>
-        <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-1 lg:grid-cols-3 xl:gap-x-8">
-            <div class="group relative">
-                <div
-                        class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="<c:url value="/img/admin/customer.png"/>" alt="Front of men&#039;s Basic Tee in black."
-                         class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                </div>
-                <div class="mt-4 flex justify-center">
-                    <div>
-                        <h3 class="text-xl text-gray-700 hover:text-black">
-                            <a href="admin/customers">
-                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                Manage Customers
-                            </a>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="group relative ">
-                <div
-                        class="w-full min-h-80  bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="<c:url value="/img/admin/product.png"/>" alt="Front of men&#039;s Basic Tee in black."
-                         class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                </div>
-                <div class="mt-4 flex justify-center">
-                    <div>
-                        <h3 class=" text-gray-700  text-xl hover:text-black ">
-                            <a href="<c:url value="/admin/products" />">
-                                <span aria-hidden="true" class="absolute inset-0 "></span>
-                                Manage Products
-                            </a>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="group relative items-center">
-                <div
-                        class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <img src="<c:url value="/img/admin/AddProduct.png"/>" alt="Front of men&#039;s Basic Tee in black."
-                         class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                </div>
-                <div class="mt-4 flex justify-center">
-                    <div>
-                        <h3 class="text-xl  text-gray-700 hover:text-black">
-                            <a href="<c:url value="/admin/products/add" />">
-                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                Add Product
-                            </a>
-                        </h3>
-                    </div>
-                </div>
-            </div>
 
-            <!-- More products... -->
+<section id="error">
+    <main class="min-h-full bg-cover bg-top sm:bg-top"
+          style="background-image: url('https://images.unsplash.com/photo-1602540738621-e7dfebf0af79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80')">
+        <div class="max-w-7xl mx-auto px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8 lg:py-48">
+            <p class="text-sm font-semibold text-indigo-800 text-opacity-50 uppercase tracking-wide">This site needs
+                cookies
+                enabled to deliver the best possible service.</p>
+            <h1 class="mt-2 text-4xl font-extrabold text-indigo-700 tracking-tight sm:text-5xl">Please enable your
+                cookies to use this site</h1>
+            <div class="mt-6">
+                <a href="<c:url value="/"/>"
+                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-800 text-opacity-75 bg-white bg-opacity-50 sm:bg-opacity-50 sm:hover:bg-opacity-75">
+                    Go back home after enabling cookies</a>
+            </div>
         </div>
-    </div>
-
+    </main>
 </section>
 
-<!-- Footer -->
+
+<!-- FOOTER -->
+
 <section class="mt-auto" id="footer">
     <footer class="bg-white">
         <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
@@ -181,9 +182,7 @@
         </div>
     </footer>
 </section>
-
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
-
 </body>
 
 </html>

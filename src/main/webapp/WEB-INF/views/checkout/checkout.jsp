@@ -7,10 +7,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>ChocoTown</title>
+    <title>Checkout | ChocoTown</title>
 </head>
 
 <body class="flex flex-col h-screen">
@@ -99,7 +100,6 @@
                                    class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
                                    role="menuitem">Profile
                                 </a>
-                                <%-- TODO suspicious /logout spring security stuff--%>
                                 <form method="post" action="<c:url value="/logout"/>">
                                     <button name="submit" value="submit" type="submit"
                                             class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
