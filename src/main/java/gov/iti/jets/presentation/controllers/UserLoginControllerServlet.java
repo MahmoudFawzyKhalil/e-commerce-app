@@ -131,8 +131,11 @@ public class UserLoginControllerServlet extends HttpServlet {
             }
         } else if ( currentSessionShoppingCart != null ) {
             user.setShoppingCart( currentSessionShoppingCart );
+            session.setAttribute( "shoppingCart", currentSessionShoppingCart );
         } else {
-            user.setShoppingCart( new ShoppingCart() );
+            ShoppingCart newShoppingCart = new ShoppingCart();
+            user.setShoppingCart( newShoppingCart );
+            session.setAttribute( "shoppingCart", newShoppingCart );
         }
     }
 

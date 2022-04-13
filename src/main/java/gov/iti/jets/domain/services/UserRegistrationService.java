@@ -79,6 +79,8 @@ public class UserRegistrationService {
             sendConfirmationEmail( user );
             emailSent = true;
         }
+
+        em.close();
         return emailSent;
     }
 }

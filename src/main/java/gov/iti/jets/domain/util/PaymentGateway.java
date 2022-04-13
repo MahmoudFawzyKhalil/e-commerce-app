@@ -1,8 +1,10 @@
 package gov.iti.jets.domain.util;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
-import com.stripe.model.Card;
 import com.stripe.model.Customer;
 import com.stripe.model.PaymentIntent;
 import com.stripe.model.PaymentMethod;
@@ -34,6 +36,20 @@ public class PaymentGateway {
         PaymentIntent paymentIntent = createStripePaymentIntent( customer.getId(), paymentMethod.getId(), order.getTotal() );
         paymentIntent.confirm();
     }
+
+/*
+    private static String parseReceiptFromPaymentIntent( PaymentIntent paymentIntent ) {
+        JsonElement jsonElement = JsonParser.parseString( paymentIntent.toJson() );
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        return jsonObject
+                .getAsJsonObject( "charges" )
+                .getAsJsonArray( "data" )
+                .get( 0 )
+                .getAsJsonObject()
+                .getAsJsonPrimitive( "receipt_url" )
+                .getAsString();
+    }
+*/
 
     private static Customer createStripeCustomer( String email, String name ) throws StripeException {
         CustomerCreateParams customerCreateParams =
@@ -80,11 +96,20 @@ public class PaymentGateway {
         return PaymentIntent.create( paymentIntentCreateParams );
     }
 
-/*    public static void main( String[] args ) throws StripeException {
+    public static void main( String[] args ) throws StripeException {
         Customer customer = createStripeCustomer( "harryyyy@gmail.com", "Mary" );
         CardDto card = new CardDto( "4242424242424242", "123", 1, 2050 );
         PaymentMethod paymentMethod = createStripePaymentMethod( card );
         PaymentIntent paymentIntent = createStripePaymentIntent( customer.getId(), paymentMethod.getId(), 1000 );
-        paymentIntent.confirm();
-    }*/
+        var pi = paymentIntent.confirm();
+        JsonElement jsonElement = JsonParser.parseString( pi.toJson() );
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+        var bla = jsonObject
+                .getAsJsonObject( "charges" )
+                .getAsJsonArray( "data" )
+                .get( 0 )
+                .getAsJsonObject()
+                .getAsJsonPrimitive( "receipt_url" )
+                .getAsString();
+    }
 }

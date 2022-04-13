@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>Admin Dashboard</title>
+    <title>Add Product | Admin Dashboard</title>
 </head>
 
 <body class="flex flex-col h-screen">
@@ -118,7 +119,8 @@ plugins: [
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Product Information</h3>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form id="productAddForm" action="<c:url value="/admin/products/add"/>" enctype="multipart/form-data" method="POST">
+                    <form id="productAddForm" action="<c:url value="/admin/products/add"/>"
+                          enctype="multipart/form-data" method="POST">
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 bg-white sm:col-span-4">
@@ -157,7 +159,6 @@ plugins: [
                                       id="nameValidation">This field is invalid</span>
                             </div>
 
-    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="description"
@@ -170,7 +171,6 @@ plugins: [
                                       id="descriptionValidation">This field is invalid</span>
                             </div>
 
-    
 
                             <div class="col-span-6 sm:col-span-4">
                                 <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
@@ -197,9 +197,10 @@ plugins: [
                             </div>
 
                         </div>
-                        <%--                            onclick="location.href='/app/admin/products/add';"--%>
+                        <%--                            onclick="location.href='/admin/products/add';"--%>
                         <div class="flex justify-end p-1">
-                            <button id="cancelButton" type="button" onclick="location.href='<c:url value="/admin/products/add" />';"
+                            <button id="cancelButton" type="button"
+                                    onclick="location.href='<c:url value="/admin/products/add"/>';"
                                     class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Cancel
                             </button>
@@ -210,71 +211,83 @@ plugins: [
 
                             <svg id="spinner" class="hidden w-20 inline-flex justify-center px-4 py-2 ml-3 "
                                  xmlns="http://www.w3.org/2000/svg"
-                                 xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;" viewBox="0 0 100 100"
+                                 xmlns:xlink="http://www.w3.org/1999/xlink" style="shape-rendering: auto;"
+                                 viewBox="0 0 100 100"
                                  preserveAspectRatio="xMidYMid">
                                 <g transform="rotate(0 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#191d3a">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.6101281269066504s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(32.72727272727273 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#93dbe9">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.5491153142159854s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(65.45454545454545 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#689cc5">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.4881025015253203s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(98.18181818181819 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#5e6fa3">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.42708968883465526s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(130.9090909090909 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#3b4368">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.3660768761439902s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(163.63636363636363 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#d9dbee">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.3050640634533252s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(196.36363636363637 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#b3b7e2">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.24405125076266015s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(229.0909090909091 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#191d3a">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.1830384380719951s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(261.8181818181818 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#93dbe9">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.12202562538133008s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(294.54545454545456 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#689cc5">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="-0.06101281269066504s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
                                 <g transform="rotate(327.27272727272725 50 50)">
                                     <rect x="43" y="21" rx="5.44" ry="5.44" width="14" height="16" fill="#5e6fa3">
-                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1" dur="0.6711409395973155s"
+                                        <animate attributeName="opacity" values="1;0" keyTimes="0;1"
+                                                 dur="0.6711409395973155s"
                                                  begin="0s" repeatCount="indefinite"></animate>
                                     </rect>
                                 </g>
@@ -362,7 +375,6 @@ plugins: [
     </c:if>
 </section>
 
-    
 
 <section class="mt-auto" id="footer">
     <footer class="bg-white">

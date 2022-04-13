@@ -1,16 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="order" type="gov.iti.jets.domain.models.Order"--%>
-<%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
+<%--@elvariable id="customer" type="gov.iti.jets.domain.models.User"--%>
 <%--@elvariable id="item" type="gov.iti.jets.domain.models.OrderLineItem"--%>
 
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <script src="<c:url value="/js/components/cookie.js"/>"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>Admin Dashboard</title>
+    <title>${customer.fullName}'s Orders | Admin Dashboard</title>
 </head>
 
 <body class="flex flex-col h-screen">
@@ -116,7 +117,7 @@
                             </div>
                             <div class="sm:col-span-1">
                                 <dt class="text-sm font-medium text-gray-500">Owner Name</dt>
-                                <dd class="mt-1 text-sm text-gray-900">${user.fullName}</dd>
+                                <dd class="mt-1 text-sm text-gray-900">${customer.fullName}</dd>
                             </div>
                             <div class="sm:col-span-1">
                                 <dt class="text-sm font-medium text-gray-500">Total cost</dt>
@@ -151,32 +152,38 @@
                                                 <table class="min-w-full divide-y divide-gray-300">
                                                     <thead class="bg-gray-50">
                                                     <tr>
-                                                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                                                        <th scope="col"
+                                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                                                             ID
                                                         </th>
-                                                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        <th scope="col"
+                                                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                             Product Name
                                                         </th>
-                                                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        <th scope="col"
+                                                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                             Unit Cost
                                                         </th>
-                                                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                        <th scope="col"
+                                                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                             Quantity
                                                         </th>
                                                     </tr>
                                                     </thead>
                                                     <tbody class="bg-white divide-y divide-gray-200">
-                                                        <c:forEach items="${itemList}" var="item">
-                                                            <tr>
-                                                                <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${item.id}</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-900 ">${item.product.name}</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">EGP ${item.unitCostFormatted}.00</td>
-                                                                <td class="px-2 py-2 text-sm text-gray-500 ">${item.quantity}</td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                        <c:if test="${itemList ==null}">
-                                                            <h4>NO Orders</h4>
-                                                        </c:if>
+                                                    <c:forEach items="${itemList}" var="item">
+                                                        <tr>
+                                                            <td class="py-2 pl-4 pr-3 text-sm text-gray-500 whitespace-nowrap sm:pl-6">${item.id}</td>
+                                                            <td class="px-2 py-2 text-sm text-gray-900 ">${item.product.name}</td>
+                                                            <td class="px-2 py-2 text-sm text-gray-500 ">
+                                                                EGP ${item.unitCostFormatted}.00
+                                                            </td>
+                                                            <td class="px-2 py-2 text-sm text-gray-500 ">${item.quantity}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    <c:if test="${itemList ==null}">
+                                                        <h4>NO Orders</h4>
+                                                    </c:if>
                                                     <!-- More transactions... -->
                                                     </tbody>
                                                 </table>

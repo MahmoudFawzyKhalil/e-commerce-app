@@ -27,7 +27,11 @@
     </session-config>
 
     <!--    <error-page>
-            <location>/WEB-INF/error.jsp</location>
+            <error-code>404</error-code>
+            <location>/WEB-INF/views/errors/404.jsp</location>
+        </error-page>
+        <error-page>
+            <location>/WEB-INF/views/errors/error.jsp</location>
         </error-page>-->
 
 </web-app>

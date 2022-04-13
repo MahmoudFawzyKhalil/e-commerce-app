@@ -1,5 +1,6 @@
 package gov.iti.jets.domain;
 
+import gov.iti.jets.domain.dtos.CardDto;
 import gov.iti.jets.domain.models.Order;
 import gov.iti.jets.domain.models.OrderLineItem;
 import gov.iti.jets.domain.enums.Category;
@@ -9,6 +10,12 @@ import gov.iti.jets.domain.services.*;
 
 import gov.iti.jets.domain.models.Product;
 import gov.iti.jets.domain.services.ProductAddNewService;
+import gov.iti.jets.domain.util.EmailGateway;
+import gov.iti.jets.domain.util.JpaUtil;
+import gov.iti.jets.domain.util.PaymentGateway;
+import gov.iti.jets.repository.OrderRepository;
+import gov.iti.jets.repository.ProductRepository;
+import org.apache.commons.mail.EmailException;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +29,9 @@ public class DomainFacade {
         return ProductAdminService.updateProduct( product );
     }
 
-    public static Optional<Product> getProductById ( int id) {return ProductAdminService.getProductById( id );}
+    public static Optional<Product> getProductById( int id ) {
+        return ProductAdminService.getProductById( id );
+    }
 
     public static void addProduct( Product product ) {
         ProductAddNewService.addProduct( product );
@@ -73,6 +82,7 @@ public class DomainFacade {
     public static List<User> getPageOfCustomers( int pageNumber ) {
         return AdminListOfCustomersService.getPage( pageNumber );
     }
+
     public static long getPageNumberOfCustomers() {
         return AdminListOfCustomersService.getNumberOfPages();
     }
@@ -93,11 +103,23 @@ public class DomainFacade {
         return OrderListOfItemsService.getOrderById( id );
     }
 
+    public static void payForAndFulfilOrder( ShoppingCart shoppingCart, CardDto card ) throws Exception {
+        OrderService.payForAndFulfilOrder( shoppingCart, card );
+    }
+
     public static boolean confirmUserRegistration( String confirmationId ) {
         return UserRegistrationService.confirmUserRegistration( confirmationId );
     }
 
     public static boolean resendConfirmationEmail( String email ) {
         return UserRegistrationService.resendConfirmationEmail( email );
+    }
+
+    public static String sendResetPasswordEmail( String email ) throws Exception {
+        return UserLoginService.sendResetPasswordEmail( email );
+    }
+
+    public static void resetPassword( String email, String newPassword ) {
+        UserLoginService.resetPassword( email, newPassword );
     }
 }

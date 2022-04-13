@@ -20,7 +20,6 @@ public class ShoppingCartAddItemAjaxServlet extends HttpServlet {
 
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        System.out.println( "inside add item to cart servleeeet" );
         HttpSession session = request.getSession();
         ShoppingCart shoppingCart = (ShoppingCart) session.getAttribute( "shoppingCart" );
         if ( shoppingCart == null ) {

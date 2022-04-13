@@ -74,10 +74,6 @@ public class Order {
         return total;
     }
 
-    public long getTotalFormatted() {
-        return total/100;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -87,5 +83,9 @@ public class Order {
                 ", timestamp=" + timestamp +
                 ", total=" + total +
                 '}';
+    }
+
+    public String getTotalFormatted() {
+        return "" + this.total / 100 + "." + this.total % 100;
     }
 }

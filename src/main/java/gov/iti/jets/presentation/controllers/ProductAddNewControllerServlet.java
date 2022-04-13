@@ -3,6 +3,7 @@ package gov.iti.jets.presentation.controllers;
 import gov.iti.jets.domain.DomainFacade;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.models.Product;
+import gov.iti.jets.domain.util.AppConfig;
 import gov.iti.jets.presentation.viewhelpers.ProductAddNewViewHelper;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -65,7 +66,7 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         try {
             DomainFacade.addProduct( product );
             if ( photoName != null && !photoName.isEmpty() ) {
-                photo.write( "C:/ecommerce/" + photoName );
+                photo.write( AppConfig.IMG_PATH + photoName );
             }
             productAddNewViewHelper.setSuccessfullyAddedProduct( true );
         } catch ( RuntimeException e ) {

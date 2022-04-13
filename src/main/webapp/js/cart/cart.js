@@ -16,7 +16,7 @@ cartProductList.addEventListener('click', e => {
 })
 
 async function removeProductFromCart(productId) {
-    const result = await fetch(`/app/cart/remove?id=${productId}`);
+    const result = await fetch(`/cart/remove?id=${productId}`);
     return result.json()
 }
 
@@ -42,10 +42,23 @@ cartProductList.addEventListener('focusout', e => {
 })
 
 async function updateProductQuantity(productId, productQuantity) {
-    const result = await fetch(`/app/cart/update?id=${productId}&quantity=${productQuantity}`)
+    const result = await fetch(`/cart/update?id=${productId}&quantity=${productQuantity}`)
     return result.json()
 }
 
 function handleUpdateProductQuantity(productId, productQuantity) {
     updateProductQuantity(productId, productQuantity).then(json => orderTotal.innerText = `EGP ${json}`)
 }
+
+
+//SPINNER
+
+const checkoutSpinner = document.getElementById("checkoutSpinner");
+const checkoutButton = document.getElementById("checkoutButton");
+
+checkoutButton.addEventListener('click', (e) => {
+    checkoutButton.classList.add('hidden');
+    checkoutSpinner.classList.remove('hidden');
+})
+
+
