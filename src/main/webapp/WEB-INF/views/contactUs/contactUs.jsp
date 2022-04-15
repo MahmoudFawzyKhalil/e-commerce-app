@@ -32,7 +32,7 @@
                             <div class="col-span-6">
                                 <label for="email-address" class="block text-sm font-medium text-gray-700">Email
                                     address</label>
-                                <input value="${user.email}" type="text" name="email-address"
+                                <input value="${user.email}" type="email" name="email-address"
                                        id="email-address"
                                        autocomplete="email"
                                        required
