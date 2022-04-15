@@ -1,14 +1,10 @@
 package gov.iti.jets.domain;
 
 import gov.iti.jets.domain.dtos.CardDto;
-import gov.iti.jets.domain.models.Order;
-import gov.iti.jets.domain.models.OrderLineItem;
+import gov.iti.jets.domain.models.*;
 import gov.iti.jets.domain.enums.Category;
-import gov.iti.jets.domain.models.ShoppingCart;
-import gov.iti.jets.domain.models.User;
 import gov.iti.jets.domain.services.*;
 
-import gov.iti.jets.domain.models.Product;
 import gov.iti.jets.domain.services.ProductAddNewService;
 import gov.iti.jets.domain.util.EmailGateway;
 import gov.iti.jets.domain.util.JpaUtil;
@@ -122,4 +118,10 @@ public class DomainFacade {
     public static void resetPassword( String email, String newPassword ) {
         UserLoginService.resetPassword( email, newPassword );
     }
+
+    public static void addFeedbackMessage( FeedbackMessage message) {
+        UserFeedbackMessageService.addFeedbackMessage( message );
+    }
+
+
 }

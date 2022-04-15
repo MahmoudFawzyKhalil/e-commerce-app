@@ -5,10 +5,7 @@ import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.*;
 import gov.iti.jets.domain.util.JpaUtil;
-import gov.iti.jets.repository.OrderRepository;
-import gov.iti.jets.repository.ProductRepository;
-import gov.iti.jets.repository.ShoppingCartRepository;
-import gov.iti.jets.repository.UserRepository;
+import gov.iti.jets.repository.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
@@ -130,6 +127,13 @@ public class TestDb {
 //        for(User user :userList){
 //            System.out.println(user);
 //        }
+//        em.close();
+//    }
+//    public static void main( String[] args ) {
+//        EntityManager em = JpaUtil.createEntityManager();
+//        FeedbackMessage message= new FeedbackMessage("hahahahahhaha", "samy@gmail.com");
+//        FeedbackRepository repository = new FeedbackRepository( em );
+//        repository.create( message );
 //        em.close();
 //    }
 
