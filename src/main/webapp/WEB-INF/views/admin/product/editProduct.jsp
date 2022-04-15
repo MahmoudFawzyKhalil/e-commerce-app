@@ -50,7 +50,7 @@ plugins: [
                                     <div
                                             class="max-w-xs overflow-hidden bg-gray-200 rounded-md min-h-80 aspect-w-1 aspect-h-1 group-hover:opacity-75 lg:h-80 lg:aspect-none">
                                         <img id="imageOfProductEdit"
-                                             src="<c:url value="/${productHelper.product.imageName}" context="/images"/>"
+                                             src="${productHelper.product.imageName}"
                                              alt="customer"
                                              class="object-cover object-center w-full h-full lg:w-full lg:h-full">
                                     </div>

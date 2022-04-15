@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -44,6 +47,7 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         Part photo = null;
         try {
             photo = req.getPart( "productPhoto" );
+
         } catch ( IllegalStateException ex ) {
             // Thrown when file size is too large
             ex.printStackTrace();
@@ -55,19 +59,22 @@ public class ProductAddNewControllerServlet extends HttpServlet {
         int price = Integer.parseInt( req.getParameter( "price" ) ) * 100;
         Category category = Category.valueOf( req.getParameter( "category" ) );
 
+
         String photoName = getFileName( photo );
         if ( photoName != null && !photoName.isEmpty() ) {
             String[] split = photoName.split( "\\." );
             photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
+            S3Client client = S3Client.builder().build();
+            PutObjectRequest request = PutObjectRequest.builder()
+                    .bucket("products-image-ecommerce").key(photoName).acl("public-read").build();
+            client.putObject(request, RequestBody.fromInputStream(photo.getInputStream(),photo.getSize()));
+            photoName = "https://products-image-ecommerce.s3.amazonaws.com/"+photoName;
         }
 
         Product product = new Product( name, description, photoName, price, quantity, category );
         this.log( "Attempt to add product: " + product );
         try {
             DomainFacade.addProduct( product );
-            if ( photoName != null && !photoName.isEmpty() ) {
-                photo.write( AppConfig.IMG_PATH + photoName );
-            }
             productAddNewViewHelper.setSuccessfullyAddedProduct( true );
         } catch ( RuntimeException e ) {
             productAddNewViewHelper.setFailedToAddProduct( true );

@@ -21,7 +21,7 @@ public class JpaUtil {
     private static HikariDataSource createHikariCpDataSource() {
         HikariConfig config = new HikariConfig();
         HikariDataSource ds;
-
+        AppConfig.load();
         config.setJdbcUrl( String.format( "jdbc:mysql://%s:3306/ecommerce?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false", AppConfig.DB_HOST ) );
         config.setUsername( AppConfig.DB_USER );
         config.setPassword( AppConfig.DB_PASSWORD );
