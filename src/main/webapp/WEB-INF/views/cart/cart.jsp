@@ -69,7 +69,7 @@
 
                                 <li id="${lineItem.product.id}" class="flex py-6 sm:py-10">
                                     <div class="flex-shrink-0">
-                                        <img src="<c:url value="/${lineItem.product.imageName}" context="/images"/>"
+                                        <img src="${lineItem.product.imageName}"
                                              alt="Front of men&#039;s Basic Tee in sienna."
                                              class="object-cover object-scale-down w-24 h-24 rounded-md sm:w-48 sm:h-48">
                                     </div>

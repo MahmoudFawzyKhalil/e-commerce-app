@@ -13,6 +13,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -88,6 +91,11 @@ public class ProductEditControllerServlet extends HttpServlet {
             if ( photoName != null && !photoName.isEmpty() ) {
                 String[] split = photoName.split( "\\." );
                 photoName = UUID.randomUUID().toString().replace( "-", "" ) + "." + split[1];
+                S3Client client = S3Client.builder().build();
+                PutObjectRequest request1 = PutObjectRequest.builder()
+                        .bucket("products-image-ecommerce").key(photoName).acl("public-read").build();
+                client.putObject(request1, RequestBody.fromInputStream(photo.getInputStream(),photo.getSize()));
+                photoName = "https://products-image-ecommerce.s3.amazonaws.com/"+photoName;
                 product = new Product( id, name, description, photoName, price, quantity, category );
 
             } else {

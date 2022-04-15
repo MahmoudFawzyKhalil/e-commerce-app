@@ -63,7 +63,7 @@
                     <ul role="list" class="text-sm font-medium divide-y divide-white divide-opacity-10">
                         <c:forEach items="${shoppingCart.cartLineItemsUnmodifiable}" var="item">
                             <li class="flex items-start py-6 space-x-4">
-                                <img src="<c:url value="/${item.product.imageName}" context="/images"/>"
+                                <img src="${item.product.imageName}"
                                      alt="${item.product.description}"
                                      class="flex-none w-20 h-20 rounded-md object-cover object-scale-down">
                                 <div class="flex-auto space-y-1">

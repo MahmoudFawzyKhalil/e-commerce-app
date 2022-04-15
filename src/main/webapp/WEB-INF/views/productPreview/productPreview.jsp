@@ -44,7 +44,7 @@
             <!-- Product image -->
             <div class="mt-10 lg:mt-0 lg:col-start-2 lg:row-span-2 lg:self-center ">
                 <div class="overflow-hidden rounded-lg aspect-w-1 aspect-h-1">
-                    <img src="<c:url value="/${product.imageName}" context="/images"/>"
+                    <img src="${product.imageName}"
                          alt="Model wearing light green backpack with black canvas straps and front zipper pouch."
                          class="object-scale-down object-center w-full h-full">
                 </div>
