@@ -13,7 +13,6 @@ public class FeedbackMessage {
     @GeneratedValue
     private int id;
 
-    @Size( min = 5, max = 1000 )
     private String message;
 
     @NotNull

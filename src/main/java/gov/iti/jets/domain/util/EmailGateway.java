@@ -1,5 +1,6 @@
 package gov.iti.jets.domain.util;
 
+import gov.iti.jets.domain.models.FeedbackMessage;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
@@ -38,6 +39,21 @@ public class EmailGateway {
             } catch ( EmailException e ) {
                 e.printStackTrace();
                 throw new RuntimeException( "User registration confirmation email failed to send!" );
+            }
+        } ).start();
+    }
+
+    public static void sendFeedbackReplyEmail( FeedbackMessage message ) throws EmailException {
+        new Thread( () -> {
+            var htmlEmail = createNewEmail();
+            htmlEmail.setSubject( "Reply to your Feedback " );
+            try {
+                htmlEmail.addTo( message.getEmail() );
+                htmlEmail.setHtmlMsg( message.getMessage()  );
+                htmlEmail.send();
+            } catch ( EmailException e ) {
+                e.printStackTrace();
+                throw new RuntimeException( "Feedback Reply email failed to send!" );
             }
         } ).start();
     }

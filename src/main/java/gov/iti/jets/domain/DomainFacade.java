@@ -7,10 +7,6 @@ import gov.iti.jets.domain.services.*;
 
 import gov.iti.jets.domain.services.ProductAddNewService;
 import gov.iti.jets.domain.util.EmailGateway;
-import gov.iti.jets.domain.util.JpaUtil;
-import gov.iti.jets.domain.util.PaymentGateway;
-import gov.iti.jets.repository.OrderRepository;
-import gov.iti.jets.repository.ProductRepository;
 import org.apache.commons.mail.EmailException;
 
 import java.util.List;
@@ -122,6 +118,14 @@ public class DomainFacade {
     public static void addFeedbackMessage( FeedbackMessage message) {
         UserFeedbackMessageService.addFeedbackMessage( message );
     }
+
+     public static List<FeedbackMessage> getAllFeedbackMessage( ) {
+       return UserFeedbackMessageService.getAllFeedbackMessage();
+    }
+
+     public static void sendFeedbackReplyEmail( FeedbackMessage message ) {
+       UserFeedbackMessageService.sendFeedbackReply( message );
+     }
 
 
 }

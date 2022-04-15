@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
+<%--@elvariable id="feedbackMessage" type="gov.iti.jets.domain.models.FeedbackMessage"--%>
 
 <html lang="en">
 
@@ -9,11 +10,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/css/tailwind-out.css"/>">
-    <title>${user.firstName}'s Profile | ChocoTown</title>
+    <title>Reply Customers Feedback | Admin Dashboard</title>
 </head>
 
 <body class="flex flex-col h-screen">
-<%@include file="/WEB-INF/views/navbars/customerNav.jspf" %>
+
+<%@include file="/WEB-INF/views/navbars/adminNav.jspf" %>
 
 <section>
 
@@ -22,27 +24,33 @@
         <div class="px-4 py-5 shadow-md bg-gray-50 sm:rounded-lg sm:p-6">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900">Contact Us</h3>
-                    <p class="mt-1 text-sm text-gray-500">Leave us your message! 📝</p>
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Reply</h3>
+                    <p class="mt-1 text-sm text-gray-500">Reply to Customer message! 📝</p>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form id="feedback" action="<c:url value="/contactUs"/>" method="POST">
+                    <form id="feedback" action="<c:url value="/feedback/reply"/>" method="POST">
                         <div class="grid grid-cols-6 gap-6">
                             <%--          Email Address          --%>
                             <div class="col-span-6">
-                                <label for="email-address" class="block text-sm font-medium text-gray-700">Email
+                                <label for="email-address" class="block text-sm font-medium text-gray-700">Customer Email
                                     address</label>
-                                <input value="${user.email}" type="text" name="email-address"
+                                <input value="${email}" type="text" name="email-address"
                                        id="email-address"
                                        autocomplete="email"
-                                       required
-                                       class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                       class="block w-full mt-1 bg-gray-200 cursor-not-allowed border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
-                            <%--           Message               --%>
+                                <%--          Customer Message         --%>
+                            <div class="col-span-6">
+                                <label for="message" class="block text-sm font-medium text-gray-700">Feedback Message</label>
+                                <input value="${message}" type="text" name="message"
+                                       id="message"
+                                       class="block w-full mt-1 bg-gray-200 cursor-not-allowed border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <%--           Reply               --%>
                             <div class="col-span-6 row-span-3">
-                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <label for="reply" class="block text-sm font-medium text-gray-700">Reply Message</label>
                                 <textarea class="form-control block w-full px-3 py-1.5  text-base font-normal  text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300   rounded   transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                          name="message" id="message"
+                                          name="reply" id="reply"
                                           rows="3"
                                           required
                                           placeholder="Please enter your Message."></textarea>
