@@ -3,6 +3,7 @@ package gov.iti.jets.repository.util;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.*;
+import gov.iti.jets.domain.util.AppConfig;
 import gov.iti.jets.domain.util.Image;
 import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.OrderRepository;
@@ -20,6 +21,7 @@ public class DatabasePopulator {
     static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public static void main( String[] args ) {
+        AppConfig.load();
 
 //        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
         var em = JpaUtil.createEntityManager();
