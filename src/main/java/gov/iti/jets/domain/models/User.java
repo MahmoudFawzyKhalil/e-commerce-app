@@ -102,6 +102,20 @@ public class User {
         this.address = address;
     }
 
+    public User( String firstName, String lastName, String email, String password, String phoneNumber, LocalDate birthday, long creditLimit, String job, Role role, Address address , boolean confirmedAccount) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+        this.creditLimit = creditLimit;
+        this.job = job;
+        this.role = role;
+        this.address = address;
+        this.confirmedAccount = confirmedAccount;
+    }
+
     public String getCreditLimitFormatted() {
         return creditLimit/100+"";
     }
