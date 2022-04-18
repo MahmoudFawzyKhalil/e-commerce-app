@@ -36,6 +36,7 @@
                                     address</label>
                                 <input value="${email}" type="text" name="email-address"
                                        id="email-address"
+                                       disabled
                                        autocomplete="email"
                                        class="block w-full mt-1 bg-gray-200 cursor-not-allowed border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
@@ -44,6 +45,7 @@
                                 <label for="message" class="block text-sm font-medium text-gray-700">Feedback Message</label>
                                 <input value="${message}" type="text" name="message"
                                        id="message"
+                                       disabled
                                        class="block w-full mt-1 bg-gray-200 cursor-not-allowed border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                             <%--           Reply               --%>
