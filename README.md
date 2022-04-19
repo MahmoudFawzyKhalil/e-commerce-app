@@ -4,10 +4,13 @@
 # 🏛 Architecture
 This software project was built using a layered architecture. The following diagram demonstrates an example use case that goes through all the layers.
 
-![image](https://user-images.githubusercontent.com/73137611/155808282-0a0ee1ab-9d35-4258-a953-c9ccad72f707.png)
+![Screenshot (21)](https://user-images.githubusercontent.com/29524842/164091047-a8e9b7bd-e8c8-4a75-b1af-ad28fd1b9d33.png)
+
 
 # 🏛 Database Schema
-![](C:/Users/marwa/OneDrive/Desktop/Ecommerce_Schem.png)
+
+![image](https://user-images.githubusercontent.com/29524842/164091236-69ffa8f7-7bc1-4c36-a362-673d6c3c28ef.png)
+
 
 # ⚙ Features
 * Registration and login
@@ -26,8 +29,7 @@ This software project was built using a layered architecture. The following diag
 * checkout `customer`
 * logout `customer and admin`
 
-![Animation](https://user-images.githubusercontent.com/73137611/155806535-92e5a736-0b30-4e19-b5f1-371c91970736.gif)
-![Animation2](https://user-images.githubusercontent.com/73137611/155806878-b4b497cd-5821-4420-9a9d-e95340aa4ff2.gif)
+# Demo
 
 # ⚙ Technologies used
 * Maven
