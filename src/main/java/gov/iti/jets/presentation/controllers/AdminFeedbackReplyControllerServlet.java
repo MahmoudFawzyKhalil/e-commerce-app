@@ -21,11 +21,11 @@ public class AdminFeedbackReplyControllerServlet extends HttpServlet {
         try {
             String email = request.getParameter( "email" );
             String message = request.getParameter( "message" );
-            request.setAttribute( "email", email  );
-            request.setAttribute( "message", message  );
+            request.setAttribute( "email", email );
+            request.setAttribute( "message", message );
             requestDispatcher.forward( request, response );
 
-        } catch ( Exception e ) {
+        } catch ( RuntimeException e ) {
             e.printStackTrace();
             response.sendRedirect( request.getContextPath() + "/admin" );
         }
@@ -35,14 +35,16 @@ public class AdminFeedbackReplyControllerServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
         try {
-            String emailAddress = request.getParameter( "email-address" );
+            String emailAddress = request.getParameter( "email" );
             String message = request.getParameter( "reply" );
+
+            System.out.println( "***************" + emailAddress );
 
             FeedbackMessage feedbackMessage = new FeedbackMessage( message, emailAddress );
             System.out.println( feedbackMessage );
             DomainFacade.sendFeedbackReplyEmail( feedbackMessage );
             response.sendRedirect( request.getContextPath() + "/admin" );
-        } catch ( Exception e ) {
+        } catch ( RuntimeException e ) {
             e.printStackTrace();
             response.sendRedirect( request.getContextPath() + "/admin" );
         }

@@ -17,10 +17,6 @@ import java.util.Objects;
 public class UserContactUsControllerServlet extends HttpServlet {
     @Override
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        if ( Objects.isNull( request.getSession().getAttribute( "user" ) ) ) {
-            response.sendRedirect( "home" );
-            return;
-        }
         request.getRequestDispatcher( "/WEB-INF/views/contactUs/contactUs.jsp" ).forward( request, response );
     }
 
@@ -28,16 +24,16 @@ public class UserContactUsControllerServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
         try {
-            User user = (User) request.getSession().getAttribute( "user" );
+
             String emailAddress = request.getParameter( "email-address" );
             String message = request.getParameter( "message" );
 
-            System.out.println("do posttt");
-            FeedbackMessage feedbackMessage= new FeedbackMessage(message,emailAddress);
+            System.out.println( "do posttt" );
+            FeedbackMessage feedbackMessage = new FeedbackMessage( message, emailAddress );
 
             DomainFacade.addFeedbackMessage( feedbackMessage );
             response.sendRedirect( "home" );
-        } catch ( Exception e ) {
+        } catch ( RuntimeException e ) {
             e.printStackTrace();
             response.sendRedirect( "home" );
         }
