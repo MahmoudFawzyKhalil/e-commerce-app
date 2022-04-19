@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--@elvariable id="user" type="gov.iti.jets.domain.models.User"--%>
 
-<html lang="en">
+<html lang="en" class="relative">
 
 <head>
     <meta charset="UTF-8">
@@ -225,6 +225,15 @@
     </div>
 
 </section>
+
+<div class="fixed bottom-6 right-6 w-12">
+
+    <a href="<c:url value="/contactUs"/>">
+        <img src="/img/common/contact.png"/>
+
+    </a>
+
+</div>
 
 
 <!-- FOOTER -->
