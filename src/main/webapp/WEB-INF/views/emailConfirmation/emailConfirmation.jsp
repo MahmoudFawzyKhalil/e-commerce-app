@@ -11,134 +11,7 @@
 </head>
 
 <body class="flex flex-col h-screen">
-<section class="sticky top-0 z-50" id="customerNav">
-    <nav class="bg-gray-800">
-        <div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="relative flex items-center justify-between h-16">
-                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                    <!-- Mobile menu button-->
-                    <button id="mobileMenuToggleButton"
-                            class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
-                            aria-label="Main menu" aria-expanded="false">
-                        <!-- Icon when menu is closed. -->
-                        <!-- Menu open: "hidden", Menu closed: "block" -->
-                        <svg class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                        <!-- Icon when menu is open. -->
-                        <!-- Menu open: "block", Menu closed: "hidden" -->
-                        <svg class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-                    <div class="flex-shrink-0">
-                        <a href="<c:url value="/"/>">
-                            <img class="block w-auto h-8 lg:hidden" src="<c:url value="/img/common/logo.png"/>"
-                                 alt="Workflow logo">
-                        </a>
-                        <a href="<c:url value="/"/>">
-                            <img class="hidden w-auto h-8 lg:block" src="<c:url value="/img/common/logo.png"/>"
-                                 alt="Workflow logo">
-                        </a>
-                    </div>
-                    <c:if test="${user == null}">
-                        <div class="hidden sm:block sm:ml-6">
-                            <div class="flex">
-                                <a href="<c:url value="register"/>"
-                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Register</a>
-                            </div>
-                        </div>
-                        <div class="hidden sm:block sm:ml-6">
-                            <div class="flex">
-                                <a href="<c:url value="/login"/>"
-                                   class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">Sign
-                                    in</a>
-                            </div>
-                        </div>
-                    </c:if>
-                    <div class="hidden sm:block sm:ml-6">
-                        <div class="flex">
-                            <a href="<c:url value="/cart"/>"
-                               class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Cart</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROFILE DROPDOWN  - HIDDEN WHEN NOT LOGGED IN!!!!-->
-                <div
-                        class="<c:if test="${user == null}">hidden</c:if> absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <div class="relative ml-3">
-                        <div>
-                            <button id="toggleProfileButton"
-                                    class="flex transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none"
-                                    aria-label="User menu" aria-haspopup="true">
-                                <!-- <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""> -->
-                                <span
-                                        class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">${user.firstName}</span>
-                            </button>
-                        </div>
-
-                        <div id="profileDropDown"
-                             class="absolute right-0 z-40 hidden w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                            <div class="py-1 bg-white rounded-md shadow-xs">
-                                <a href="<c:url value="/profile"/>"
-                                   class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                   role="menuitem">Profile
-                                </a>
-                                <form method="post" action="<c:url value="/logout"/>">
-                                    <button name="submit" value="submit" type="submit"
-                                            class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-                                            role="menuitem">Sign out
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!--
-          Mobile menu, toggle classes based on menu state.
-
-          Menu open: "block", Menu closed: "hidden"
-        -->
-        <div id="mobileMenu" class="hidden sm:hidden">
-            <c:if test="${user == null}">
-                <div class="px-2 pt-2 pb-3">
-                    <a href="<c:url value="register"/>"
-                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                        Register
-                    </a>
-                </div>
-                <div class="px-2 pt-2 pb-3">
-                    <a href="<c:url value="/login"/>"
-                       class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                        Sign in
-                    </a>
-                </div>
-            </c:if>
-            <div class="px-2 pt-2 pb-3">
-                <a href="<c:url value="/cart"/>"
-                   class="block px-3 py-2 text-base font-medium text-white transition duration-150 ease-in-out rounded-md hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                    Cart
-                </a>
-            </div>
-        </div>
-    </nav>
-</section>
+<%@include file="/WEB-INF/views/navbars/customerNav.jspf" %>
 
 
 <!-- LOGIN FORM -->
@@ -261,29 +134,6 @@
         </div>
     </div>
 </section>
-
-
-<section id="alertSection">
-    <c:if test="${!empty param.failed}">
-        <div class="rounded-md bg-red-50 p-4">
-            <div class="flex">
-                <div class="flex-shrink-0">
-                    <!-- Heroicon name: solid/x-circle -->
-                    <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                         fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                              clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <h3 class="text-sm font-medium text-red-800">Invalid email or password.</h3>
-                </div>
-            </div>
-        </div>
-    </c:if>
-</section>
-
 <!-- FOOTER -->
 
 <section class="mt-auto" id="footer">
@@ -307,6 +157,7 @@
 </section>
 </body>
 <script src="<c:url value="/js/components/navbar.js"/>"></script>
+<script src="<c:url value="/js/emailConfirmation/emailConfirmation.js"/>"></script>
 <%--<script src="<c:url value="/js/login/login.js"/>"></script>--%>
 
 </html>

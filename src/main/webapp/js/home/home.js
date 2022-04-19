@@ -47,7 +47,7 @@ function appendProductPage(json) {
             <a href="/product?id=${product.id}">
                 <div class="relative">
                     <div class="relative w-full overflow-hidden rounded-lg h-72">
-                        <img src="/images/${product.imageName}"
+                        <img src="${product.imageName}"
                              alt="${product.name}" class="object-scale-down object-center w-full h-full">
                     </div>
                     <div class="relative mt-4">
@@ -142,7 +142,7 @@ function replaceProductsMarkupWithSearch(json) {
             <a href="/product?id=${product.id}">
                 <div class="relative">
                     <div class="relative w-full overflow-hidden rounded-lg h-72">
-                        <img src="/images/${product.imageName}"
+                        <img src="${product.imageName}"
                              alt="${product.name}" class="object-scale-down object-center w-full h-full">
                     </div>
                     <div class="relative mt-4">

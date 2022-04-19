@@ -3,6 +3,9 @@ package gov.iti.jets.repository.util;
 import gov.iti.jets.domain.enums.Category;
 import gov.iti.jets.domain.enums.Role;
 import gov.iti.jets.domain.models.*;
+import gov.iti.jets.domain.util.AppConfig;
+import gov.iti.jets.domain.util.Image;
+import gov.iti.jets.domain.util.JpaUtil;
 import gov.iti.jets.repository.OrderRepository;
 import gov.iti.jets.repository.ProductRepository;
 import gov.iti.jets.repository.ShoppingCartRepository;
@@ -18,42 +21,106 @@ public class DatabasePopulator {
     static BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public static void main( String[] args ) {
-        var emf = Persistence.createEntityManagerFactory( "ecommerce" );
-        var em = emf.createEntityManager();
-
+        AppConfig.load();
+        var em = JpaUtil.createEntityManager();
 
         // CREATE PRODUCTS ************************
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", "Ferrero.jpg", 6 * 100, 50, Category.CHOCOLATE );
+        Product product1 = new Product( "Ferrero Rocher", "Fine Hazelnut Chocolates - 5.3oz/12ct", Image.getImageUrl( "Ferrero.jpg" ), 6 * 100, 50, Category.CHOCOLATE );
         products.add( product1 );
 
-        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", "Hershey.jpg", 5 * 100, 100, Category.CHOCOLATE );
+        Product product2 = new Product( "Hershey", "Miniature Chocolate Candy Variety Pack - 10.4oz", Image.getImageUrl( "Hershey.jpg" ), 5 * 100, 100, Category.CHOCOLATE );
         products.add( product2 );
 
-        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", "kinderBueno.jpg", 14 * 100, 100, Category.CHOCOLATE );
+        Product product3 = new Product( "Kinder Bueno", "Minis Share Pack - 5.7oz", Image.getImageUrl( "kinderBueno.jpg" ), 14 * 100, 100, Category.CHOCOLATE );
         products.add( product3 );
 
-        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz", "reesesPeanutButterCups.jpg", 12 * 100, 100, Category.CHOCOLATE );
+        Product product4 = new Product( "Reese's Peanut Butter Cups", "Thins Milk Chocolate Pouch - 7.37oz",Image.getImageUrl("reesesPeanutButterCups.jpg" ) , 12 * 100, 100, Category.CHOCOLATE );
         products.add( product4 );
 
 
-        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz", "lindtLindor.jpg", 13 * 100, 100, Category.CHOCOLATE );
+        Product product5 = new Product( "Lindt Lindor", "Milk Chocolate Truffles - 6oz",Image.getImageUrl( "lindtLindor.jpg" ) , 13 * 100, 100, Category.CHOCOLATE );
         products.add( product5 );
 
-        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz", "cadburyDairyMilkChocolate.jpg", 12 * 100, 100, Category.CHOCOLATE );
+        Product product6 = new Product( "Cadbury Dairy Milk", "CADBURY DAIRY MILK Milk Chocolate Candy Bar 3.5oz",Image.getImageUrl( "cadburyDairyMilkChocolate.jpg" ) , 12 * 100, 100, Category.CHOCOLATE );
         products.add( product6 );
 
-        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", "M&Ms.jpg", 7 * 100, 100, Category.CHOCOLATE );
+        Product product7 = new Product( "M&Ms", "Classic Mix Sharing Sup - 8.3oz", Image.getImageUrl(  "M&Ms.jpg"), 7 * 100, 100, Category.CHOCOLATE );
         products.add( product7 );
 
-        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz", "crunchBuncha.jpg", 4 * 100, 100, Category.CHOCOLATE );
+        Product product8 = new Product( "Crunch Buncha", "Crunch Milk Chocolate Candy - 3.2oz",Image.getImageUrl( "crunchBuncha.jpg" ) , 4 * 100, 100, Category.CHOCOLATE );
         products.add( product8 );
 
-        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", "dovePromises.jpg", 22 * 100, 100, Category.CHOCOLATE );
+        Product product9 = new Product( "Dove Promises", "Variety Pack Chocolate Candies - 15.8oz", Image.getImageUrl( "dovePromises.jpg" ), 22 * 100, 100, Category.CHOCOLATE );
         products.add( product9 );
 
-        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", "Brookside.jpg", 32 * 100, 100, Category.CHOCOLATE );
+        Product product10 = new Product( "Brookside", "Acai with Blueberry Flavors Dark Chocolate - 7oz", Image.getImageUrl( "Brookside.jpg" ), 32 * 100, 100, Category.CHOCOLATE );
         products.add( product10 );
+
+
+        Product product11 = new Product( "KitKat", "Nestle’s renowned chocolate-covered wafer bar", Image.getImageUrl( "kitkat.jpg" ), 7 * 100, 150, Category.CHOCOLATE );
+        products.add( product11 );
+
+        Product product12 = new Product( "Mars", "Commonly called the Mars bar, from the world’s largest confectioner, Mars", Image.getImageUrl( "mars.jpg" ), 10 * 100, 110, Category.CHOCOLATE );
+        products.add( product12 );
+
+        Product product13 = new Product( "Milky", "Inspired by the chocolate bar from Mars confectioners", Image.getImageUrl( "milky.jpg" ), 12 * 100, 100, Category.CHOCOLATE );
+        products.add( product13 );
+
+        Product product14 = new Product( "Patchi", "A Swiss and Belgian combination chocolate bar",Image.getImageUrl("patchi.jpg" ) , 12 * 100, 105, Category.CHOCOLATE );
+        products.add( product14 );
+
+
+        Product product15 = new Product( "Snickers", "One of the most beloved chocolate bars, this snack was initially called Marathon",Image.getImageUrl( "snickers.jpg" ) , 14 * 100, 160, Category.CHOCOLATE );
+        products.add( product15 );
+
+        Product product16 = new Product( "Sprungli", "One of the largest chocolate manufacturers in the world",Image.getImageUrl( "sprungli.jpg" ) , 20 * 100, 30, Category.CHOCOLATE );
+        products.add( product16 );
+
+        Product product17 = new Product( "Toblerone", "The popular triangular almond nougat and honey-covered Swiss chocolate", Image.getImageUrl(  "toblerone.jpg"), 15 * 100, 90, Category.CHOCOLATE );
+        products.add( product17 );
+
+        Product product18 = new Product( "Twix", "The biscuit-based bar from Mars confectioneries",Image.getImageUrl( "twix.jpg" ) , 4 * 100, 200, Category.CHOCOLATE );
+        products.add( product18 );
+
+        Product product19 = new Product( "Clark", "A well-known chocolate-coated honey and peanut butter bar in the US", Image.getImageUrl( "clark.jpg" ), 25 * 100, 132, Category.CHOCOLATE );
+        products.add( product19 );
+
+        Product product20 = new Product( "Duncan", "A popular chocolate brand in the UK and Ireland", Image.getImageUrl( "duncan.jpg" ), 40 * 100, 50, Category.CHOCOLATE );
+        products.add( product20 );
+
+        //DRINKS
+        Product product21 = new Product( "Coca-Cola", "It is a carbonated soft drink manufactured by the Coca-Cola Company", Image.getImageUrl( "cocacola.jpg" ), 5 * 100, 500, Category.DRINKS  );
+        products.add( product21 );
+
+        Product product22 = new Product( "Pepsi", "Pepsi is a carbonated soft drink manufactured by PepsiCo. Originally created and developed in 1893 by Caleb Bradham and introduced as Brad's Drink", Image.getImageUrl( "pepsi.jpg" ), 6 * 100, 600, Category.DRINKS );
+        products.add( product22 );
+
+        Product product23 = new Product( "Diet Coke", "Diet Pepsi is a sugar-free and no-calorie soft drink produced and distributed by the Coca-Cola Company", Image.getImageUrl( "dietcoka.jpg" ), 10 * 100, 450, Category.DRINKS );
+        products.add( product23 );
+
+        Product product24 = new Product( "Dr Pepper", "Dr Pepper is a carbonated soft drink. It was created in the 1880s by pharmacist Charles Alderton in Waco, Texas",Image.getImageUrl("drpapper.jpg" ) , 20 * 100, 500, Category.DRINKS );
+        products.add( product24 );
+
+
+        Product product25 = new Product( "Mountain Dew", "Mountain Dew, stylized as Mtn Dew, is a carbonated soft drink brand produced and owned by PepsiCo.",Image.getImageUrl( "mountaindew.png" ) , 15 * 100, 460, Category.DRINKS );
+        products.add( product25 );
+
+        Product product26 = new Product( "Sprite", "Sprite is a colorless, lemon and lime-flavored soft drink created by The Coca-Cola Company", Image.getImageUrl( "sprite.jpg" ), 7 * 100, 800, Category.DRINKS );
+        products.add( product26 );
+
+        Product product27 = new Product( "Diet Pepsi", "Diet Pepsi is a no-calorie carbonated cola soft drink produced by PepsiCo", Image.getImageUrl( "dietcoka.jpg" ), 18 * 100, 300, Category.DRINKS );
+        products.add( product27 );
+
+        Product product28 = new Product( "Coke Zero", "Coca-Cola Zero Sugar (Coke Zero) uses several common artificial sweeteners, including aspartame and acesulfame potassium (Ace-K)", Image.getImageUrl( "zerocoke.jpg" ), 15 * 100, 400, Category.DRINKS );
+        products.add( product28 );
+
+        Product product29 = new Product( "Fanta", "Bright, bubbly and popular, Fanta is the soft drink that intensifies fun",Image.getImageUrl("fanta.jpg" ) , 8 * 100, 700, Category.DRINKS );
+        products.add( product29 );
+
+
+        Product product30 = new Product( "Diet Mountain Dew", "Diet Mountain Dew is a modified version of the original formula, containing low sugar count but retaining the same citrus taste and yellow-green color as the original Mountain Dew drink",Image.getImageUrl( "dietmountaindew.jpg" ) , 24 * 100, 300 , Category.DRINKS );
+        products.add( product30 );
 
 
         // PERSIST PRODUCTS ************************
@@ -66,7 +133,8 @@ public class DatabasePopulator {
         String hashedPassword = encoder.encode( "123456789" );
 
         List<User> users = new ArrayList<>();
-        User user1 = new User( "John", "Doe", "john@gmail.com", hashedPassword, "01117950455", LocalDate.ofYearDay( 1996, 50 ), 6000, "salesman", Role.ADMIN, new Address( "abofarg", "Cairo" ) );
+
+        User user1 = new User( "John", "Doe", "john@gmail.com", hashedPassword, "01117950455", LocalDate.ofYearDay( 1996, 50 ), 6000, "salesman", Role.ADMIN, new Address( "abofarg", "Cairo" ) , true );
         users.add( user1 );
 
         User user2 = new User( "Marwa", "Youssef", "Marwa@gmail.com", hashedPassword, "01117950451", LocalDate.ofYearDay( 1997, 70 ), 10000, "Java Developer", Role.CUSTOMER, new Address( "elharm", "Giza" ) );
