@@ -1,6 +1,6 @@
 #  ![Webp net-resizeimage (1)](https://user-images.githubusercontent.com/29524842/164079918-1aba1749-cd3a-4e95-9f06-ee94c0ff5e45.png) ChocoTown
->An Ecommerce web application built using Jsp, Jakarta Servlets and JPA as our second project at the Information Technology Institute. 
-> It takes full advantage of Tailwind component to build our view in a simple way .
+>An E-Commerce web application built using Jakarta EE 9 technologies. Namely, Jakarta Server Pages, Jakarta Servlet and Jakarta Persistence as our second project at the Information Technology Institute.
+> It takes full advantage of Tailwind CSS components to build create a beautiful and modern user interface.
 # 🏛 Architecture
 This software project was built using a layered architecture. The following diagram demonstrates an example use case that goes through all the layers.
 
@@ -20,30 +20,35 @@ This software project was built using a layered architecture. The following diag
 * Edit product `admin` 
 * Delete product `admin`
 * View all customers `admin`
-* view orders' history `admin`
+* View order history `admin`
 * View homepage `customer`
 * View product details `customer`
 * Add product to cart `customer`
 * View shopping cart `customer`
 * Search by category `customer`
-* checkout `customer`
-* logout `customer and admin`
+* Checkout using Stripe payment `customer`
+* Logout `customer and admin`
 
 # Demo
 
 # ⚙ Technologies used
+* AWS EC2, RDS, and S3
+* Docker
 * Maven
 * JPA
 * MySQL
 * JSP
 * Jakarta Servlet
-* Tailwind
+* JSTL
+* Tailwind CSS
 * Ajax 
-* Bean Validation (Hibernate Validator)
+* Bean Validation
+* JSON-P & JSON-B
 * HikariCP
 * MySQL
 * Spring Security Encoder
-* Strip 
+* Stripe payment integration
+* Apache Commons Email
 
 # ⚙ Docker
 
@@ -73,7 +78,7 @@ mvn clean compile exec:java -Dexec.mainClass=gov.iti.jets.repository.util.Databa
 * Go back to `resources/META-INF/persistence.xml` and make the value of `hibernate.hbm2ddl.auto` property equal `update`.
 
 # 👷‍♀️ Contributors
-* [Abdelrahman Samy](https://github.com/A-Samyy) `LEADER`
+* [Abdelrahman Samy](https://github.com/A-Samyy)
 * [Mahmoud Fawzy](https://github.com/MahmoudFawzyKhalil)
 * [Mariam Mohamed](https://github.com/Mariemfakhreldein)
 * [Marwa Adel Youssef](https://github.com/marwaayosiif)
