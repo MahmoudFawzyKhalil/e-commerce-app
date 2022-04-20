@@ -59,14 +59,18 @@ This software project was built using a layered architecture. The following diag
 The site was deployed in two different ways
 
 1 → Using two Docker containers, a Tomcat container and a MySQL container on a docker bridge network [(dockerhub)](https://github.com/A-Samyy)
+
+     1.1 create a new network.
 ```bash
-docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+docker network create mybridge
 ```
+     1.2 create mysql container with schema "ecommerce" and connect it on the customized network and expose port 3300 to connect with mysql workbench.
 ```bash
-docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+docker run --name mysqldb -p 3300:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=ecommerce -v /usr/local/my_db_voume:/var/lib/mysql/:rw --network mybridge -d mysql:8.0.28-oracle
 ```
+     1.3 run the application image.
 ```bash
-docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+docker run -d  --name app --network mybridge -p 80:8080  asamyy97/e-ccomerce:1.5
 ```
 2 → Using Docker and AWS RDS [(dockerhub)](https://github.com/A-Samyy)
 ```bash
