@@ -37,14 +37,14 @@ This software project was built using a layered architecture. The following diag
 * Docker
 * Maven
 * Apache Tomcat 10.0.20
-* Jakarta Persistence
+* Jakarta Persistence (Hibernate)
 * MySQL
 * Jakarta Server Pages
 * Jakarta Servlet
 * Jakarta Standard Tag Library
 * Tailwind CSS
 * Ajax 
-* Bean Validation
+* Bean Validation (Hibernate Validator)
 * JSON-P and JSON-B
 * HikariCP Connection Pooling
 * MySQL
