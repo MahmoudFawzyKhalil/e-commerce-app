@@ -53,7 +53,7 @@ This software project was built using a layered architecture. The following diag
 * Stripe payment integration
 * Apache Commons Email
 
-# 🐳 Docker
+# 🐳 Run with docker
 **Images**
 
 The site was deployed in two different ways
@@ -78,7 +78,7 @@ docker run -d  --name app --network mybridge -p 80:8080  asamyy97/e-ccomerce:1.5
 docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
 ```
 
-# 🛠 How to run
+# 🛠 Run with Maven
 **Maven**
 
 * Change the configuration of tomcat in `pom.xml`.
