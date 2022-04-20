@@ -8,12 +8,12 @@ This software project was built using a layered architecture. The following diag
 ![Screenshot (21)](https://user-images.githubusercontent.com/29524842/164091047-a8e9b7bd-e8c8-4a75-b1af-ad28fd1b9d33.png)
 
 
-# 🏛 Database Schema
+# 📄 Database Schema
 
 ![image](https://user-images.githubusercontent.com/29524842/164091236-69ffa8f7-7bc1-4c36-a362-673d6c3c28ef.png)
 
 
-# ⚙ Features
+# 📦 Features
 * Registration and login
 * Email confirmation
 * Forget password
@@ -52,7 +52,7 @@ This software project was built using a layered architecture. The following diag
 * Stripe payment integration
 * Apache Commons Email
 
-# ⚙ Docker
+# 🐳 Docker
 
 
 # 🛠 How to run
