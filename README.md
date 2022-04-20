@@ -36,16 +36,17 @@ This software project was built using a layered architecture. The following diag
 * AWS EC2, RDS, and S3
 * Docker
 * Maven
-* JPA
+* Apache Tomcat 10.0.20
+* Jakarta Persistence
 * MySQL
-* JSP
+* Jakarta Server Pages
 * Jakarta Servlet
-* JSTL
+* Jakarta Standard Tag Library
 * Tailwind CSS
 * Ajax 
 * Bean Validation
-* JSON-P & JSON-B
-* HikariCP
+* JSON-P and JSON-B
+* HikariCP Connection Pooling
 * MySQL
 * Spring Security Encoder
 * Stripe payment integration
