@@ -31,6 +31,7 @@ This software project was built using a layered architecture. The following diag
 * Logout `customer and admin`
 
 # ▶ Demo
+![1](https://user-images.githubusercontent.com/73137611/164300342-fd85eebc-27d0-4e42-a445-e5d59ef8dadb.gif)
 
 # ⚙ Technologies used
 * AWS EC2, RDS, and S3
@@ -53,7 +54,12 @@ This software project was built using a layered architecture. The following diag
 * Apache Commons Email
 
 # 🐳 Docker
+**Images**
 
+Run command
+```docker
+docker container run ...
+```
 
 # 🛠 How to run
 **Maven**
