@@ -73,7 +73,7 @@ docker run --name mysqldb -p 3300:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATA
 ```bash
 docker run -d  --name app --network mybridge -p 80:8080  asamyy97/e-ccomerce:1.5
 ```
-2 → Using Docker and AWS RDS [(dockerhub)](https://github.com/A-Samyy)
+2 → Using Docker and AWS RDS [(dockerhub)](https://hub.docker.com/layers/204020190/mavis8d/ecommerce-app/1.0/images/sha256-8eb721d89df677a69892cd44b6dce13ecb84732039597eb0f50cb8d053646791?context=repo)
 ```bash
 docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
 ```
