@@ -61,15 +61,15 @@ The site was deployed in two different ways
 
 1 → Using two Docker containers, a Tomcat container and a MySQL container on a docker bridge network [(dockerhub)](https://hub.docker.com/layers/e-ccomerce/asamyy97/e-ccomerce/1.5/images/sha256-023bbc7d5bf7f699204a496a5f8e8385802c287dd6dc092412c1cd69ad15d831?context=explore)
 
-1.1) create a new network.
+Create a new network.
 ```bash
 docker network create mybridge
 ```
-1.2) create mysql container with schema "ecommerce" and connect it on the customized network and expose port 3300 to connect with mysql workbench.
+Create mysql container with schema "ecommerce" and connect it on the customized network and expose port 3300 to connect with mysql workbench.
 ```bash
 docker run --name mysqldb -p 3300:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=ecommerce -v /usr/local/my_db_voume:/var/lib/mysql/:rw --network mybridge -d mysql:8.0.28-oracle
 ```
-1.3) run the application image.
+Run the application image.
 ```bash
 docker run -d  --name app --network mybridge -p 80:8080  asamyy97/e-ccomerce:1.5
 ```
