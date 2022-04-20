@@ -53,7 +53,7 @@ This software project was built using a layered architecture. The following diag
 * Stripe payment integration
 * Apache Commons Email
 
-# 🐳 Run with docker
+# 🐳 Run with Docker
 **Images**
 
 The site was deployed in two different ways
