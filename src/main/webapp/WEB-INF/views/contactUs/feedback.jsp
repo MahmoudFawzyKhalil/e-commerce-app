@@ -55,7 +55,7 @@
                                         <td class="px-2 py-2 text-sm text-gray-900 ">${message.email}
                                         </td>
                                         <td class="px-2 py-2 text-sm text-gray-500 ">
-                                            ${message.message}
+                                                ${message.message}
                                         </td>
                                         <td class="relative py-2 pl-3 pr-4 text-sm font-medium text-right whitespace-nowrap sm:pr-6">
                                             <a href="<c:url value="/feedback/reply?email=${message.email}&message=${message.message}"/>"
@@ -85,7 +85,8 @@
     <footer class="bg-white">
         <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
             <div class="flex justify-center space-x-6 md:order-2">
-                <a href="#" class="text-gray-400 hover:text-gray-500">
+                <a href="https://github.com/MahmoudFawzyKhalil/e-commerce-app"
+                   class="text-gray-400 hover:text-gray-500">
                     <span class="sr-only">GitHub</span>
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill-rule="evenodd"
