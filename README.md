@@ -56,9 +56,21 @@ This software project was built using a layered architecture. The following diag
 # 🐳 Docker
 **Images**
 
-Run command
-```docker
-docker container run ...
+The site was deployed in two different ways
+
+1 → Using two Docker containers, a Tomcat container and a MySQL container on a docker bridge network [(dockerhub)](https://github.com/A-Samyy)
+```bash
+docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+```
+```bash
+docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+```
+```bash
+docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
+```
+2 → Using Docker and AWS RDS [(dockerhub)](https://github.com/A-Samyy)
+```bash
+docker container run --name ecom -p 80:8080 -d -e AWS_ACCESS_KEY_ID=<access_key_for_aws_s3> -e AWS_REGION=<s3_region> -e AWS_SECRET_ACCESS_KEY=<aws_secret_key> -e DB_HOST=<db_host> -e DB_PASSWORD=<db_password> -e DB_USER=<db_user> mavis8d/ecommerce-app
 ```
 
 # 🛠 How to run
