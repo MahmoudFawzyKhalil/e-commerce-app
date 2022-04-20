@@ -11,7 +11,6 @@ public class CartLineItem {
     private int id;
 
     @ManyToOne
-    // TODO I removed CascadeType.ALL from this and OrderLineItem, did anyone need it?
     private Product product;
 
     @Min( 0 )
