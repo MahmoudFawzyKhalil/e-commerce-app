@@ -1,7 +1,7 @@
 ![chocotown-banner](https://user-images.githubusercontent.com/73137611/164104485-c90fee81-ec95-464a-893e-b05238a7a2bb.png)
 #  ![Webp net-resizeimage (1)](https://user-images.githubusercontent.com/29524842/164079918-1aba1749-cd3a-4e95-9f06-ee94c0ff5e45.png) ChocoTown
 >An E-Commerce web application built using Jakarta EE 9 technologies. Namely, Jakarta Server Pages, Jakarta Servlet and Jakarta Persistence as our second project at the Information Technology Institute.
-> It takes full advantage of Tailwind CSS components to build create a beautiful and modern user interface.
+> It takes full advantage of Tailwind CSS components to create a beautiful and modern user interface.
 # 🏛 Architecture
 This software project was built using a layered architecture. The following diagram demonstrates an example use case that goes through all the layers.
 
