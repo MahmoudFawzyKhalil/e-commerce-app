@@ -30,7 +30,7 @@ This software project was built using a layered architecture. The following diag
 * Checkout using Stripe payment `customer`
 * Logout `customer and admin`
 
-# Demo
+# ▶ Demo
 
 # ⚙ Technologies used
 * AWS EC2, RDS, and S3
